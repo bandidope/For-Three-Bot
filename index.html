@@ -10,45 +10,77 @@
 body{background:var(--negro);color:#fff;text-align:center}
 header{padding:30px 20px;border-bottom:2px solid var(--celeste)}
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px}
-.slogan{color:#aaa;margin-top:5px;font-size:14px}
 .container{max-width:500px;margin:auto;padding:20px}
-.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;transition:.2s}
-.card:hover{transform:scale(1.02);box-shadow:0 0 15px var(--celeste)}
-.nombre{font-weight:bold;text-align:left}
-.precio{color:var(--celeste);font-size:18px;font-weight:bold}
+.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;text-align:left}
+.nombre{font-weight:bold;font-size:16px}
+.precio{color:var(--celeste);font-size:18px;font-weight:bold;margin:8px 0}
 .badge{background:var(--celeste);color:#000;padding:4px 8px;border-radius:6px;font-size:12px;margin-left:8px}
-.pagos{margin:30px 0;color:#aaa}
-.btn-whatsapp{display:block;background:var(--celeste);color:#000;padding:16px;border-radius:12px;text-decoration:none;font-weight:bold;font-size:18px;margin:20px auto;max-width:320px;box-shadow:0 0 20px var(--celeste)}
-.btn-whatsapp:hover{filter:brightness(1.2)}
-footer{color:#555;font-size:12px;padding:20px}
+.btn{display:inline-block;background:var(--celeste);color:#000;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px;margin-top:8px;margin-right:6px;border:none;cursor:pointer}
+.btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
+.box{display:none;background:#111;border:1px dashed var(--celeste);border-radius:8px;padding:12px;margin-top:10px;text-align:left;font-size:14px}
+.box img{width:100%;border-radius:8px;margin-top:8px}
+.nota{color:#aaa;font-size:12px;margin-top:8px}
 </style>
 </head>
 <body>
 
 <header>
   <h1>FOR THREE BOT</h1>
-  <p class="slogan">100% ESTABLE 24/7 | ENTREGA INMEDIATA</p>
+  <p style="color:#aaa;font-size:14px">100% ESTABLE 24/7 | ENTREGA INMEDIATA</p>
 </header>
 
 <div class="container">
 
-  <div class="card"><span class="nombre">Grupo X1</span><span class="precio">S/ 5</span></div>
-  <div class="card"><span class="nombre">Grupo X3</span><span class="precio">S/ 10</span></div>
-  <div class="card"><span class="nombre">Grupo X5 <span class="badge">POPULAR</span></span><span class="precio">S/ 15</span></div>
-  <div class="card"><span class="nombre">Bot Personalizado</span><span class="precio">S/ 18</span></div>
-  <div class="card"><span class="nombre">Servidor 24/7</span><span class="precio">S/ 10</span></div>
-  <div class="card"><span class="nombre">Combo For <span class="badge">-S/5</span></span><span class="precio">S/ 25</span></div>
+  <div class="card">
+    <div class="nombre">Grupo X1 - Bot para 1 Grupo</div>
+    <div class="precio">S/ 5</div>
+    <button class="btn btn-outline" onclick="toggle('demo1')">Ver Cómo Funciona</button>
+    <button class="btn btn-outline" onclick="toggle('pago1')">Ver Métodos de Pago</button>
+    <a class="btn" href="https://wa.me/51936994155?text=Hola%20quiero%20comprar%20Grupo%20X1%20S/5%20FOR%20THREE%20BOT" target="_blank">Comprar</a>
+    
+    <div id="demo1" class="box">
+      <b>¿Cómo funciona?</b><br>
+      1. Te agrego el bot a tu grupo de WhatsApp<br>
+      2. Responde comandos: .menu .sticker .play .ia<br>
+      3. 100% estable 24/7 sin caerse<br>
+      <img src="https://i.imgur.com/8Km0u4K.gif" alt="Demo Bot"> 
+      <p class="nota">*Este es un video demo. El bot es tuyo al instante*</p>
+    </div>
 
-  <p class="pagos">💳 MÉTODOS DE PAGO: Yape | Tarjeta | Prex</p>
-  <p style="color:#aaa;font-size:13px;margin-bottom:10px">🎨 LOGO BISELEADO INCLUIDO</p>
+    <div id="pago1" class="box">
+      💳 <b>Paga por:</b><br> Yape: 936 994 155<br> Prex: 936 994 155<br> 
+      <p class="nota">⚠️ Envía la captura del pago por WhatsApp</p>
+    </div>
+  </div>
 
-  <a class="btn-whatsapp" href="https://wa.me/51936994155?text=Hola%20quiero%20comprar%20en%20FOR%20THREE%20BOT" target="_blank">
-    PEDIR POR WHATSAPP
-  </a>
+  <div class="card">
+    <div class="nombre">Grupo X5 <span class="badge">POPULAR</span></div>
+    <div class="precio">S/ 15</div>
+    <button class="btn btn-outline" onclick="toggle('demo2')">Ver Cómo Funciona</button>
+    <button class="btn btn-outline" onclick="toggle('pago2')">Ver Métodos de Pago</button>
+    <a class="btn" href="https://wa.me/51936994155?text=Hola%20quiero%20comprar%20Grupo%20X5%20S/15%20FOR%20THREE%20BOT" target="_blank">Comprar</a>
+    
+    <div id="demo2" class="box">
+      <b>¿Cómo funciona?</b><br>
+      Mismo bot que X1, pero para 5 grupos distintos con 1 solo pago.<br>
+      Ideal para admins que manejan varias comunidades.<br>
+      <img src="https://i.imgur.com/8Km0u4K.gif" alt="Demo Bot">
+    </div>
+
+    <div id="pago2" class="box">
+      💳 <b>Paga por:</b><br> Yape: 936 994 155<br> Prex: 936 994 155<br>
+      <p class="nota">⚠️ Envía la captura del pago por WhatsApp</p>
+    </div>
+  </div>
 
 </div>
 
-<footer>© 2026 FOR THREE BOT | Ica, Perú</footer>
+<script>
+function toggle(id){
+  var x = document.getElementById(id);
+  x.style.display = x.style.display === "block" ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
