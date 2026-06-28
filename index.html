@@ -6,7 +6,10 @@
 <style>
 :root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
-body{color:#fff;text-align:center;min-height:100vh;padding:0;background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)), url('https://i.imgur.com/8Km0u4K.png') no-repeat center fixed;background-size: cover;}
+body{color:#fff;text-align:center;min-height:100vh;padding:0;
+  background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)), url('https://files.evogb.win/BLG4n2.jpg') no-repeat center fixed;
+  background-size: cover;
+}
 .box{max-width:500px;margin:20px auto;background:rgba(26,26,26,0.95);border:1px solid var(--celeste);border-radius:16px;padding:25px;backdrop-filter: blur(5px)}
 header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.4);backdrop-filter: blur(6px)}
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
@@ -16,14 +19,13 @@ h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px v
 .card:hover{transform:scale(1.02);box-shadow:0 0 15px var(--celeste)}
 .nombre{font-weight:bold;font-size:16px;display:flex;align-items:center;gap:8px}
 .precio{color:var(--celeste);font-size:18px;font-weight:bold;margin:6px 0}
-/* BADGE CON IMAGEN */
 .badge-img{height:20px;width:auto;border-radius:4px;vertical-align:middle}
 .btn{display:block;background:var(--celeste);color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:15px;margin-top:8px;text-align:center}
 .btn-verde{background:var(--verde)}
 .btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
 .footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.5)}
 .sub{color:#aaa;font-size:14px;margin-bottom:15px}
-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
+img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)} /* CAMBIO: clase para no romper el badge */
 .precio-big{font-size:32px;color:var(--celeste);font-weight:bold;margin:15px 0}
 .ahorro{color:#00FF88;font-size:13px;margin-top:-10px;margin-bottom:15px}
 .lista{text-align:left;background:var(--gris2);border-radius:10px;padding:12px;margin:15px 0;font-size:14px;line-height:1.6}
@@ -43,47 +45,21 @@ img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
 <footer class="footer">© 2026 FOR THREE BOT | Ica, Perú<br>💳 Yape / Prex: 936 994 155</footer>
 
 <script>
-// 1. AQUÍ ESTÁ TODO TU NEGOCIO. SOLO EDITA ESTO
 const datos = {
   yape: "936 994 155",
   nombre: "[Tu Nombre]", // CAMBIA ESTO
   cci: "[CCI BCP]", // CAMBIA ESTO
-  badgeUrl: "https://files.evogb.win/BLG4n2.jpg", // TU IMAGEN PARA TODOS
+  img: "https://files.evogb.win/BLG4n2.jpg", // 1 SOLA IMAGEN PARA TODO: FONDO + BADGE + DEMO
   productos: {
-    "X1": {
-      nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", 
-      incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    },
-    "X3": {
-      nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "", 
-      incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    },
-    "X5": {
-      nombre: "Grupo X5", precio: "S/ 15", sub: "Bot para 5 Grupos | 1 Solo Pago", ahorro: "Ahorras S/ 10 vs comprar 5 veces el X1", 
-      incluye: "✅ Mismo bot completo que el X1<br>✅ Para 5 grupos distintos<br>✅ Comandos:.menu.sticker.play.ia.frases<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    },
-    "PERSONALIZADO": {
-      nombre: "Bot Personalizado", precio: "S/ 18", sub: "Tu Bot, Tus Reglas", ahorro: "", 
-      incluye: "✅ Bot desde cero a tu gusto<br>✅ Comandos personalizados<br>✅ Nombre + Logo exclusivo<br>✅ Menú a tu estilo<br>✅ Instalación + Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    },
-    "SERVIDOR": {
-      nombre: "Servidor 24/7", precio: "S/ 10", sub: "Hosting para tu Bot", ahorro: "", 
-      incluye: "✅ Bot siempre online 24/7<br>✅ Sin caídas ni lag<br>✅ Panel para reiniciar<br>✅ Te lo instalo todo yo<br>✅ Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    },
-    "COMBO": {
-      nombre: "Combo For", precio: "S/ 25", sub: "X5 + Servidor 24/7", ahorro: "Ahorras S/ 5", 
-      incluye: "✅ Bot para 5 grupos<br>✅ + Servidor 24/7 incluido<br>✅ Todo instalado y listo<br>✅ Logo FOR THREE<br>✅ Soporte 24/7",
-      img: "https://i.imgur.com/8Km0u4K.gif"
-    }
+    "X1": {nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
+    "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
+    "X5": {nombre: "Grupo X5", precio: "S/ 15", sub: "Bot para 5 Grupos | 1 Solo Pago", ahorro: "Ahorras S/ 10 vs comprar 5 veces el X1", incluye: "✅ Mismo bot completo que el X1<br>✅ Para 5 grupos distintos<br>✅ Comandos:.menu.sticker.play.ia.frases<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
+    "PERSONALIZADO": {nombre: "Bot Personalizado", precio: "S/ 18", sub: "Tu Bot, Tus Reglas", ahorro: "", incluye: "✅ Bot desde cero a tu gusto<br>✅ Comandos personalizados<br>✅ Nombre + Logo exclusivo<br>✅ Menú a tu estilo<br>✅ Instalación + Soporte 24/7"},
+    "SERVIDOR": {nombre: "Servidor 24/7", precio: "S/ 10", sub: "Hosting para tu Bot", ahorro: "", incluye: "✅ Bot siempre online 24/7<br>✅ Sin caídas ni lag<br>✅ Panel para reiniciar<br>✅ Te lo instalo todo yo<br>✅ Soporte 24/7"},
+    "COMBO": {nombre: "Combo For", precio: "S/ 25", sub: "X5 + Servidor 24/7", ahorro: "Ahorras S/ 5", incluye: "✅ Bot para 5 grupos<br>✅ + Servidor 24/7 incluido<br>✅ Todo instalado y listo<br>✅ Logo FOR THREE<br>✅ Soporte 24/7"}
   }
 };
 
-// 2. EL MOTOR - NO TOCAR
 const app = document.getElementById('app');
 const params = new URLSearchParams(window.location.search);
 const page = params.get('page');
@@ -94,7 +70,7 @@ function renderCatalogo(){
   for(const key in datos.productos){
     const p = datos.productos[key];
     html += `<div class="card">
-      <div class="nombre">${p.nombre} <img src="${datos.badgeUrl}" class="badge-img" alt="FOR THREE BOT"></div>
+      <div class="nombre">${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></div>
       <div class="precio">${p.precio}</div>
       <a class="btn" href="?page=producto&id=${key}">Ver Producto</a>
     </div>`;
@@ -105,7 +81,7 @@ function renderCatalogo(){
 function renderProducto(){
   const p = datos.productos[id];
   if(!p){ app.innerHTML = `<div class="box"><h1>Producto no encontrado</h1><a class="volver" href="?">← Volver</a></div>`; return; }
-  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.badgeUrl}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${p.img}" alt="Demo"><h2 class="precio-big">${p.precio}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><a class="btn btn-outline" href="https://wa.me/51936994155?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`;
+  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${datos.img}" class="producto-img" alt="Demo"><h2 class="precio-big">${p.precio}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><a class="btn btn-outline" href="https://wa.me/51936994155?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`;
 }
 
 function renderPago(){
