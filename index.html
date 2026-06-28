@@ -3,33 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOR THREE BOT</title>
+<title>FOR THREE BOT | Tienda Oficial</title>
 <style>
-body{background:#0a0a0a;color:#00D9FF;font-family:Arial;text-align:center;margin:0;padding:20px}
-h1{font-size:32px;margin:10px 0}
-.sub{color:#fff;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:400px;margin:auto}
-.box{border:1px solid #00D9FF;padding:12px;border-radius:8px}
-.pago{margin:20px 0;color:#fff}
-.btn{display:block;background:#00D9FF;color:#000;padding:14px;border-radius:8px;text-decoration:none;font-weight:bold;margin:20px auto;max-width:300px}
+:root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
+body{background:var(--negro);color:#fff;text-align:center}
+header{padding:30px 20px;border-bottom:2px solid var(--celeste)}
+h1{color:var(--celeste);font-size:34px;letter-spacing:2px}
+.slogan{color:#aaa;margin-top:5px;font-size:14px}
+.container{max-width:500px;margin:auto;padding:20px}
+.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.card:hover{transform:scale(1.02);box-shadow:0 0 15px var(--celeste)}
+.nombre{font-weight:bold;text-align:left}
+.precio{color:var(--celeste);font-size:18px;font-weight:bold}
+.badge{background:var(--celeste);color:#000;padding:4px 8px;border-radius:6px;font-size:12px;margin-left:8px}
+.pagos{margin:30px 0;color:#aaa}
+.btn-whatsapp{display:block;background:var(--celeste);color:#000;padding:16px;border-radius:12px;text-decoration:none;font-weight:bold;font-size:18px;margin:20px auto;max-width:320px;box-shadow:0 0 20px var(--celeste)}
+.btn-whatsapp:hover{filter:brightness(1.2)}
+footer{color:#555;font-size:12px;padding:20px}
 </style>
 </head>
 <body>
-<h1>FOR THREE BOT</h1>
-<p class="sub">100% ESTABLE 24/7</p>
 
-<div class="grid">
-<div class="box">Grupo X1</div><div class="box">S/ 5</div>
-<div class="box">Grupo X3</div><div class="box">S/ 10</div>
-<div class="box">Grupo X5</div><div class="box">S/ 15</div>
-<div class="box">Bot Personalizado</div><div class="box">S/ 18</div>
-<div class="box">Servidor</div><div class="box">S/ 10</div>
-<div class="box">Combo For</div><div class="box">S/ 25</div>
+<header>
+  <h1>FOR THREE BOT</h1>
+  <p class="slogan">100% ESTABLE 24/7 | ENTREGA INMEDIATA</p>
+</header>
+
+<div class="container">
+
+  <div class="card"><span class="nombre">Grupo X1</span><span class="precio">S/ 5</span></div>
+  <div class="card"><span class="nombre">Grupo X3</span><span class="precio">S/ 10</span></div>
+  <div class="card"><span class="nombre">Grupo X5 <span class="badge">POPULAR</span></span><span class="precio">S/ 15</span></div>
+  <div class="card"><span class="nombre">Bot Personalizado</span><span class="precio">S/ 18</span></div>
+  <div class="card"><span class="nombre">Servidor 24/7</span><span class="precio">S/ 10</span></div>
+  <div class="card"><span class="nombre">Combo For <span class="badge">-S/5</span></span><span class="precio">S/ 25</span></div>
+
+  <p class="pagos">💳 MÉTODOS DE PAGO: Yape | Tarjeta | Prex</p>
+  <p style="color:#aaa;font-size:13px;margin-bottom:10px">🎨 LOGO BISELEADO INCLUIDO</p>
+
+  <a class="btn-whatsapp" href="https://wa.me/51936994155?text=Hola%20quiero%20comprar%20en%20FOR%20THREE%20BOT" target="_blank">
+    PEDIR POR WHATSAPP
+  </a>
+
 </div>
 
-<p><b>LOGO BISELEADO</b></p>
-<p class="pago">METODOS DE PAGO: Yape | Tarjeta | Prex</p>
+<footer>© 2026 FOR THREE BOT | Ica, Perú</footer>
 
-<a class="btn" href="https://wa.me/51936994155?text=Quiero un bot" target="_blank">Pedir por WhatsApp</a>
 </body>
 </html>
