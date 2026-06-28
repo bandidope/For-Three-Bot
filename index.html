@@ -7,18 +7,24 @@
 <style>
 :root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
-body{background:var(--negro);color:#fff;text-align:center}
-header{padding:30px 20px;border-bottom:2px solid var(--celeste)}
-h1{color:var(--celeste);font-size:34px;letter-spacing:2px}
-.slogan{color:#aaa;margin-top:5px;font-size:14px}
+body{
+  color:#fff;text-align:center;min-height:100vh;
+  /* TU FOTO DE FONDO CON FILTRO OSCURO */
+  background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)), 
+              url('https://raw.githubusercontent.com/bandidope/Fotos/refs/heads/master/fotos/logo.png') no-repeat center fixed;
+  background-size: cover;
+}
+header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.4);backdrop-filter: blur(6px)}
+h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
+.slogan{color:#ddd;margin-top:5px;font-size:14px;text-shadow:0 0 5px #000}
 .container{max-width:500px;margin:auto;padding:20px}
-.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;text-align:left;transition:.2s}
+.card{background:rgba(26,26,26,0.92);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;text-align:left;backdrop-filter: blur(4px);transition:.2s}
 .card:hover{transform:scale(1.02);box-shadow:0 0 15px var(--celeste)}
 .nombre{font-weight:bold;font-size:16px}
 .precio{color:var(--celeste);font-size:18px;font-weight:bold;margin:6px 0}
 .badge{background:var(--celeste);color:#000;padding:3px 7px;border-radius:5px;font-size:11px;margin-left:6px}
 .btn{display:block;background:var(--celeste);color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:15px;margin-top:8px;text-align:center}
-.footer{color:#555;font-size:12px;padding:20px}
+.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.5)}
 </style>
 </head>
 <body>
