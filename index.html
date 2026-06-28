@@ -2,16 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOR THREE BOT | Tienda Oficial</title>
+<title>For Three Bot | Tienda Oficial</title>
 <style>
 :root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
 body{color:#fff;text-align:center;min-height:100vh;padding:0;
-  background: linear-gradient(rgba(10,10,10,0.88), rgba(10,10,10,0.88)), url('https://files.evogb.win/BLG4n2.jpg') no-repeat center fixed;
+  /* FONDO TRANSPARENTE: Le quité el negro 0.88 */
+  background: url('https://files.evogb.win/BLG4n2.jpg') no-repeat center fixed;
   background-size: cover;
 }
 .box{max-width:500px;margin:20px auto;background:rgba(26,26,26,0.95);border:1px solid var(--celeste);border-radius:16px;padding:25px;backdrop-filter: blur(5px)}
-header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.4);backdrop-filter: blur(6px)}
+header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.6);backdrop-filter: blur(6px)} /* Lo puse 0.6 para que se lea */
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
 .slogan{color:#ddd;margin-top:5px;font-size:14px;text-shadow:0 0 5px #000}
 .container{max-width:500px;margin:auto;padding:20px}
@@ -23,9 +24,9 @@ h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px v
 .btn{display:block;background:var(--celeste);color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:15px;margin-top:8px;text-align:center}
 .btn-verde{background:var(--verde)}
 .btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
-.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.5)}
+.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.6)} /* 0.6 para que se lea */
 .sub{color:#aaa;font-size:14px;margin-bottom:15px}
-img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)} /* CAMBIO: clase para no romper el badge */
+img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
 .precio-big{font-size:32px;color:var(--celeste);font-weight:bold;margin:15px 0}
 .ahorro{color:#00FF88;font-size:13px;margin-top:-10px;margin-bottom:15px}
 .lista{text-align:left;background:var(--gris2);border-radius:10px;padding:12px;margin:15px 0;font-size:14px;line-height:1.6}
@@ -47,9 +48,9 @@ img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid va
 <script>
 const datos = {
   yape: "936 994 155",
-  nombre: "[Tu Nombre]", // CAMBIA ESTO
-  cci: "[CCI BCP]", // CAMBIA ESTO
-  img: "https://files.evogb.win/BLG4n2.jpg", // 1 SOLA IMAGEN PARA TODO: FONDO + BADGE + DEMO
+  nombre: "Cristhofer Rojas",
+  cci: "[CCI BCP]",
+  img: "https://files.evogb.win/BLG4n2.jpg",
   productos: {
     "X1": {nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
