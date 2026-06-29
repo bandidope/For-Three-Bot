@@ -6,7 +6,7 @@
 <style>
 :root{--celeste:#00D9FF;--negro:#000;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88;--morado:#A855F7;--rojo:#FF4D4D;--whatsapp:#25D366}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
-body{color:#fff;text-align:center;min-height:100vh;padding:0;background: #000;padding-bottom:80px;} /* ESPACIO PARA EL BOTON */
+body{color:#fff;text-align:center;min-height:100vh;padding:0;background: #000;padding-bottom:80px;}
 .box{max-width:500px;margin:20px auto;background:var(--gris);border:1px solid var(--celeste);border-radius:16px;padding:25px}
 .verificado{background:rgba(0,255,136,0.1);border:1px solid var(--verde);border-radius:12px;padding:15px;margin:15px 20px;text-align:center}
 .verificado b{color:var(--verde);font-size:16px}
@@ -41,10 +41,10 @@ img.producto-img, img.comandos-img{width:100%;border-radius:12px;margin:15px 0;b
 .aviso{background:rgba(0,217,255,0.1);border-left:3px solid var(--celeste);padding:10px;border-radius:6px;font-size:13px;margin:15px 0;text-align:left}
 .volver{display:block;color:#aaa;font-size:13px;margin-top:10px;text-decoration:none}
 .top-btns{display:flex;gap:8px;margin-bottom:15px}
-.garantia{font-size:12px;color:#aaa;margin-top:10px;text-align:center} /* GARANTIA */
-.garantia b{color:var(--verde)} /* GARANTIA */
-.whatsapp-float{position:fixed;bottom:20px;right:20px;background:var(--whatsapp);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 0 15px var(--whatsapp);z-index:999;text-decoration:none;animation:pulse 2s infinite} /* BOTON FLOTANTE */
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}} /* PULSE */
+.garantia{font-size:12px;color:#aaa;margin-top:10px;text-align:center}
+.garantia b{color:var(--verde)}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:var(--whatsapp);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 0 15px var(--whatsapp);z-index:999;text-decoration:none;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7)}70%{box-shadow:0 0 0 10px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 </style>
 </head>
 <body>
@@ -60,21 +60,20 @@ img.producto-img, img.comandos-img{width:100%;border-radius:12px;margin:15px 0;b
 
 <footer class="footer">© 2026 FOR THREE BOT | Ica, Perú<br>💳 Yape / Prex / WhatsApp: 936 994 155</footer>
 
-<!-- BOTON WHATSAPP FLOTANTE -->
 <a href="https://wa.me/51936994155" target="_blank" class="whatsapp-float">💬</a>
 
 <script>
 const datos = {
   whatsapp: "51936994155",
   yape: "936 994 155",
-  nombre: "Tu Nombre Completo", // CAMBIA ESTO
-  cci: "00231000123456789012", // CAMBIA ESTO
+  nombre: "Cristhofer Rojas", // TU NOMBRE ACTUALIZADO
+  cci: "00238019628987806340", // TU CCI BCP ACTUALIZADO
   img: "https://files.evogb.win/BLG4n2.jpg",
   comandosImg: "https://files.evogb.win/eMe9xu.jpg",
   grupoWhatsApp: "https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk",
   productos: {
     "X1": {nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
-    "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "Ahorras S/ 0", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"}, // ANCLA
+    "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "Ahorras S/ 0", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "X5": {nombre: "Grupo X5", precio: "S/ 15", sub: "Bot para 5 Grupos | 1 Solo Pago", ahorro: "🔥 Ahorras S/ 10 vs comprar 5 veces el X1", incluye: "✅ Mismo bot completo que el X1<br>✅ Para 5 grupos distintos<br>✅ Comandos:.menu.sticker.play.ia.frases<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "PERSONALIZADO": {
       nombre: "Bot Personalizado",
@@ -118,7 +117,7 @@ function renderCatalogo(){
       ${p.tag? `<div class="tag-oferta">${p.tag}</div>` : ''}
       <div class="nombre">${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></div>
       <div class="precio">${precioHtml}</div>
-      ${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''} <!-- AHORRO EN CATALOGO -->
+      ${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}
       <a class="btn" href="?page=producto&id=${key}">Ver Producto</a>
     </div>`;
   }
@@ -139,14 +138,14 @@ function renderProducto(){
   const p = datos.productos[id];
   if(!p){ app.innerHTML = `<div class="box"><h1>Producto no encontrado</h1><a class="volver" href="?">← Volver</a></div>`; return; }
   const precioBigHtml = p.precioReal? `<span class="tachado">${p.precioReal}</span> ${p.precio}` : p.precio;
-  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${datos.img}" class="producto-img" alt="Demo"><h2 class="precio-big">${precioBigHtml}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><p class="garantia"><b>✅ Garantía FOR THREE:</b> Si en 24h no te gusta, te devuelvo tu dinero por Yape.</p><a class="btn btn-outline" href="https://wa.me/${datos.whatsapp}?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`; // GARANTIA
+  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${datos.img}" class="producto-img" alt="Demo"><h2 class="precio-big">${precioBigHtml}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><p class="garantia"><b>✅ Garantía FOR THREE:</b> Si en 24h no te gusta, te devuelvo tu dinero por Yape.</p><a class="btn btn-outline" href="https://wa.me/${datos.whatsapp}?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`;
 }
 
 function renderPago(){
   const p = datos.productos[id];
   if(!p){ app.innerHTML = `<div class="box"><h1>Producto no encontrado</h1><a class="volver" href="?">← Volver</a></div>`; return; }
   const mensaje = encodeURIComponent(`Bro ya te deposité ✅\n\nMonto: ${p.nombre} ${p.precio}\nAcá está mi captura 📸`);
-  app.innerHTML = `<div class="box"><h1>Métodos de Pago</h1><div class="producto" style="color:#00FF88;font-weight:bold;font-size:16px;margin-bottom:20px">${p.nombre} ${p.precio}</div><div class="metodo"><b>1. Yape / Plin</b><div class="dato">${datos.yape}</div><div class="dato">A nombre de: ${datos.nombre}</div></div><div class="metodo"><b>2. Prex Perú</b><div class="dato">${datos.yape}</div></div><div class="metodo"><b>3. Transferencia BCP</b><div class="dato">CCI: ${datos.cci}</div></div><div class="aviso">⚠️ Deposita el monto exacto, toma captura y dale al botón.</div><a class="btn btn-verde" href="https://wa.me/${datos.whatsapp}?text=${mensaje}" target="_blank">✅ Ya Deposité</a><a class="volver" href="?page=producto&id=${id}">← Volver</a></div>`;
+  app.innerHTML = `<div class="box"><h1>Métodos de Pago</h1><div class="producto" style="color:#00FF88;font-weight:bold;font-size:16px;margin-bottom:20px">${p.nombre} ${p.precio}</div><div class="metodo"><b>1. Yape / Plin</b><div class="dato">${datos.yape}</div><div class="dato">A nombre de: ${datos.nombre}</div></div><div class="metodo"><b>2. Prex Perú</b><div class="dato">${datos.yape}</div></div><div class="metodo"><b>3. Transferencia BCP</b><div class="dato">${datos.cci}</div><div class="dato">A nombre de: ${datos.nombre}</div><div class="dato">Banco: BCP</div></div><div class="aviso">⚠️ Deposita el monto exacto, toma captura y dale al botón.</div><a class="btn btn-verde" href="https://wa.me/${datos.whatsapp}?text=${mensaje}" target="_blank">✅ Ya Deposité</a><a class="volver" href="?page=producto&id=${id}">← Volver</a></div>`;
 }
 
 if(page === 'producto') renderProducto();
