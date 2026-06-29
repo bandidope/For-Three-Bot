@@ -41,17 +41,20 @@
   #volumeBar{width:88%;accent-color:var(--cyan);margin:0 12px 8px;height:3px}
 .demo-wrap{padding:16px;max-width:600px;margin:0 auto}
 .demo-title{font-size:1.6rem;font-weight:800;color:var(--cyan);text-align:center;margin:16px 0}
-/* VIDEO CSS NUEVO */
-.video-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:10px;margin-bottom:16px;overflow:hidden}
-.video-box video{width:100%;border-radius:10px;display:block} /* <- VIDEO RESPONSIVE */
-.video-title{font-size:.9rem;font-weight:700;color:var(--cyan);margin-bottom:8px;text-align:center}
-/* FIN VIDEO CSS */
 .cmd-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px}
 .cmd-cat{color:var(--cyan);font-weight:800;margin:12px 0 6px;font-size:.85rem}
 .cmd-list{list-style:none;font-size:.85rem;color:var(--muted)}
 .cmd-list li{margin:5px 0;padding-left:10px;border-left:2px solid var(--border)}
 .cmd-list b{color:var(--text)}
-.btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px}
+.btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px} /* <- MARGEN ABAJO */
+/* BOTON NUEVO VER COMO FUNCIONA */
+.btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan)}
+/* PANTALLA VIDEO SOLA */
+.video-screen{background:#000;display:flex;align-items:center;justify-content:center;position:relative}
+.video-screen video{width:100%;height:100%;object-fit:contain}
+.sound-float{position:fixed;top:20px;right:20px;width:50px;height:50px;background:rgba(0,229,255,.9);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:100;color:#0a0a0f;font-weight:800}
+.close-float{position:fixed;top:20px;left:20px;width:50px;height:50px;background:rgba(255,255,255,.1);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:100;color:#fff}
+/* FIN PANTALLA VIDEO */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
 .modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:360px}
@@ -76,28 +79,32 @@
     <div class="features"><div class="feature"><div>⚡</div><div><b>Entrega Inmediata</b><br><span>Por WhatsApp</span></div></div><div class="feature"><div>💜</div><div><b>Yape, Tarjeta, Prex, PayPal</b><br><span>4 métodos</span></div></div><div class="feature"><div>🛠️</div><div><b>Soporte 24/7</b><br><span>Te ayudo</span></div></div><div class="feature"><div>✅</div><div><b>+200 Clientes</b><br><span>En Perú</span></div></div></div>
     <footer>© 2026 For Three Bot | WhatsApp: +51 936 994 155</footer>
   </div>
+
   <div id="demoScreen" class="screen">
     <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">For Three Bot</div><span></span></div></header>
     <div class="demo-wrap">
       <h1 class="demo-title">For Three Bot V1</h1>
-      
-      <!-- VIDEO BOX NUEVO -->
-      <div class="video-box">
-        <div class="video-title">🤖 Demo For Three Bot</div>
-        <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600">
-          <source src="https://cdn.coverr.co/videos/coverr-ai-robot-working-6268/1080p.mp4" type="video/mp4"> <!-- <- VIDEO DE BOT. CAMBIALO -->
-        </video>
-      </div>
-      <!-- FIN VIDEO BOX -->
-
       <div class="cmd-box">
         <div class="cmd-cat">📥 DESCARGAS</div><ul class="cmd-list"><li><b>.ytmp4 [link]</b> - Descargar video YouTube</li><li><b>.ytmp3 [link]</b> - Descargar audio YouTube</li><li><b>.tiktok [link]</b> - Descargar TikTok sin marca</li><li><b>.fb [link]</b> - Descargar Facebook</li></ul>
         <div class="cmd-cat">🎮 JUEGOS</div><ul class="cmd-list"><li><b>.ppt</b> - Piedra Papel Tijera</li><li><b>.trivia</b> - Preguntas random</li><li><b>.match</b> - Encuentra parejas</li></ul>
         <div class="cmd-cat">🤖 IA + UTILIDADES</div><ul class="cmd-list"><li><b>.ia [texto]</b> - Pregunta a la IA</li><li><b>.sticker</b> - Convierte imagen a sticker</li><li><b>.menu</b> - Ver menú completo</li></ul>
       </div>
       <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL For Three Bot</a>
+      <!-- BOTON NUEVO -->
+      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button>
     </div>
   </div>
+
+  <!-- PANTALLA VIDEO SOLA NUEVA -->
+  <div id="videoScreen" class="screen video-screen">
+    <button class="close-float" onclick="closeVideo()">×</button>
+    <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button>
+    <video id="demoVideo" loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600">
+      <source src="demo.mp4" type="video/mp4"> <!-- <- TU VIDEO DEL REPO -->
+    </video>
+  </div>
+  <!-- FIN PANTALLA VIDEO -->
+
   <div id="pagoModal" class="modal"><div class="modal-box"><div class="modal-header"><h3>Checkout</h3><button class="x" onclick="cerrarPago()">×</button></div><div class="payment-tabs"><button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button><button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button><button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button><button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button></div><div id="yapeContent" class="payment-content active"><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div><div id="bankContent" class="payment-content" style="display:none"><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div><div id="prexContent" class="payment-content" style="display:none"><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div><div id="paypalContent" class="payment-content" style="display:none"><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-contratar" target="_blank" style="display:block;text-align:center;text-decoration:none;margin:0 16px;">Pagar PayPal</a></div><button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button></div></div>
 
   <div class="music-player" id="musicPlayer">
@@ -123,6 +130,27 @@
   volumeBar.oninput=()=>music.volume=volumeBar.value;
   function toggleMinimize(){player.classList.toggle('minimized');minBtn.textContent=player.classList.contains('minimized')?'▲':'▼';}
   function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+  
+  // VIDEO LOGIC NUEVO
+  const demoVideo = document.getElementById('demoVideo');
+  const soundBtn = document.getElementById('soundBtn');
+  function openVideo(){
+    show('videoScreen');
+    demoVideo.play(); // Arranca muted
+    demoVideo.muted = true;
+    soundBtn.textContent = '🔇';
+  }
+  function closeVideo(){
+    demoVideo.pause();
+    show('demoScreen');
+  }
+  function toggleVideoSound(){
+    demoVideo.muted =!demoVideo.muted;
+    soundBtn.textContent = demoVideo.muted? '🔇' : '🔊';
+    if(!demoVideo.paused) demoVideo.play(); // Necesita click para sonar
+  }
+  // FIN VIDEO LOGIC
+
   const productosBots=[{id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&auto=format&fit=crop"},{id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop"}];
   const productosHosting=[{id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400&auto=format&fit=crop"},{id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&auto=format&fit=crop"}];
   let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMBIAME"},prex:{num:"936994155"},paypal:"https://paypal.me/tuusuario"};
