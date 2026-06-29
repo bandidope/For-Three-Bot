@@ -4,535 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Three Store | Servicios Digitales</title>
-<style>
-  :root {
-    --bg: #f5f5f5;
-    --card: #ffffff;
-    --text: #1a1a1a;
-    --muted: #666;
-    --border: #e0e0e0;
-    --red: #e60000;
-    --green: #25D366;
-    --purple: #722ed1;
-    --blue: #1677ff;
-    --orange: #fa8c16;
-    --paypal: #0070ba;
-    --header: #e60000;
-  }
-  body.dark {
-    --bg: #0f0f0f;
-    --card: #1a1a1a;
-    --text: #f5f5f5;
-    --muted: #b3b3b3;
-    --border: #2a2a2a;
-    --red: #ff2a2a;
-    --green: #22c55e;
-    --header: #0a0a0a;
-  }
-    * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Inter, Roboto, Arial, sans-serif;
-  }
-  body {
-    background: var(--bg);
-    color: var(--text);
-  }
-  .screen {
-    display: none;
-    min-height: 100vh;
-  }
-  .screen.active {
-    display: block;
-  }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background: var(--bg);
-  }
-  .hero img {
-    max-width: 280px;
-    width: 100%;
-    border-radius: 16px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 8px;
-  }
-  .hero p {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-
-  header {
-    background: var(--header);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid var(--border);
-  }
-  .topbar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: #fff;
-  }
-  .logo {
-    font-size: 22px;
-    font-weight: 900;
-    cursor: pointer;
-    color: #fff;
-  }
-  .top-icons {
-    display: flex;
-    gap: 16px;
-    margin-left: auto;
-  }
-  .icon-btn {
-    background: 0;
-    border: 0;
-    color: #fff;
-    cursor: pointer;
-    font-size: 20px;
-  }
-  .subnav {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-  }
-  .subnav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 16px;
-    display: flex;
-    justify-content: center;
-    overflow-x: auto;
-  }
-  .subnav button {
-    background: 0;
-    border: 0;
-    padding: 12px 20px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--muted);
-    border-bottom: 3px solid transparent;
-    white-space: nowrap;
-  }
-  .subnav button.active {
-    border-bottom-color: var(--red);
-    color: var(--red);
-  }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 16px 12px;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 220px);
-    gap: 16px;
-    justify-content: center;
-  }
-  @media (max-width: 900px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 500px;
-      margin: 0 auto;
-    }
-  }
-  @media (max-width: 640px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-  }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    max-width: 220px;
-    transition: 0.2s;
-  }
-  .card:hover {
-    box-shadow: 0 4px 12px #0001;
-    transform: translateY(-2px);
-  }
-  .card img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    background: #0a0a0a;
-  }
-  .tag {
-    background: var(--green);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 800;
-    padding: 3px 6px;
-    border-radius: 4px;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-  }
-  .card-body {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .marca {
-    font-size: 10px;
-    color: var(--muted);
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
-  .card-body b {
-    font-size: 14px;
-    line-height: 1.3;
-    height: 36px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-  .precio {
-    font-size: 18px;
-    font-weight: 800;
-    margin: 8px 0;
-  }
-  .btn {
-    background: var(--red);
-    color: #fff;
-    border: 0;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: 700;
-    width: 100%;
-    cursor: pointer;
-    margin-top: auto;
-    font-size: 13px;
-    transition: 0.2s;
-    pointer-events: auto; /* FIX 1 */
-  }
-  .btn:hover {
-    opacity: 0.9;
-  }
-  .btn.gray {
-    background: var(--border);
-    color: var(--text);
-  }
-  
-  /* MODAL PRO */
-  .modal {
-    position: fixed;
-    inset: 0;
-    background: #0008;
-    backdrop-filter: blur(4px);
-    display: none;
-    z-index: 50;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    animation: fadeIn 0.2s;
-  }
-  @keyframes fadeIn {
-    from {opacity: 0}
-    to {opacity: 1}
-  }
-  .modal.active {
-    display: flex;
-  }
-  .modal-box {
-    background: var(--card);
-    width: 100%;
-    max-width: 460px;
-    padding: 0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px #0003;
-    animation: slideUp 0.3s;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-  }
-  @keyframes slideUp {
-    from {transform: translateY(20px); opacity: 0}
-    to {transform: translateY(0); opacity: 1}
-  }
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .modal-header h3 {
-    font-size: 18px;
-    font-weight: 800;
-  }
-  .close-btn {
-    background: 0;
-    border: 0;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--muted);
-    line-height: 1;
-  }
-  .modal-body {
-    padding: 20px;
-    overflow-y: auto;
-  }
-
-  .steps {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    gap: 8px;
-  }
-  .step {
-    flex: 1;
-    text-align: center;
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .step-dot {
-    width: 100%;
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-bottom: 6px;
-  }
-  .step.active .step-dot {
-    background: var(--red);
-  }
-  .step.active {
-    color: var(--red);
-    font-weight: 700;
-  }
-
-  .service-card {
-    display: flex;
-    gap: 12px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 16px;
-  }
-  .service-card img {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-  .service-info {
-    flex: 1;
-  }
-  .service-info b {
-    font-size: 15px;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .service-info span {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .service-price {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--red);
-  }
-
-  .payment-tabs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-    margin-bottom: 16px;
-    background: var(--bg);
-    padding: 4px;
-    border-radius: 10px;
-  }
-  .payment-tab {
-    padding: 8px 4px;
-    border: 0;
-    background: 0;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    color: var(--muted);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    transition: 0.2s;
-  }
-  .payment-tab svg {
-    width: 20px;
-    height: 20px;
-  }
-  .payment-tab.active {
-    background: var(--card);
-    color: var(--text);
-    box-shadow: 0 2px 8px #0001;
-  }
-  .payment-content {
-    display: none;
-  }
-  .payment-content.active {
-    display: block;
-    animation: fadeIn 0.3s;
-  }
-
-  .payment-box {
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-    color: #fff;
-  }
-  .yape-box {background: linear-gradient(135deg, var(--purple), #9f2ee1);}
-  .bank-box {background: linear-gradient(135deg, #0033a0, #0052cc);}
-  .prex-box {background: linear-gradient(135deg, var(--orange), #ffb400);}
-  .paypal-box {background: linear-gradient(135deg, var(--paypal), #009cde);}
-  
-  .payment-qr {
-    background: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    margin: 10px 0;
-    color: #000;
-    font-weight: 800;
-  }
-  .payment-monto {
-    font-size: 24px;
-    font-weight: 900;
-    margin-top: 4px;
-  }
-  .payment-monto small {
-    font-size: 12px;
-    font-weight: 400;
-    opacity: 0.8;
-  }
-  .copy-box {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    color: var(--text);
-    text-align: left;
-  }
-  .copy-btn {
-    background: var(--blue);
-    color: #fff;
-    border: 0;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  .note {
-    font-size: 11px;
-    opacity: 0.9;
-    margin-top: 8px;
-  }
-
-  .features {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin-top: 40px;
-    padding: 30px 16px;
-  }
-  .features-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  @media (max-width: 900px) {
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  footer {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    padding: 20px 16px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .wsp-float {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #25D366;
-    display: grid;
-    place-items: center;
-    z-index: 100;
-    box-shadow: 0 4px 12px #25D3664d;
-  }
-  .desc-list {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin: 8px 0;
-  }
-  .desc-list li {
-    margin-left: 16px;
-  }
-  .toast {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1a1a1a;
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    z-index: 999;
-    display: none;
-  }
-  .toast.show {
-    display: block;
-    animation: fadeIn 0.3s;
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- 1. PORTADA -->
 <div class="screen active" id="inicioScreen">
   <div class="hero">
     <img src="https://raw.githubusercontent.com/bandidope/Fotos/refs/heads/master/fotos/logo.png" alt="For Three Store">
@@ -542,7 +17,6 @@
   </div>
 </div>
 
-<!-- 2. TIENDA -->
 <div class="screen" id="tiendaScreen">
   <header>
     <div class="topbar">
@@ -568,8 +42,8 @@
         <p>Por WhatsApp</p>
       </div>
       <div>
-        <h3>💜 Yape, Tarjeta, Prex, PayPal</h3>
-        <p>4 métodos</p>
+        <h3>🎟️ Usa cupón: BOT10</h3>
+        <p>10% OFF</p>
       </div>
       <div>
         <h3>🛠️ Soporte 24/7</h3>
@@ -587,7 +61,6 @@
   </footer>
 </div>
 
-<!-- PRODUCTO -->
 <div class="screen" id="productoScreen">
   <header>
     <div class="topbar">
@@ -603,7 +76,6 @@
   </div>
 </div>
 
-<!-- MODAL 4 METODOS DE PAGO -->
 <div class="modal" id="pagoModal" onclick="if(event.target.id==='pagoModal')cerrarPago()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <div class="modal-header">
@@ -619,6 +91,17 @@
       </div>
 
       <div class="service-card" id="serviceCard"></div>
+
+      <div class="coupon-box" id="couponBox">
+        <div class="coupon-input" id="couponInput">
+          <input type="text" id="couponCode" placeholder="Código: BOT10">
+          <button class="btn" onclick="applyCoupon()">Aplicar</button>
+        </div>
+        <div class="coupon-applied" id="couponApplied" style="display:none;">
+          <span id="couponText">Cupón aplicado</span>
+          <button onclick="removeCoupon()">×</button>
+        </div>
+      </div>
 
       <div class="payment-tabs">
         <button class="payment-tab active" onclick="selectPayment('yape', event)">
@@ -642,30 +125,48 @@
       <div class="payment-content active" id="yapeContent">
         <div class="payment-box yape-box">
           <b>💜 Paga con Yape</b>
-          <div>Yapea al: 936 994 155</div>
-          <div class="payment-qr">📱 ESCANEA TU QR AQUÍ</div>
-          <div>Monto exacto</div>
-          <div class="payment-monto" id="montoYape">S/ 0.00</div>
+          <div style="font-size: 12px; margin: 8px 0;">Transfiere a:</div>
+          <div class="copy-box">
+            <div>
+              <div style="font-size: 11px; opacity: 0.8;">Número</div>
+              <div style="font-weight: 700;" id="yapeNum">936994155</div>
+            </div>
+            <button class="copy-btn" onclick="copyText(document.getElementById('yapeNum').textContent)">Copiar</button>
+          </div>
+          <div class="copy-box">
+            <div>
+              <div style="font-size: 11px; opacity: 0.8;">Nombre</div>
+              <div style="font-weight: 700;" id="yapeName">For Three Store</div>
+            </div>
+            <button class="copy-btn" onclick="copyText(document.getElementById('yapeName').textContent)">Copiar</button>
+          </div>
+          <div style="margin-top: 8px;">Monto: <b id="montoYape">S/ 0.00</b></div>
         </div>
       </div>
 
       <div class="payment-content" id="tarjetaContent">
         <div class="payment-box bank-box">
           <b>💳 Transferencia BCP / Interbank</b>
-          <div style="font-size: 12px; margin: 8px 0;">Titular: For Three Store</div>
           <div class="copy-box">
             <div>
-              <div style="font-size: 11px; opacity: 0.8;">Cuenta BCP Soles</div>
-              <div style="font-weight: 700;">191-12345678-0-12</div>
+              <div style="font-size: 11px; opacity: 0.8;">CCI</div>
+              <div style="font-weight: 700;" id="bcpCci">00219100123456780127</div>
             </div>
-            <button class="copy-btn" onclick="copyText('191-12345678-0-12')">Copiar</button>
+            <button class="copy-btn" onclick="copyText(document.getElementById('bcpCci').textContent)">Copiar</button>
           </div>
           <div class="copy-box">
             <div>
-              <div style="font-size: 11px; opacity: 0.8;">CCI BCP</div>
-              <div style="font-weight: 700;">00219100123456780127</div>
+              <div style="font-size: 11px; opacity: 0.8;">Número De Cuenta</div>
+              <div style="font-weight: 700;" id="bcpCuenta">191-12345678-0-12</div>
             </div>
-            <button class="copy-btn" onclick="copyText('00219100123456780127')">Copiar</button>
+            <button class="copy-btn" onclick="copyText(document.getElementById('bcpCuenta').textContent)">Copiar</button>
+          </div>
+          <div class="copy-box">
+            <div>
+              <div style="font-size: 11px; opacity: 0.8;">Nombre</div>
+              <div style="font-weight: 700;" id="bcpNombre">For Three Store</div>
+            </div>
+            <button class="copy-btn" onclick="copyText(document.getElementById('bcpNombre').textContent)">Copiar</button>
           </div>
           <div style="margin-top: 8px;">Monto: <b id="montoTarjeta">S/ 0.00</b></div>
         </div>
@@ -674,10 +175,20 @@
       <div class="payment-content" id="prexContent">
         <div class="payment-box prex-box">
           <b>🟠 Paga con Prex</b>
-          <div style="font-size: 12px; margin: 8px 0;">Envía a mi usuario Prex:</div>
+          <div style="font-size: 12px; margin: 8px 0;">Transfiere a:</div>
           <div class="copy-box">
-            <div style="font-weight: 700;">@forthreestore</div>
-            <button class="copy-btn" onclick="copyText('@forthreestore')">Copiar</button>
+            <div>
+              <div style="font-size: 11px; opacity: 0.8;">Número de cuenta</div>
+              <div style="font-weight: 700;" id="prexNum">93551234567</div>
+            </div>
+            <button class="copy-btn" onclick="copyText(document.getElementById('prexNum').textContent)">Copiar</button>
+          </div>
+          <div class="copy-box">
+            <div>
+              <div style="font-size: 11px; opacity: 0.8;">Nombre</div>
+              <div style="font-weight: 700;" id="prexName">For Three Store</div>
+            </div>
+            <button class="copy-btn" onclick="copyText(document.getElementById('prexName').textContent)">Copiar</button>
           </div>
           <div style="margin-top: 8px;">Monto: <b id="montoPrex">S/ 0.00</b></div>
         </div>
@@ -687,20 +198,20 @@
         <div class="payment-box paypal-box">
           <b>🔵 Paga con PayPal USD</b>
           <div style="font-size: 12px; margin: 8px 0;">Tipo de cambio: S/ 3.80 = $1.00</div>
-          <div class="payment-qr">💳 Paga con tu tarjeta o saldo</div>
+          <div style="background:#fff;padding:12px;border-radius:8px;margin:10px 0;color:#000;font-weight:800;">💳 Paga con tu tarjeta o saldo</div>
           <div>Monto total USD</div>
           <div class="payment-monto" id="montoPaypal">$0.00 <small>USD</small></div>
           <div class="note">*Incluye comisión PayPal 5.4% + $0.30</div>
-          <a href="#" id="paypalLink" target="_blank" class="btn" style="background:#fff;color:var(--paypal);margin-top:10px;font-size:14px;">
+          <a href="#" id="paypalLink" target="_blank" class="btn" style="background:#fff;color:var(--paypal);margin-top:10px;">
             Pagar con PayPal →
           </a>
         </div>
       </div>
 
-      <a href="#" id="wspBtn" target="_blank" class="btn" style="background:var(--green); font-size: 14px; padding: 12px; margin-top: 16px;">
+      <a href="#" id="wspBtn" target="_blank" class="btn success" style="margin-top: 16px;">
         ✅ Ya Pagué - Enviar Comprobante
       </a>
-      <button class="btn gray" style="font-size: 14px; padding: 12px; margin-top: 8px;" onclick="cerrarPago()">Cancelar</button>
+      <button class="btn gray" style="margin-top: 8px;" onclick="cerrarPago()">Cancelar</button>
       <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:12px">
         Te instalo todo en menos de 5 min al confirmar
       </p>
@@ -716,186 +227,6 @@
   </svg>
 </a>
 
-<script>
-const CONFIG = {
-  TC_USD: 3.80,
-  PAYPAL_FEE: 0.054,
-  PAYPAL_FIXED: 0.30,
-  PAYPAL_USER: 'forthreestore'
-};
-
-const productos = [
-  {
-    id: 1,
-    nom: "Bot Para Grupos WhatsApp",
-    precio: 5,
-    imgs: ["https://via.placeholder.com/400x400/0a0a0a/25D366?text=BOT"],
-    marca: "FOR THREE STORE",
-    cat: "Bots",
-    desc: [
-      "Anti-fake y anti-link automático",
-      "Comandos: /kick /ban /menu",
-      "Auto-respuestas 24/7",
-      "Instalación inmediata",
-      "Soporte Permanente En El Grupo"
-    ]
-  },
-  {
-    id: 2,
-    nom: "Bot Personalizado VIP",
-    precio: 25,
-    imgs: ["https://via.placeholder.com/400x400/0a0a0a/FFB400?text=VIP"],
-    marca: "FOR THREE STORE",
-    cat: "Bots",
-    desc: [
-      "100% a tu gusto",
-      "Bot + Panel Hosting",
-      "Menu Personalizable",
-      "Soporte Permanente"
-    ]
-  },
-  {
-    id: 3,
-    nom: "Hosting Bot 24/7",
-    precio: 10.00,
-    imgs: ["https://via.placeholder.com/400x400/0a0a0a/007600?text=HOST"],
-    marca: "FOR THREE STORE",
-    cat: "Hosting",
-    desc: [
-      "Bot encendido 24/7 sin PC",
-      "Servidor en Perú",
-      "1.5GB RAM + 5GB SSD",
-      "Respaldo semanal",
-      "S/ 10 mensual"
-    ]
-  }
-];
-
-let productoSeleccionado = null;
-let metodoPago = 'yape';
-
-const themeBtn = document.getElementById('themeBtn');
-function aplicarTema(esDark) {
-  document.body.classList.toggle('dark', esDark);
-  themeBtn.textContent = esDark ? '☀️' : '🌙';
-}
-aplicarTema(window.matchMedia('(prefers-color-scheme: dark)').matches);
-function toggleDark() {
-  const esDark = !document.body.classList.contains('dark');
-  aplicarTema(esDark);
-  localStorage.setItem('dark', esDark);
-}
-
-const cats = ['Bots', 'Hosting'];
-document.getElementById('subnav').innerHTML = cats
-  .map(c => `<button onclick="setCat('${c}', event)">${c}</button>`)
-  .join('');
-setCat('Bots', null);
-
-function setCat(c, e) {
-  if(e) e.target.classList.add('active');
-  document.querySelectorAll('.subnav button').forEach(b => {
-    if(b.textContent !== c) b.classList.remove('active');
-  });
-  filtrar(c);
-}
-
-function filtrar(cat) {
-  const list = productos.filter(p => p.cat === cat);
-  document.getElementById('productos').innerHTML = list
-    .map(p => `
-    <div class="card" onclick="verProducto(${p.id})">
-      <div class="tag">DIGITAL</div>
-      <img src="${p.imgs[0]}">
-      <div class="card-body">
-        <div class="marca">${p.cat}</div>
-        <b>${p.nom}</b>
-        <div class="precio">S/ ${p.precio.toFixed(2)}</div>
-        <!-- FIX 2: Pasa el event -->
-        <button class="btn" onclick="abrirPago(${p.id}, event)">Contratar</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-function show(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(id === 'tiendaScreen') filtrar('Bots');
-}
-
-function verProducto(id) {
-  const p = productos.find(x => x.id === id);
-  document.getElementById('pNom').textContent = p.nom;
-  document.getElementById('pMarca').textContent = p.cat;
-  document.getElementById('pPrecio').innerHTML = `<div class="precio" style="font-size:24px">S/ ${p.precio.toFixed(2)}</div>`;
-  document.getElementById('pDesc').innerHTML = p.desc.map(d => `<li>${d}</li>`).join('');
-  document.getElementById('comprarBtn').onclick = () => abrirPago(id, null);
-  show('productoScreen');
-}
-
-function solesADolares(soles) {
-  const baseUSD = soles / CONFIG.TC_USD;
-  const totalUSD = (baseUSD + CONFIG.PAYPAL_FIXED) / (1 - CONFIG.PAYPAL_FEE);
-  return totalUSD.toFixed(2);
-}
-
-// FIX 3: Recibe event y hace stopPropagation aquí
-function abrirPago(id, e) {
-  if(e) e.stopPropagation();
-  productoSeleccionado = productos.find(x => x.id === id);
-  const p = productoSeleccionado;
-  const usd = solesADolares(p.precio);
-  
-  document.getElementById('serviceCard').innerHTML = `
-    <img src="${p.imgs[0]}" alt="${p.nom}">
-    <div class="service-info">
-      <b>${p.nom}</b>
-      <span>${p.cat} • Entrega Inmediata</span>
-    </div>
-    <div class="service-price">S/ ${p.precio.toFixed(2)}</div>
-  `;
-  
-  document.getElementById('montoYape').textContent = `S/ ${p.precio.toFixed(2)}`;
-  document.getElementById('montoTarjeta').textContent = `S/ ${p.precio.toFixed(2)}`;
-  document.getElementById('montoPrex').textContent = `S/ ${p.precio.toFixed(2)}`;
-  document.getElementById('montoPaypal').innerHTML = `$${usd} <small>USD</small>`;
-  document.getElementById('paypalLink').href = `https://www.paypal.me/${CONFIG.PAYPAL_USER}/${usd}USD`;
-  
-  selectPayment('yape', null);
-  document.getElementById('pagoModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function cerrarPago() {
-  document.getElementById('pagoModal').classList.remove('active');
-  document.body.style.overflow = '';
-  productoSeleccionado = null;
-}
-
-function selectPayment(metodo, e) {
-  if(e) e.target.closest('.payment-tab').classList.add('active');
-  metodoPago = metodo;
-  document.querySelectorAll('.payment-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.payment-content').forEach(c => c.classList.remove('active'));
-  
-  if(e) e.target.closest('.payment-tab').classList.add('active');
-  document.getElementById(metodo + 'Content').classList.add('active');
-  
-  const p = productoSeleccionado;
-  const usd = solesADolares(p.precio);
-  const metodoNombre = metodo === 'yape' ? 'Yape' : metodo === 'tarjeta' ? 'Transferencia' : metodo === 'prex' ? 'Prex' : `PayPal $${usd} USD`;
-  
-  const msg = `Hola For Three Store! 👋\n\nYa pagué por:\n*${p.nom}*\nMétodo: ${metodoNombre}\n\nAdjunto mi comprobante 📸\nPorfa instálamelo. Gracias!`;
-  document.getElementById('wspBtn').href = `https://wa.me/51936994155?text=${encodeURIComponent(msg)}`;
-}
-
-function copyText(text) {
-  navigator.clipboard.writeText(text);
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
-}
-</script>
+<script src="app.js"></script>
 </body>
 </html>
