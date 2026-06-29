@@ -73,4 +73,12 @@ header{background:var(--header);position:sticky;top:0;z-index:10;box-shadow:0 2p
 .toast.show{display:block;animation:slideUp .3s}
 .toast.error{background:var(--red)}
 @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-@media(max-width:400px){.grid{grid-template-columns:1fr}.payment-tabs{grid-template-columns:repeat(2,1fr)}} 
+@media(max-width:400px){.grid{grid-template-columns:1fr}.payment-tabs{grid-template-columns:repeat(2,1fr)}}
+.music-start{position:fixed;inset:0;background:#000f;z-index:999;display:none;align-items:center;justify-content:center;text-align:center;color:#fff}
+.music-start.active{display:flex}
+.music-box{background:var(--card);padding:30px 20px;border-radius:16px;max-width:320px;width:90%;color:var(--text);box-shadow:0 20px 40px #0006}
+.music-box h2{font-size:24px;margin-bottom:8px}
+.music-box p{color:var(--muted);margin-bottom:16px}
+.music-btn{position:fixed;bottom:20px;right:20px;z-index:99;background:var(--red);color:#fff;border:0;width:50px;height:50px;border-radius:50%;font-size:22px;cursor:pointer;box-shadow:0 4px 12px #0003;transition:transform .2s}
+.music-btn:active{transform:scale(.9)}
+.music-btn.off{background:var(--muted)}
