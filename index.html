@@ -42,6 +42,35 @@
   .screen.active {
     display: block;
   }
+  
+  /* PORTADA NUEVA */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: var(--bg);
+  }
+  .hero img {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
   header {
     background: var(--header);
     position: sticky;
@@ -64,34 +93,10 @@
     cursor: pointer;
     color: #fff;
   }
-  .buscador {
-    flex: 1;
-    display: flex;
-  }
-  .buscador input {
-    flex: 1;
-    padding: 10px;
-    border: 0;
-    border-radius: 4px 0 0 4px;
-    background: #fff;
-    color: #111;
-  }
-  body.dark .buscador input {
-    background: #1f1f1f;
-    color: #f5f5f5;
-  }
-  .buscador button {
-    background: #333;
-    color: #fff;
-    border: 0;
-    padding: 0 20px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    font-weight: 700;
-  }
   .top-icons {
     display: flex;
     gap: 16px;
+    margin-left: auto;
   }
   .icon-btn {
     position: relative;
@@ -124,13 +129,14 @@
     margin: 0 auto;
     padding: 0 16px;
     display: flex;
+    justify-content: center;
     overflow-x: auto;
   }
   .subnav button {
     background: 0;
     border: 0;
-    padding: 12px 16px;
-    font-size: 13px;
+    padding: 12px 24px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     color: var(--muted);
@@ -145,58 +151,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px 16px;
-  }
-  .banner-wrap {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  .banners {
-    display: flex;
-    transition: 0.5s;
-  }
-  .banner {
-    flex-shrink: 0;
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 24px;
-    font-size: 18px;
-    font-weight: 800;
-    text-align: center;
-  }
-  .banner-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-  }
-  .banner-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #fff5;
-    border: 1px solid #fff;
-    cursor: pointer;
-  }
-  .banner-dot.active {
-    background: #fff;
-  }
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .select {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 13px;
   }
   .grid {
     display: grid;
@@ -228,7 +182,7 @@
     background: #0a0a0a;
   }
   .tag {
-    background: var(--red);
+    background: var(--green);
     color: #fff;
     font-size: 11px;
     font-weight: 800;
@@ -237,9 +191,6 @@
     position: absolute;
     top: 8px;
     left: 8px;
-  }
-  .tag.green {
-    background: var(--green);
   }
   .card-body {
     padding: 12px;
@@ -255,11 +206,6 @@
     font-size: 22px;
     font-weight: 800;
     margin: 8px 0;
-  }
-  .precio del {
-    font-size: 14px;
-    color: var(--muted);
-    font-weight: 400;
   }
   .btn {
     background: var(--red);
@@ -355,15 +301,21 @@
 </head>
 <body>
 
-<!-- CATALOGO -->
-<div class="screen active" id="catalogoScreen">
+<!-- 1. PORTADA CON TU LOGO -->
+<div class="screen active" id="inicioScreen">
+  <div class="hero">
+    <img src="https://raw.githubusercontent.com/bandidope/Fotos/refs/heads/master/fotos/logo.png" alt="For Three Store">
+    <h1>For Three Store</h1>
+    <p>Bots y Hosting 24/7 para WhatsApp. Entrega inmediata por Yape.</p>
+    <button class="btn" style="max-width: 250px;" onclick="show('tiendaScreen')">Ver Servicios</button>
+  </div>
+</div>
+
+<!-- 2. TIENDA -->
+<div class="screen" id="tiendaScreen">
   <header>
     <div class="topbar">
-      <div class="logo" onclick="resetFiltros()">For Three Store</div>
-      <div class="buscador">
-        <input id="search" placeholder="Busca tu servicio" oninput="filtrar()">
-        <button onclick="filtrar()">Buscar</button>
-      </div>
+      <div class="logo" onclick="show('inicioScreen')">For Three Store</div>
       <div class="top-icons">
         <button class="icon-btn" onclick="toggleDark()" id="themeBtn">🌙</button>
         <button class="icon-btn" onclick="abrirCarrito()">
@@ -373,31 +325,15 @@
     </div>
   </header>
 
+  <!-- SOLO 2 CATEGORIAS: BOTS Y HOSTING -->
   <nav class="subnav">
     <div class="subnav-inner" id="subnav"></div>
   </nav>
 
   <div class="container">
-    <div class="banner-wrap">
-      <div class="banners" id="banners">
-        <div class="banner">BOTS Y HOSTING 24/7 PARA WHATSAPP</div>
-        <div class="banner" style="background:#e60000;color:#fff">ENTREGA INMEDIATA POR YAPE</div>
-      </div>
-      <div class="banner-dots" id="bannerDots"></div>
-    </div>
-
-    <div class="toolbar">
-      <div id="resultados">0 servicios</div>
-      <select class="select" id="ordenar" onchange="filtrar()">
-        <option value="relevancia">Más relevantes</option>
-        <option value="precio-asc">Menor a Mayor</option>
-      </select>
-    </div>
-
     <div class="grid" id="productos"></div>
   </div>
 
-  <!-- SECCION CONFIANZA -->
   <section class="features">
     <div class="features-grid">
       <div>
@@ -428,7 +364,7 @@
 <div class="screen" id="productoScreen">
   <header>
     <div class="topbar">
-      <span onclick="show('catalogoScreen')">← Volver</span>
+      <span onclick="show('tiendaScreen')">← Volver</span>
     </div>
   </header>
   <div class="container" style="max-width:700px">
@@ -454,7 +390,7 @@
 <div class="screen" id="pagoScreen">
   <header>
     <div class="topbar">
-      <span onclick="show('catalogoScreen')">← Volver</span>
+      <span onclick="show('tiendaScreen')">← Volver</span>
     </div>
   </header>
   <div class="container" style="max-width:500px">
@@ -490,18 +426,18 @@
 
 <script>
 const productos = [
+  // 2 PRODUCTOS EN BOTS
   {
     id: 1,
     nom: "Bot Para Grupos - WhatsApp",
     precio: 25.00,
-    precioOld: 40.00,
     imgs: ["https://via.placeholder.com/600x338/0a0a0a/25D366?text=BOT+GRUPOS"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Bots",
     desc: [
-      "Anti-fake y anti-link",
-      "Comandos: /kick /ban /menu",
+      "Anti-fake y anti-link automático",
+      "Comandos: /kick /ban /menu /sticker",
       "Auto-respuestas 24/7",
       "Instalación inmediata",
       "Soporte 1 mes incluido"
@@ -509,20 +445,21 @@ const productos = [
   },
   {
     id: 2,
-    nom: "Bot Personalizado",
+    nom: "Bot Personalizado VIP",
     precio: 80.00,
     imgs: ["https://via.placeholder.com/600x338/0a0a0a/FFB400?text=BOT+VIP"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Bots",
     desc: [
-      "Lo hago 100% a tu medida",
-      "Tus comandos, tu logo, tu estilo",
-      "Base de datos incluida",
-      "Panel web para controlarlo",
+      "100% a tu medida: comandos, logo, estilo",
+      "Base de datos + Panel web para control",
+      "IA integrada si quieres",
+      "Código fuente incluido",
       "Soporte 3 meses incluido"
     ]
   },
+  // 1 PRODUCTO EN HOSTING
   {
     id: 3,
     nom: "Hosting para Bot 24/7",
@@ -532,7 +469,7 @@ const productos = [
     marca: "FOR THREE STORE",
     cat: "Hosting",
     desc: [
-      "Tu bot encendido 24/7 sin PC",
+      "Tu bot encendido 24/7 sin PC prendida",
       "Servidor en Perú, ping bajo",
       "1GB RAM + 5GB SSD",
       "Respaldo automático semanal",
@@ -542,6 +479,7 @@ const productos = [
 ];
 
 let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+let filtroCat = 'Bots'; // Por defecto entra a Bots
 
 // TEMA OSCURO AUTO
 const themeBtn = document.getElementById('themeBtn');
@@ -556,34 +494,15 @@ function toggleDark() {
   localStorage.setItem('dark', esDark);
 }
 
-// BANNER AUTO
-let bannerIndex = 0;
-const banners = document.getElementById('banners');
-const totalBanners = banners.children.length;
-document.getElementById('bannerDots').innerHTML = [...Array(totalBanners)]
-  .map((_, i) => `<div class="banner-dot" onclick="goBanner(${i})"></div>`)
-  .join('');
-function goBanner(i) {
-  bannerIndex = i;
-  banners.style.transform = `translateX(-${i * 100}%)`;
-  document.querySelectorAll('.banner-dot').forEach((d, j) =>
-    d.classList.toggle('active', j === i)
-  );
-}
-setInterval(() => {
-  bannerIndex = (bannerIndex + 1) % totalBanners;
-  goBanner(bannerIndex);
-}, 4000);
-goBanner(0);
-
-// CATEGORIAS
-const cats = ['Todos', ...new Set(productos.map(p => p.cat))];
+// SOLO 2 CATEGORIAS: BOTS Y HOSTING
+const cats = ['Bots', 'Hosting'];
 document.getElementById('subnav').innerHTML = cats
   .map(c => `<button onclick="setCat('${c}')">${c}</button>`)
   .join('');
-setCat('Todos');
+setCat('Bots'); // Inicia en Bots
 
 function setCat(c) {
+  filtroCat = c;
   document.querySelectorAll('.subnav button').forEach(b =>
     b.classList.remove('active')
   );
@@ -593,34 +512,23 @@ function setCat(c) {
 
 // FILTRAR Y MOSTRAR PRODUCTOS
 function filtrar() {
-  const q = document.getElementById('search').value.toLowerCase();
-  const list = productos.filter(p => 
-    (c === 'Todos' || p.cat === c) && p.nom.toLowerCase().includes(q)
-  );
-  document.getElementById('resultados').textContent = `${list.length} servicios`;
+  const list = productos.filter(p => p.cat === filtroCat);
   document.getElementById('productos').innerHTML = list
     .map(
       p => `
     <div class="card" onclick="verProducto(${p.id})">
-      <div class="tag ${p.precioOld ? '' : 'green'}">${p.precioOld ? '-' + Math.round((1 - p.precio / p.precioOld) * 100) + '%' : 'DIGITAL'}</div>
+      <div class="tag">DIGITAL</div>
       <img src="${p.imgs[0]}">
       <div class="card-body">
         <div class="marca">${p.cat}</div>
         <b>${p.nom}</b>
-        <div class="precio">${p.precioOld ? `<del>S/ ${p.precioOld.toFixed(2)}</del> ` : ''}S/ ${p.precio.toFixed(2)}</div>
+        <div class="precio">S/ ${p.precio.toFixed(2)}</div>
         <button class="btn" onclick="event.stopPropagation();addCart(${p.id})">Contratar</button>
       </div>
     </div>
   `
     )
     .join('');
-}
-
-let c = 'Todos';
-function resetFiltros() {
-  document.getElementById('search').value = '';
-  c = 'Todos';
-  setCat('Todos');
 }
 
 // CARRITO
@@ -665,6 +573,9 @@ function cerrarCarrito() {
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  if(id === 'tiendaScreen') {
+    filtrar(); // Carga productos al entrar
+  }
 }
 
 function verProducto(id) {
@@ -672,7 +583,7 @@ function verProducto(id) {
   document.getElementById('pNom').textContent = p.nom;
   document.getElementById('pMarca').textContent = p.cat;
   document.getElementById('pPrecio').innerHTML = `
-    <div class="precio">${p.precioOld ? `<del>S/ ${p.precioOld.toFixed(2)}</del> ` : ''}S/ ${p.precio.toFixed(2)}</div>
+    <div class="precio">S/ ${p.precio.toFixed(2)}</div>
   `;
   document.getElementById('pDesc').innerHTML = p.desc
     .map(d => `<li>${d}</li>`)
@@ -710,8 +621,6 @@ function irAPago() {
   )}`;
   show('pagoScreen');
 }
-
-filtrar();
 </script>
 </body>
 </html>
