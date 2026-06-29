@@ -7,8 +7,8 @@
 :root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88;--morado:#A855F7;--rojo:#FF4D4D}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
 body{color:#fff;text-align:center;min-height:100vh;padding:0;
-  background: url('https://files.evogb.win/BLG4n2.jpg') no-repeat center fixed;
-  background-size: cover;
+  background: linear-gradient(180deg, #0a0a0a 0%, #121212 100%); /* FONDO NEGRO SUAVE NUEVO */
+  background-attachment: fixed;
 }
 .box{max-width:500px;margin:20px auto;background:rgba(26,26,26,0.95);border:1px solid var(--celeste);border-radius:16px;padding:25px;backdrop-filter: blur(5px)}
 .verificado{background:rgba(0,255,136,0.1);border:1px solid var(--verde);border-radius:12px;padding:15px;margin:15px 20px;text-align:center}
@@ -18,7 +18,7 @@ body{color:#fff;text-align:center;min-height:100vh;padding:0;
 .oferta-box b{color:var(--morado);font-size:14px}
 .oferta-box p{color:#ccc;font-size:12px;margin-top:4px}
 .tachado{color:#888;text-decoration:line-through;font-size:20px;margin-right:8px}
-header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.6);backdrop-filter: blur(6px)}
+header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(18,18,18,0.8);backdrop-filter: blur(6px)} /* HEADER MÁS OSCURO */
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
 .slogan{color:#ddd;margin-top:5px;font-size:14px;text-shadow:0 0 5px #000}
 .container{max-width:500px;margin:auto;padding:20px}
@@ -32,7 +32,7 @@ h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px v
 .btn-verde{background:var(--verde)}
 .btn-morado{background:var(--morado);color:#fff}
 .btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
-.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.6)}
+.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(18,18,18,0.8)} /* FOOTER MÁS OSCURO */
 .sub{color:#aaa;font-size:14px;margin-bottom:15px}
 img.producto-img, img.comandos-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
 .precio-big{font-size:32px;color:var(--celeste);font-weight:bold;margin:15px 0}
@@ -72,23 +72,23 @@ const datos = {
     "X1": {nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "X5": {nombre: "Grupo X5", precio: "S/ 15", sub: "Bot para 5 Grupos | 1 Solo Pago", ahorro: "Ahorras S/ 10 vs comprar 5 veces el X1", incluye: "✅ Mismo bot completo que el X1<br>✅ Para 5 grupos distintos<br>✅ Comandos:.menu.sticker.play.ia.frases<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
-    "PERSONALIZADO": { // CON OFERTA
+    "PERSONALIZADO": {
       nombre: "Bot Personalizado",
       precio: "S/ 16",
-      precioReal: "S/ 18", // PRECIO TACHADO
+      precioReal: "S/ 18",
       sub: "Tu Bot, Tus Reglas",
-      ahorro: "🔥 Oferta Hoy: Ahorras S/ 2. Solo 2 cupos", // URGENCIA
-      tag: "OFERTA", // ETIQUETA ROJA
+      ahorro: "🔥 Oferta Hoy: Ahorras S/ 2. Solo 2 cupos",
+      tag: "OFERTA",
       incluye: "✅ Bot desde cero a tu gusto<br>✅ Comandos personalizados<br>✅ Nombre + Logo exclusivo<br>✅ Menú a tu estilo<br>✅ Instalación + Soporte 24/7"
     },
     "SERVIDOR": {nombre: "Servidor 24/7", precio: "S/ 10", sub: "Hosting para tu Bot", ahorro: "", incluye: "✅ Bot siempre online 24/7<br>✅ Sin caídas ni lag<br>✅ Panel para reiniciar<br>✅ Te lo instalo todo yo<br>✅ Soporte 24/7"},
-    "COMBO": { // CON OFERTA
+    "COMBO": {
       nombre: "Combo For",
       precio: "S/ 22",
-      precioReal: "S/ 25", // PRECIO TACHADO
+      precioReal: "S/ 25",
       sub: "X5 + Servidor 24/7",
-      ahorro: "🔥 Oferta Hoy: Ahorras S/ 3. Voy 3/5 cupos", // URGENCIA
-      tag: "OFERTA", // ETIQUETA ROJA
+      ahorro: "🔥 Oferta Hoy: Ahorras S/ 3. Voy 3/5 cupos",
+      tag: "OFERTA",
       incluye: "✅ Bot para 5 grupos<br>✅ + Servidor 24/7 incluido<br>✅ Todo instalado y listo<br>✅ Logo FOR THREE<br>✅ Soporte 24/7"
     }
   }
