@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>For Three Store</title>
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=13">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,12 +13,12 @@
       <div class="logo-3d">F3</div>
       <h1>FOR THREE STORE</h1>
       <p>Servicios Digitales al Instante</p>
-      <button class="btn-glow" onclick="show('tiendaScreen')">Explorar Tienda</button>
+      <button class="btn-glow" onclick="startApp()">Explorar Tienda</button> <!-- <- NUEVO -->
     </div>
   </div>
 
   <div id="tiendaScreen" class="screen">
-    <header><div class="topbar"><div class="logo" onclick="show('inicioScreen')">F3</div><button id="themeBtn" class="icon-btn">🌙</button></div></header>
+    <header><div class="topbar"><div class="logo" onclick="startApp()">F3</div><button id="themeBtn" class="icon-btn">🌙</button></div></header>
     <div class="grid" id="productos"></div>
   </div>
 
@@ -64,6 +64,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script src="app.js?v=11"></script>
+  <script src="app.js?v=13"></script>
 </body>
 </html>
