@@ -1,11 +1,11 @@
 /* ===================
-   FOR THREE STORE - TIENDA CON BOT CONECTADO
+   FOR THREE STORE - TIENDA CON BOT CONECTADO V2 FIX
    =================== */
 const TU_NUMERO_WSP = '51936994155'; // <-- PON TU NUMERO SIN +51
 const REDIR_WSP = `https://wa.me/${TU_NUMERO_WSP}`;
 
 const state = {
-  tab: 'todos',
+  tab: 'todos', // <- SIEMPRE EMPIEZA EN TODOS
   query: '',
   cart: [],
   theme: localStorage.getItem('f3_theme') || 'light',
@@ -60,8 +60,8 @@ function bind(){
     localStorage.setItem('f3_theme', state.theme); 
     aplicarTheme(); 
   };
-  $('#btnIrTienda').onclick = ()=>mostrar('tienda');
-  $('#logo').onclick = ()=>mostrar('tienda');
+  $('#btnIrTienda').onclick = ()=>{ mostrar('tienda'); resetFiltro(); } // <- FIX 1
+  $('#logo').onclick = ()=>{ mostrar('tienda'); resetFiltro(); } // <- FIX 2
   $('#search').oninput = e=>{ state.query=e.target.value; render(); };
   $$('.subnav button').forEach(b=>b.onclick=()=>{ 
     $$('.subnav button').forEach(x=>x.classList.remove('active')); 
@@ -71,6 +71,15 @@ function bind(){
   });
   $('#aplicarCupon').onclick = aplicarCupon;
   $$('.payment-tab').forEach(b=>b.onclick=()=>cambiarTab(b.dataset.tab));
+}
+
+function resetFiltro(){ // <- FIX 3: ESTA ES LA FUNCION NUEVA
+  state.tab = 'todos';
+  state.query = '';
+  $('#search').value = '';
+  $$('.subnav button').forEach(x=>x.classList.remove('active'));
+  $('.subnav button[data-tab="todos"]').classList.add('active');
+  render();
 }
 
 function mostrar(pantalla){
@@ -187,7 +196,7 @@ function copiar(txt){
   showToast('Copiado ✅');
 }
 
-/* ===== CONEXIÓN CON BOT - ESTO MANDA EL JSON ===== */
+/* ===== CONEXIÓN CON BOT ===== */
 async function guardarVenta(){
   if(!state.productoSeleccionado) return showToast('Error', true);
 
@@ -214,10 +223,7 @@ async function guardarVenta(){
                  `*COPIA ESTO Y ENVIALO AL BOT:*\n` +
                  '```json\n' + JSON.stringify(venta, null, 2) + '\n```';
 
-  // 1. Te abre WSP con el JSON para ti
   window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgBot)}`, '_blank');
-
-  // 2. Espera 1 seg y abre con el cliente
   setTimeout(() => {
     window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgCliente)}`, '_blank');
   }, 1000);
