@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>For Three Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+  :root{--bg:#0a0a0f;--card:#0d1b2a;--text:#e0e6ed;--muted:#7a8a99;--cyan:#00e5ff;--cyan-glow:rgba(0,229,255,0.4);--border:#1e2d3d;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:80px}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+  header{position:sticky;top:0;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);z-index:10;padding:15px 20px;border-bottom:1px solid var(--border)}
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.3rem;font-family:'Orbitron'}
+.icon-btn{background:0;border:0;color:var(--cyan);font-size:1.5rem;cursor:pointer}
+.tabs{display:flex;gap:30px;justify-content:center;margin-top:15px}
+.tab{color:var(--muted);font-weight:600;cursor:pointer;padding-bottom:8px;border-bottom:2px solid transparent}
+.tab.active{color:var(--text);border-color:var(--cyan)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.card-img{height:160px;background:#000;position:relative;display:flex;align-items:center;justify-content:center}
+.tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:6px}
+.card-body{padding:12px}
+.card-cat{font-size:.7rem;color:var(--muted);margin-bottom:4px}
+.card-title{font-size:.95rem;font-weight:700;margin-bottom:10px;min-height:40px}
+.card-price{font-size:1.2rem;font-weight:800;margin-bottom:10px}
+.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 0 10px var(--cyan-glow)}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:30px 20px}
+.feature{display:flex;gap:12px;align-items:flex-start}
+.feature b{font-size:1rem}
+.feature span{font-size:.85rem;color:var(--muted)}
+  footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
+.wsp-float{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);cursor:pointer;z-index:99}
+.wsp-float svg{width:32px;height:32px;fill:#fff}
+.probar-float{position:fixed;bottom:90px;right:20px;background:var(--cyan);color:#0a0a0f;font-weight:800;padding:12px 22px;border-radius:50px;box-shadow:0 0 20px var(--cyan-glow);cursor:pointer;z-index:99;border:1px solid var(--cyan);animation:glow 2s infinite alternate}
+  @keyframes glow{from{box-shadow:0 0 10px var(--cyan-glow)}to{box-shadow:0 0 30px var(--cyan)}}
+.music-player{position:fixed;bottom:150px;right:20px;width:260px;background:rgba(13,27,42,0.9);backdrop-filter:blur(15px);border:1px solid var(--cyan);border-radius:12px;box-shadow:0 0 20px var(--cyan-glow);z-index:98;overflow:hidden}
+.player-header{display:flex;justify-content:space-between;padding:8px 12px;color:var(--cyan);font-size:.8rem;cursor:pointer}
+.player-controls{display:flex;justify-content:center;gap:10px;padding:8px}
+.player-controls button{background:var(--cyan);border:0;width:32px;height:32px;border-radius:50%;font-size:1rem;color:#0a0a0f;cursor:pointer}
+  #volumeBar{width:94%;accent-color:var(--cyan);margin:0 12px 8px}
+.demo-wrap{padding:20px;max-width:600px;margin:0 auto}
+.demo-title{font-family:'Orbitron';font-size:1.8rem;color:var(--cyan);text-align:center;margin:20px 0;text-shadow:0 0 15px var(--cyan-glow)}
+.cmd-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px}
+.cmd-cat{color:var(--cyan);font-weight:800;margin:15px 0 8px;font-size:.9rem}
+.cmd-list{list-style:none;font-size:.85rem;color:var(--muted)}
+.cmd-list li{margin:6px 0;padding-left:10px;border-left:2px solid var(--border)}
+.cmd-list b{color:var(--text)}
+.btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:900;font-size:1.1rem;padding:16px;border-radius:12px;box-shadow:0 0 20px var(--cyan-glow);animation:glow 2s infinite alternate}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:400px}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:15px;border-bottom:1px solid var(--border)}
+.x{background:0;border:0;font-size:1.5rem;color:var(--muted);cursor:pointer}
+.payment-tabs{display:flex;gap:8px;margin:15px;padding:0 15px;overflow-x:auto}
+.payment-tab{padding:8px 14px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:.85rem}
+.payment-tab.active{background:var(--cyan);color:#0a0a0f}
+.amount{font-size:1.8rem;font-weight:800;color:var(--cyan);margin:10px 15px}
+.copy-box{display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:10px;border-radius:8px;margin:8px 15px;font-size:.9rem}
+.copy-btn{padding:6px 12px;background:var(--cyan);border:0;border-radius:6px;color:#0a0a0f;font-weight:700;cursor:pointer}
+.btn-wsp{width:calc(100% - 30px);margin:15px;background:#25D366;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:700;cursor:pointer}
+.toast{position:fixed;bottom:150px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 16px;border-radius:8px;opacity:0;transition:.3s;z-index:999}
+.toast.show{opacity:1}
+  </style>
+</head>
+<body>
+  <div id="tiendaScreen" class="screen active">
+    <header><div class="topbar"><div class="logo">For Three Store</div></div><div class="tabs"><div class="tab active" onclick="setTab('bots', this)">Bots</div><div class="tab" onclick="setTab('hosting', this)">Hosting</div></div></header>
+    <div class="grid" id="productos"></div>
+    <div class="features"><div class="feature"><div>⚡</div><div><b>Entrega Inmediata</b><br><span>Por WhatsApp</span></div></div><div class="feature"><div>💜</div><div><b>Yape, Tarjeta, Prex, PayPal</b><br><span>4 métodos</span></div></div><div class="feature"><div>🛠️</div><div><b>Soporte 24/7</b><br><span>Te ayudo</span></div></div><div class="feature"><div>✅</div><div><b>+200 Clientes</b><br><span>En Perú</span></div></div></div>
+    <footer>© 2026 For Three Store | WhatsApp: +51 936 994 155</footer>
+  </div>
+  <div id="demoScreen" class="screen">
+    <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">DEMO BOT</div><span></span></div></header>
+    <div class="demo-wrap">
+      <h1 class="demo-title">F3 BOT V1</h1>
+      <div class="cmd-box">
+        <div class="cmd-cat">📥 DESCARGAS</div><ul class="cmd-list"><li><b>.ytmp4 [link]</b> - Descargar video YouTube</li><li><b>.ytmp3 [link]</b> - Descargar audio YouTube</li><li><b>.tiktok [link]</b> - Descargar TikTok sin marca</li><li><b>.fb [link]</b> - Descargar Facebook</li></ul>
+        <div class="cmd-cat">🎮 JUEGOS</div><ul class="cmd-list"><li><b>.ppt</b> - Piedra Papel Tijera</li><li><b>.trivia</b> - Preguntas random</li><li><b>.match</b> - Encuentra parejas</li></ul>
+        <div class="cmd-cat">🤖 IA + UTILIDADES</div><ul class="cmd-list"><li><b>.ia [texto]</b> - Pregunta a la IA</li><li><b>.sticker</b> - Convierte imagen a sticker</li><li><b>.menu</b> - Ver menú completo</li></ul>
+      </div>
+      <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL F3</a> <!-- <- YA CAMBIADO -->
+    </div>
+  </div>
+  <div id="pagoModal" class="modal"><div class="modal-box"><div class="modal-header"><h3>Checkout</h3><button class="x" onclick="cerrarPago()">×</button></div><div class="payment-tabs"><button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button><button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button><button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button><button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button></div><div id="yapeContent" class="payment-content active"><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div><div id="bankContent" class="payment-content" style="display:none"><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div><div id="prexContent" class="payment-content" style="display:none"><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div><div id="paypalContent" class="payment-content" style="display:none"><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-contratar" target="_blank" style="display:block;text-align:center;text-decoration:none;margin:0 15px;">Pagar en PayPal</a></div><button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button></div></div>
+  <div class="music-player" id="musicPlayer"><div class="player-header" onclick="document.getElementById('musicPlayer').style.display='none'"><span>audioNormal.mp3</span><span>✕</span></div><div class="player-controls"><button onclick="prevSong()">⏮️</button><button id="playBtn" onclick="togglePlay()">▶️</button><button onclick="nextSong()">⏭️</button></div><input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8"><audio id="bgMusic" loop preload="auto"><source src="audioNormal.mp3" type="audio/mpeg"></audio></div>
+  <div class="probar-float" onclick="show('demoScreen')">Probar</div>
+  <a class="wsp-float" href="https://wa.me/51936994155" target="_blank"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.7.9 5.2 2.4 7.2L4 29l7-2.3c1.9 1 4.1 1.6 6.4 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg></a>
+  <div id="toast" class="toast"></div>
+  <script>
+  const music=document.getElementById('bgMusic');const playBtn=document.getElementById('playBtn');const volumeBar=document.getElementById('volumeBar');
+  music.loop=true;music.volume=0.8;volumeBar.value=0.8;
+  document.addEventListener('click',()=>music.play().catch(()=>{}),{once:true});
+  function togglePlay(){if(music.paused){music.play();playBtn.textContent='⏸️';}else{music.pause();playBtn.textContent='▶️';}}
+  function prevSong(){music.currentTime=0;toast('Reiniciando')}function nextSong(){toast('Solo 1 canción')}volumeBar.oninput=()=>music.volume=volumeBar.value;
+  function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+  const productosBots=[{id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://i.imgur.com/3bBz3bB.png"},{id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://i.imgur.com/3bBz3bB.png"}];
+  const productosHosting=[{id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://i.imgur.com/3bBz3bB.png"},{id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://i.imgur.com/3bBz3bB.png"}];
+  let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMBIAME"},prex:{num:"936994155"},paypal:"https://paypal.me/tuusuario"};
+  let currentProduct=null;
+  function setTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderProductos();}
+  function renderProductos(){const data=currentTab==='bots'?productosBots:productosHosting;document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="abrirPago(${p.id},${p.precio},'${p.nom}')">Contratar</button></div></div>`).join('');}
+  function abrirPago(id,precio,nom){currentProduct={id,precio,nom};document.getElementById('pagoModal').classList.add('active');updateMontos();}
+  function cerrarPago(){document.getElementById('pagoModal').classList.remove('active');}
+  function selectPayment(t,ev){document.querySelectorAll('.payment-tab,.payment-content').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block';}
+  function updateMontos(){const precio=currentProduct.precio;const usd=(precio/3.7).toFixed(2);['montoYape','montoTarjeta','montoPrex'].forEach(id=>document.getElementById(id).textContent=`S/ ${precio}.00`);document.getElementById('montoPaypal').textContent=`$${usd} USD`;document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;document.getElementById('yapeNum').textContent=pagos.yape.num;document.getElementById('bcpCci').textContent=pagos.bcp.cci;document.getElementById('prexNum').textContent=pagos.prex.num;}
+  document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - S/ ${currentProduct.precio}.00`)}`,'_blank');};
+  function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado!')}
+  function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+  renderProductos();
+  </script>
+</body>
+</html>
