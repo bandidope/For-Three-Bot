@@ -73,4 +73,4 @@ header{background:var(--header);position:sticky;top:0;z-index:10;box-shadow:0 2p
 .toast.show{display:block;animation:slideUp .3s}
 .toast.error{background:var(--red)}
 @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-@media(max-width:400px){.grid{grid-template-columns:1fr}.payment-tabs{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.grid{grid-template-columns:1fr}.payment-tabs{grid-template-columns:repeat(2,1fr)}} 
