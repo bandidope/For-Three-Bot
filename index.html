@@ -4,61 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>For Three Store</title>
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
-  <!-- INICIO -->
   <div id="inicioScreen" class="screen active">
     <div class="hero">
-      <img src="https://i.ibb.co/3y0p0sP/bot-vip.jpg" alt="For Three">
+      <img src="bot-vip.jpg" alt="For Three">
       <h1>For Three Store</h1>
       <p>Bots, Activaciones y Servicios al instante</p>
       <button class="btn" onclick="show('tiendaScreen')">Ver Productos</button>
     </div>
   </div>
 
-  <!-- TIENDA -->
   <div id="tiendaScreen" class="screen">
-    <header>
-      <div class="topbar">
-        <div class="logo" onclick="show('inicioScreen')">FOR THREE</div>
-        <button id="themeBtn" class="theme-btn">🌙</button>
-      </div>
-    </header>
+    <header><div class="topbar"><div class="logo" onclick="show('inicioScreen')">FOR THREE</div><button id="themeBtn" class="theme-btn">🌙</button></div></header>
     <div class="grid" id="productos"></div>
   </div>
 
-  <!-- PRODUCTO -->
   <div id="productoScreen" class="screen">
     <header><div class="topbar"><button class="back" onclick="show('tiendaScreen')">←</button><div class="logo">DETALLE</div><span></span></div></header>
     <div class="p-wrap">
-      <img id="pImg" alt="">
-      <div class="tag" id="pMarca"></div>
-      <h2 id="pNom"></h2>
-      <div class="precio" id="pPrecio"></div>
-      <ul class="p-desc" id="pDesc"></ul>
+      <img id="pImg" alt=""><div class="tag" id="pMarca"></div><h2 id="pNom"></h2>
+      <div class="precio" id="pPrecio"></div><ul class="p-desc" id="pDesc"></ul>
       <button class="btn" id="comprarBtn">Contratar Ahora</button>
     </div>
   </div>
 
-  <!-- REPRODUCTOR FLOTANTE ESTILO EVOGB -->
+  <!-- MODAL DE PAGO VIEJO -->
+  <div id="pagoModal" class="modal">
+    <div class="modal-box">
+      <div class="modal-header"><h3>Finalizar Compra</h3><button class="x" onclick="cerrarPago()">×</button></div>
+      <div class="modal-body">
+        <div id="serviceCard" class="service-card"></div>
+        <div class="coupon-box">
+          <div id="couponInput" class="coupon-input"><input id="couponCode" placeholder="Código F3DIEZ"><button class="btn-apply" onclick="applyCoupon()">Aplicar</button></div>
+          <div id="couponApplied" class="coupon-applied" style="display:none"><span id="couponText"></span><button class="btn-remove" onclick="removeCoupon()">×</button></div>
+        </div>
+        <div class="payment-tabs">
+          <button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button>
+          <button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button>
+          <button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button>
+          <button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button>
+        </div>
+        <div id="yapeContent" class="payment-content active"><div class="payment-box"><b>Pagar con Yape</b><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div></div>
+        <div id="bankContent" class="payment-content"><div class="payment-box"><b>Transferencia BCP</b><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div></div>
+        <div id="prexContent" class="payment-content"><div class="payment-box"><b>Pagar con Prex</b><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div></div>
+        <div id="paypalContent" class="payment-content"><div class="payment-box"><b>Pagar con PayPal</b><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-paypal" target="_blank">Pagar en PayPal</a></div></div>
+        <button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPRODUCTOR FLOTANTE NUEVO -->
   <div class="music-player" id="musicPlayer">
-    <div class="player-header" onclick="togglePlayer()">
-      <span id="songName">audioNormal.mp3</span>
-      <span>▼</span>
-    </div>
-    <div class="player-controls">
-      <button onclick="prevSong()">⏮️</button>
-      <button id="playBtn" onclick="togglePlay()">▶️</button>
-      <button onclick="nextSong()">⏭️</button>
-    </div>
+    <div class="player-header" onclick="togglePlayer()"><span id="songName">audioNormal.mp3</span><span>▼</span></div>
+    <div class="player-controls"><button onclick="prevSong()">⏮️</button><button id="playBtn" onclick="togglePlay()">▶️</button><button onclick="nextSong()">⏭️</button></div>
     <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8">
-    <audio id="bgMusic" loop preload="auto">
-      <source src="audioNormal.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgMusic" loop preload="auto"><source src="audioNormal.mp3" type="audio/mpeg"></audio>
   </div>
 
   <div id="toast" class="toast"></div>
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>
