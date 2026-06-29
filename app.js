@@ -5,14 +5,14 @@ const CONFIG = {
   TC_USD: 3.80,
   PAYPAL_FEE: 0.054,
   PAYPAL_FIXED: 0.30,
-  PAYPAL_USER: 'forthreestore',
+  PAYPAL_USER: 'https://paypal.com/@',
   YAPE_NUMERO: '936994155',
-  YAPE_NOMBRE: 'For Three Store',
+  YAPE_NOMBRE: 'Cristhofer Rojas',
   BCP_CUENTA: '191-12345678-0-12',
   BCP_CCI: '00219100123456780127',
-  BCP_NOMBRE: 'For Three Store',
+  BCP_NOMBRE: 'Cristhofer Rojas',
   PREX_CUENTA: '93551234567',
-  PREX_NOMBRE: 'For Three Store'
+  PREX_NOMBRE: 'Cristhofer Rojas'
 };
 
 const COUPONS = {
