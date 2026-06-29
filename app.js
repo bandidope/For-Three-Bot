@@ -1,15 +1,15 @@
 /* ===================
-   FOR THREE BOT - STORE V3 COMPATIBLE
+   FOR THREE BOT - STORE V3 CON BOT CONECTADO
    =================== */
-const TU_NUMERO_WSP = '51936994155'; // <-- TU NUMERO
+const TU_NUMERO_WSP = '51936994155'; // <-- CAMBIA TU NUMERO SIN + AQUI
 const REDIR_WSP = `https://wa.me/${TU_NUMERO_WSP}`;
 
 const state = {
-  tab: 'todos', // <- FIX: Siempre todos al iniciar
+  tab: 'todos',
   query: '',
   theme: localStorage.getItem('f3_theme') || 'dark',
   descuentoAplicado: { code: null, percent: 0 },
-  metodoPago: 'yape',
+  metodoPago: 'yape', // <- yape, bank, prex, paypal
   productoSeleccionado: null
 };
 
@@ -34,7 +34,7 @@ const CUENTAS = {
   yape: { nom:'Yape', num:'936994155', titular:'For Three' },
   bank: { nom:'BCP', cci:'00219100234567890123', cuenta:'191-23456789-0-12', titular:'For Three' },
   prex: { nom:'Prex', num:'948572136', titular:'For Three' },
-  paypal: { nom:'PayPal', link:'https://paypal.me/ForThree', usd: 0.28 } // <- 15 soles = $4.2 USD
+  paypal: { nom:'PayPal', link:'https://paypal.me/ForThree', usd: 0.28 }
 };
 
 function init(){ aplicarTheme(); bind(); renderSubnav(); resetFiltro(); mostrar('inicioScreen'); }
@@ -47,9 +47,7 @@ function aplicarTheme(){
   $('#themeBtn').textContent = state.theme==='dark'? '☀️' : '🌙';
 }
 
-function bind(){
-  $('#themeBtn').onclick = toggleDark;
-}
+function bind(){ $('#themeBtn').onclick = toggleDark; }
 
 function toggleDark(){
   state.theme = state.theme==='light'?'dark':'light';
@@ -57,7 +55,7 @@ function toggleDark(){
   aplicarTheme();
 }
 
-function renderSubnav(){ // <- Crea los botones TODOS BOT SERV
+function renderSubnav(){
   $('#subnav').innerHTML = `
     <button data-tab="todos" class="active">TODOS</button>
     <button data-tab="bot">BOT</button>
@@ -78,7 +76,7 @@ function resetFiltro(){
   render();
 }
 
-function show(pantalla){ mostrar(pantalla); } // <- Para tu onclick
+function show(pantalla){ mostrar(pantalla); }
 function mostrar(pantalla){
   $$('.screen').forEach(s=>s.classList.remove('active'));
   $(`#${pantalla}`).classList.add('active');
@@ -86,7 +84,7 @@ function mostrar(pantalla){
 }
 
 function render(){
-  const grid = $('#productos'); // <- FIX: Era #grid, ahora #productos
+  const grid = $('#productos');
   if(!grid) return;
   let lista = PRODUCTOS.filter(p=>{
     if(state.tab!=='todos' && p.cat!==state.tab) return false;
@@ -131,13 +129,11 @@ function abrirPago(){
   const p = state.productoSeleccionado;
   if(!p) return;
 
-  // Card del servicio
   $('#serviceCard').innerHTML = `
     <img src="${p.img}">
     <div><b>${p.nom}</b><div class="precio">S/ ${p.precio.toFixed(2)}</div></div>
   `;
 
-  // Datos de pago
   $('#yapeNum').textContent = CUENTAS.yape.num;
   $('#yapeName').textContent = CUENTAS.yape.titular;
   $('#bcpCci').textContent = CUENTAS.bank.cci;
@@ -192,8 +188,8 @@ function actualizarMontos(){
   $('#montoPaypal').textContent = `$${usd} USD`;
 }
 
-function selectPayment(tab, e){ // <- FIX: Para tus tabs
-  state.metodoPago = tab;
+function selectPayment(tab, e){
+  state.metodoPago = tab; // <- GUARDA SI ES YAPE, BANK, PREX, PAYPAL
   $$('.payment-tab').forEach(b=>b.classList.remove('active'));
   if(e) e.target.classList.add('active');
   $$('.payment-content').forEach(c=>c.classList.remove('active'));
@@ -206,31 +202,38 @@ function copyText(txt){
   showToast('Copiado ✅');
 }
 
-/* ===== BOT CONECTADO ===== */
+/* ===== BOT CONECTADO - ESTO ES LO IMPORTANTE ===== */
 async function guardarVenta(){
   if(!state.productoSeleccionado) return showToast('Error', true);
+
   const precioFinal = getPrecioFinal();
   const venta = {
     id: 'F3-' + Date.now(),
     producto: state.productoSeleccionado.nom,
     precio_soles: precioFinal,
-    metodo: state.metodoPago,
+    metodo: state.metodoPago, // <- AQUI GUARDA: yape, bank, prex, paypal
     cupon: state.descuentoAplicado.code || 'Ninguno',
     fecha: new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' }),
     estado: 'PENDIENTE'
   };
+
+  // 1. MENSAJE CON JSON PARA TU BOT
   const msgBot = `🚨 *NUEVA VENTA PENDIENTE* 🚨\n\n` +
                  `*ID:* ${venta.id}\n*Producto:* ${venta.producto}\n*Monto:* S/ ${venta.precio_soles.toFixed(2)}\n*Método:* ${venta.metodo}\n` +
                  `*COPIA ESTO Y ENVIALO AL BOT:*\n` +
                  '```json\n' + JSON.stringify(venta, null, 2) + '\n```';
+
+  // 2. MENSAJE PARA EL CLIENTE
   const msgCliente = `Hola For Three! 👋\n\nYa pagué S/ ${precioFinal.toFixed(2)} por:\n*${venta.producto}*\nMetodo: ${venta.metodo}\nID: ${venta.id}\n\nAdjunto mi comprobante 📸`;
-  window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgBot)}`, '_blank');
-  setTimeout(() => { window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgCliente)}`, '_blank'); }, 1000);
+
+  window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgBot)}`, '_blank'); // <- Se abre 1ro para ti
+  setTimeout(() => { window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgCliente)}`, '_blank'); }, 1000); // <- Se abre 2do para el cliente
+
   cerrarPago();
   showToast('Pedido enviado al Bot ✅');
 }
 
-$('#wspBtn').onclick = guardarVenta; // <- Conecta tu botón
+$('#wspBtn').onclick = guardarVenta; // <- CONECTA TU BOTON CON EL BOT
 
 function showToast(msg, error=false){
   const t = $('#toast');
