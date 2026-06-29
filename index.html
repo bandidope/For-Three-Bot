@@ -6,7 +6,7 @@
   <title>For Three Bot</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
   <style>
-  :root{--bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366;}
+  :root{--bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366;--yape:#7200ff;}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:70px}
 .screen{display:none;min-height:100vh}.screen.active{display:block}
@@ -42,16 +42,14 @@
 .cmd-list b{color:var(--text)}
 .btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px}
 .btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan);margin-bottom:10px}
-.btn-comprar-demo{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)} /* <- NUEVO */
+.btn-comprar-demo{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
 .btn-volver-abajo{display:block;width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-/* VIDEO V42 FULLSCREEN */
 .video-screen{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center;z-index:200}
 .video-screen.active{display:flex}
 .video-box{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
 .video-box video{width:100%;height:100%;object-fit:contain;filter:brightness(1.3)}
 .sound-float{position:absolute;bottom:80px;left:24px;width:50px;height:50px;background:rgba(0,229,255,.95);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:10;color:#0a0a0f;font-weight:800}
 .btn-volver-video{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:420px;background:rgba(15,23,42,.95);backdrop-filter:blur(10px);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;z-index:10}
-/* FIN VIDEO */
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;border:1px solid var(--border)}
 .product-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
@@ -63,19 +61,25 @@
 .product-list li b{color:var(--cyan);font-size:1.1rem}
 .btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
 .btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+/* CHECKOUT V43 NUEVO DISEÑO */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
-.modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:360px}
-.modal-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)}
-.modal-header h3{font-size:1.1rem}
-.x{background:0;border:0;font-size:1.5rem;color:var(--muted);cursor:pointer}
-.payment-tabs{display:flex;gap:6px;margin:14px 16px;overflow-x:auto}
-.payment-tab{padding:8px 12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;white-space:nowrap}
-.payment-tab.active{background:var(--cyan);color:#0a0a0f}
-.amount{font-size:1.8rem;font-weight:800;color:var(--cyan);margin:12px 16px}
-.copy-box{display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:10px 12px;border-radius:8px;margin:8px 16px;font-size:.85rem;border:1px solid var(--border)}
-.copy-btn{padding:6px 12px;background:var(--cyan);border:0;border-radius:6px;color:#0a0a0f;font-weight:700;cursor:pointer;font-size:.8rem}
-.btn-wsp{width:calc(100% - 32px);margin:14px 16px;background:var(--green);color:#fff;border:0;padding:12px;border-radius:10px;font-weight:800;cursor:pointer}
+.modal-box{background:rgba(15,23,42,.95);border:1px solid rgba(0,229,255,.3);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2)}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
+.modal-header h3{font-size:1.2rem;font-weight:800}
+.x{background:rgba(255,255,255,.1);border:0;width:32px;height:32px;border-radius:50%;font-size:1.3rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.payment-tabs{display:flex;gap:8px;margin:16px 18px;overflow-x:auto;padding-bottom:4px}
+.payment-tab{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;cursor:pointer;font-size:.85rem;font-weight:600;white-space:nowrap;transition:.2s}
+.payment-tab.active{background:var(--cyan);color:#0a0a0f;border-color:var(--cyan)}
+.payment-tab.icon{font-size:1.1rem}
+.amount{font-size:2.2rem;font-weight:800;color:var(--cyan);margin:16px 18px;text-align:center}
+.payment-content{padding:0 18px 18px}
+.qr-box{width:180px;height:180px;background:#fff;border-radius:16px;margin:12px auto;display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.9rem;text-align:center;padding:10px}
+.copy-box{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.3);padding:12px 14px;border-radius:12px;margin:12px 0;font-size:.9rem;border:1px solid var(--border)}
+.copy-btn{padding:8px 16px;background:var(--cyan);border:0;border-radius:10px;color:#0a0a0f;font-weight:800;cursor:pointer;font-size:.85rem}
+.info-text{color:var(--muted);font-size:.8rem;text-align:center;margin:12px 0;line-height:1.5}
+.btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
+/* FIN CHECKOUT */
 .toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 14px;border-radius:8px;opacity:0;transition:.2s;z-index:999;font-weight:600}
 .toast.show{opacity:1}
   </style>
@@ -122,13 +126,12 @@
         </ul>
       </div>
       <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL For Three Bot</a>
-      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button> <!-- <- PANTALLA COMPLETA -->
-      <button class="btn-comprar-demo" onclick="comprarDemo()">💚 Comprar Bot</button> <!-- <- NUEVO -->
+      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button>
+      <button class="btn-comprar-demo" onclick="comprarDemo()">💚 Comprar Bot</button>
       <button class="btn-volver-abajo" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
     </div>
   </div>
 
-  <!-- VIDEO FULLSCREEN V42 -->
   <div id="videoScreen" class="video-screen">
     <div class="video-box">
       <video id="demoVideo" loop playsinline preload="metadata">
@@ -144,7 +147,41 @@
     <div class="product-wrap" id="productDetail"></div>
   </div>
 
-  <div id="pagoModal" class="modal"><div class="modal-box"><div class="modal-header"><h3>Checkout</h3><button class="x" onclick="cerrarPago()">×</button></div><div class="payment-tabs"><button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button><button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button><button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button><button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button></div><div id="yapeContent" class="payment-content active"><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div><div id="bankContent" class="payment-content" style="display:none"><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div><div id="prexContent" class="payment-content" style="display:none"><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div><div id="paypalContent" class="payment-content" style="display:none"><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-contratar" target="_blank" style="display:block;text-align:center;text-decoration:none;margin:0 16px;">Pagar PayPal</a></div><button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button></div></div>
+  <!-- CHECKOUT V43 NUEVO -->
+  <div id="pagoModal" class="modal"><div class="modal-box">
+    <div class="modal-header">
+      <h3>Checkout</h3>
+      <button class="x" onclick="cerrarPago()">×</button>
+    </div>
+    <div class="payment-tabs">
+      <button class="payment-tab active" onclick="selectPayment('yape', event)"><span class="icon">💜</span>Yape</button>
+      <button class="payment-tab" onclick="selectPayment('bank', event)"><span class="icon">🏦</span>BCP</button>
+      <button class="payment-tab" onclick="selectPayment('prex', event)"><span class="icon">💳</span>Prex</button>
+      <button class="payment-tab" onclick="selectPayment('paypal', event)"><span class="icon">🅿️</span>PayPal</button>
+    </div>
+    <div class="amount" id="montoTotal">S/ 0.00</div>
+    
+    <div id="yapeContent" class="payment-content active">
+      <div class="qr-box">QR YAPE<br>936994155</div>
+      <div class="copy-box"><span><b>Número:</b> <span id="yapeNum"></span></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div>
+      <p class="info-text">Escanea el QR o yapea al número. Luego envía el comprobante.</p>
+    </div>
+    <div id="bankContent" class="payment-content" style="display:none">
+      <div class="copy-box"><span><b>CCI:</b> <span id="bcpCci"></span></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div>
+      <p class="info-text">Transferencia BCP a nombre de For Three Bot</p>
+    </div>
+    <div id="prexContent" class="payment-content" style="display:none">
+      <div class="copy-box"><span><b>Prex:</b> <span id="prexNum"></span></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div>
+      <p class="info-text">Envía por Prex y guarda el comprobante</p>
+    </div>
+    <div id="paypalContent" class="payment-content" style="display:none">
+      <a id="paypalLink" class="btn-wsp" target="_blank" style="background:#0070ba;">🅿️ Pagar con PayPal</a>
+      <p class="info-text">Pago seguro internacional en USD</p>
+    </div>
+    <div style="padding:0 18px 18px;">
+      <button id="wspBtn" class="btn-wsp">💬 Enviar Comprobante por WhatsApp</button>
+    </div>
+  </div></div>
 
   <div class="probar-float" onclick="show('demoScreen')">Probar</div>
   <a class="wsp-float" href="https://wa.me/51936994155" target="_blank"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.7.9 5.2 2.4 7.2L4 29l7-2.3c1.9 1 4.1 1.6 6.4 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg></a>
@@ -157,7 +194,7 @@
   const videoScreen = document.getElementById('videoScreen');
   
   function openVideo(){
-    videoScreen.classList.add('active'); // <- FULLSCREEN
+    videoScreen.classList.add('active');
     demoVideo.play();
     demoVideo.muted = true;
     soundBtn.textContent = '🔇';
@@ -173,8 +210,8 @@
     if(!demoVideo.paused) demoVideo.play();
   }
 
-  function comprarDemo(){ // <- NUEVO: Comprar desde Probar
-    currentProduct = productosBots[0]; // <- Bot por defecto S/5
+  function comprarDemo(){
+    currentProduct = productosBots[0];
     abrirPago();
   }
 
@@ -218,7 +255,15 @@
   function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos();}
   function cerrarPago(){document.getElementById('pagoModal').classList.remove('active');}
   function selectPayment(t,ev){document.querySelectorAll('.payment-content').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block';}
-  function updateMontos(){const precio=currentProduct.precio;const usd=(precio/3.7).toFixed(2);['montoYape','montoTarjeta','montoPrex'].forEach(id=>document.getElementById(id).textContent=`S/ ${precio}.00`);document.getElementById('montoPaypal').textContent=`$${usd} USD`;document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;document.getElementById('yapeNum').textContent=pagos.yape.num;document.getElementById('bcpCci').textContent=pagos.bcp.cci;document.getElementById('prexNum').textContent=pagos.prex.num;}
+  function updateMontos(){
+    const precio=currentProduct.precio;
+    const usd=(precio/3.7).toFixed(2);
+    document.getElementById('montoTotal').textContent=`S/ ${precio}.00`;
+    document.getElementById('yapeNum').textContent=pagos.yape.num;
+    document.getElementById('bcpCci').textContent=pagos.bcp.cci;
+    document.getElementById('prexNum').textContent=pagos.prex.num;
+    document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;
+  }
   document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - S/ ${currentProduct.precio}.00`)}`,'_blank');};
   function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado!')}
   function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500);}
