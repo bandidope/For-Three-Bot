@@ -43,7 +43,7 @@
     display: block;
   }
   
-  /* PORTADA NUEVA */
+  /* PORTADA */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -55,20 +55,20 @@
     background: var(--bg);
   }
   .hero img {
-    max-width: 350px;
+    max-width: 280px;
     width: 100%;
     border-radius: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .hero h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 900;
     margin-bottom: 8px;
   }
   .hero p {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--muted);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   header {
@@ -81,14 +81,14 @@
   .topbar {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 12px 16px;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     gap: 16px;
     color: #fff;
   }
   .logo {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 900;
     cursor: pointer;
     color: #fff;
@@ -104,7 +104,7 @@
     border: 0;
     color: #fff;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 20px;
   }
   .cart-count {
     position: absolute;
@@ -135,8 +135,8 @@
   .subnav button {
     background: 0;
     border: 0;
-    padding: 12px 24px;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
     color: var(--muted);
@@ -150,12 +150,19 @@
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 16px;
+    padding: 16px 12px;
   }
+  
+  /* GRID MAS CHICO: 4 COLUMNAS */
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 1100px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   @media (max-width: 900px) {
     .grid {
@@ -164,9 +171,12 @@
   }
   @media (max-width: 640px) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
   }
+  
+  /* CARD MAS CHICA */
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -174,50 +184,64 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
   }
   .card img {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
     object-fit: cover;
     background: #0a0a0a;
   }
   .tag {
     background: var(--green);
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 800;
-    padding: 3px 6px;
+    padding: 2px 5px;
     border-radius: 4px;
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 6px;
+    left: 6px;
   }
   .card-body {
-    padding: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .marca {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted);
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+  }
+  .card-body b {
+    font-size: 13px;
+    line-height: 1.3;
+    height: 34px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .precio {
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 800;
-    margin: 8px 0;
+    margin: 6px 0;
   }
   .btn {
     background: var(--red);
     color: #fff;
     border: 0;
-    padding: 12px;
+    padding: 8px;
     border-radius: 6px;
     font-weight: 700;
     width: 100%;
     cursor: pointer;
-    margin-top: 8px;
-    font-size: 14px;
+    margin-top: auto;
+    font-size: 12px;
   }
   .modal {
     position: fixed;
@@ -254,14 +278,14 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     margin-top: 40px;
-    padding: 40px 16px;
+    padding: 30px 16px;
   }
   .features-grid {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
   @media (max-width: 900px) {
     .features-grid {
@@ -271,7 +295,7 @@
   footer {
     background: var(--card);
     border-top: 1px solid var(--border);
-    padding: 30px 16px;
+    padding: 20px 16px;
     text-align: center;
     font-size: 12px;
     color: var(--muted);
@@ -306,8 +330,8 @@
   <div class="hero">
     <img src="https://raw.githubusercontent.com/bandidope/Fotos/refs/heads/master/fotos/logo.png" alt="For Three Store">
     <h1>For Three Store</h1>
-    <p>Bots y Hosting 24/7 para WhatsApp. Entrega inmediata por Yape.</p>
-    <button class="btn" style="max-width: 250px;" onclick="show('tiendaScreen')">Ver Servicios</button>
+    <p>Bots y Hosting 24/7 para WhatsApp</p>
+    <button class="btn" style="max-width: 200px; font-size: 14px; padding: 12px;" onclick="show('tiendaScreen')">Ver Servicios</button>
   </div>
 </div>
 
@@ -325,7 +349,7 @@
     </div>
   </header>
 
-  <!-- SOLO 2 CATEGORIAS: BOTS Y HOSTING -->
+  <!-- SOLO 2 CATEGORIAS -->
   <nav class="subnav">
     <div class="subnav-inner" id="subnav"></div>
   </nav>
@@ -338,25 +362,25 @@
     <div class="features-grid">
       <div>
         <h3>⚡ Entrega Inmediata</h3>
-        <p>Te lo configuro en minutos por WhatsApp</p>
+        <p>Por WhatsApp</p>
       </div>
       <div>
         <h3>💜 Solo Yape</h3>
-        <p>Pago directo y seguro</p>
+        <p>Pago seguro</p>
       </div>
       <div>
         <h3>🛠️ Soporte 24/7</h3>
-        <p>Te ayudo si algo falla</p>
+        <p>Te ayudo</p>
       </div>
       <div>
         <h3>✅ +200 Clientes</h3>
-        <p>Servicios digitales en Perú</p>
+        <p>En Perú</p>
       </div>
     </div>
   </section>
 
   <footer>
-    © 2026 For Three Store | Servicios Digitales | WhatsApp: 936 994 155
+    © 2026 For Three Store | WhatsApp: 936 994 155
   </footer>
 </div>
 
@@ -372,7 +396,7 @@
     <div class="marca" id="pMarca"></div>
     <div id="pPrecio"></div>
     <ul class="desc-list" id="pDesc"></ul>
-    <button class="btn" id="comprarBtn">Contratar ahora</button>
+    <button class="btn" style="font-size: 14px; padding: 12px;" id="comprarBtn">Contratar ahora</button>
   </div>
 </div>
 
@@ -382,7 +406,7 @@
     <h3>Mi Carrito</h3>
     <div id="cartItems"></div>
     <div id="cartTotal"></div>
-    <button class="btn" onclick="irAPago()">Pagar con Yape</button>
+    <button class="btn" style="font-size: 14px; padding: 12px;" onclick="irAPago()">Pagar con Yape</button>
   </div>
 </div>
 
@@ -402,17 +426,17 @@
       <div style="background:#fff;padding:20px;border-radius:8px;color:#000;margin:10px 0">
         📱 ESCANEA TU QR AQUÍ
       </div>
-      <small>Pon el monto exacto de tu servicio</small>
+      <small>Pon el monto exacto</small>
     </div>
 
     <div id="resumenPedido" style="margin:16px 0"></div>
     <div id="pagoTotal" style="font-size:18px;font-weight:800;margin-bottom:16px"></div>
 
-    <a href="#" id="wspBtn" target="_blank" class="btn" style="background:#25D366">
-            2. Ya Yapeé ✅ Enviar comprobante por WhatsApp
+    <a href="#" id="wspBtn" target="_blank" class="btn" style="background:#25D366; font-size: 14px; padding: 12px;">
+            2. Ya Yapeé ✅ Enviar comprobante
     </a>
     <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px">
-      Te instalo todo en minutos al confirmar tu pago
+      Te instalo todo en minutos
     </p>
   </div>
 </div>
@@ -429,59 +453,58 @@ const productos = [
   // 2 PRODUCTOS EN BOTS
   {
     id: 1,
-    nom: "Bot Para Grupos - WhatsApp",
+    nom: "Bot Para Grupos WhatsApp",
     precio: 25.00,
-    imgs: ["https://via.placeholder.com/600x338/0a0a0a/25D366?text=BOT+GRUPOS"],
+    imgs: ["https://via.placeholder.com/400x400/0a0a0a/25D366?text=BOT"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Bots",
     desc: [
       "Anti-fake y anti-link automático",
-      "Comandos: /kick /ban /menu /sticker",
+      "Comandos: /kick /ban /menu",
       "Auto-respuestas 24/7",
       "Instalación inmediata",
-      "Soporte 1 mes incluido"
+      "Soporte 1 mes"
     ]
   },
   {
     id: 2,
     nom: "Bot Personalizado VIP",
     precio: 80.00,
-    imgs: ["https://via.placeholder.com/600x338/0a0a0a/FFB400?text=BOT+VIP"],
+    imgs: ["https://via.placeholder.com/400x400/0a0a0a/FFB400?text=VIP"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Bots",
     desc: [
-      "100% a tu medida: comandos, logo, estilo",
-      "Base de datos + Panel web para control",
-      "IA integrada si quieres",
+      "100% a tu medida",
+      "Base de datos + Panel web",
+      "IA integrada opcional",
       "Código fuente incluido",
-      "Soporte 3 meses incluido"
+      "Soporte 3 meses"
     ]
   },
   // 1 PRODUCTO EN HOSTING
   {
     id: 3,
-    nom: "Hosting para Bot 24/7",
+    nom: "Hosting Bot 24/7",
     precio: 15.00,
-    imgs: ["https://via.placeholder.com/600x338/0a0a0a/007600?text=HOSTING"],
+    imgs: ["https://via.placeholder.com/400x400/0a0a0a/007600?text=HOST"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Hosting",
     desc: [
-      "Tu bot encendido 24/7 sin PC prendida",
-      "Servidor en Perú, ping bajo",
+      "Bot encendido 24/7 sin PC",
+      "Servidor en Perú",
       "1GB RAM + 5GB SSD",
-      "Respaldo automático semanal",
-      "Renovación mensual S/ 15"
+      "Respaldo semanal",
+      "S/ 15 mensual"
     ]
   }
 ];
 
 let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-let filtroCat = 'Bots'; // Por defecto entra a Bots
+let filtroCat = 'Bots';
 
-// TEMA OSCURO AUTO
 const themeBtn = document.getElementById('themeBtn');
 function aplicarTema(esDark) {
   document.body.classList.toggle('dark', esDark);
@@ -494,12 +517,12 @@ function toggleDark() {
   localStorage.setItem('dark', esDark);
 }
 
-// SOLO 2 CATEGORIAS: BOTS Y HOSTING
+// SOLO 2 CATEGORIAS
 const cats = ['Bots', 'Hosting'];
 document.getElementById('subnav').innerHTML = cats
   .map(c => `<button onclick="setCat('${c}')">${c}</button>`)
   .join('');
-setCat('Bots'); // Inicia en Bots
+setCat('Bots');
 
 function setCat(c) {
   filtroCat = c;
@@ -510,7 +533,6 @@ function setCat(c) {
   filtrar();
 }
 
-// FILTRAR Y MOSTRAR PRODUCTOS
 function filtrar() {
   const list = productos.filter(p => p.cat === filtroCat);
   document.getElementById('productos').innerHTML = list
@@ -531,7 +553,6 @@ function filtrar() {
     .join('');
 }
 
-// CARRITO
 function addCart(id) {
   const item = carrito.find(x => x.id === id);
   if (item) {
@@ -557,9 +578,7 @@ function actualizarCarrito() {
       return `<div>${p.nom} x${i.qty} S/ ${(p.precio * i.qty).toFixed(2)}</div>`;
     })
     .join('');
-  document.getElementById('cartTotal').textContent = `Total: S/ ${total.toFixed(
-    2
-  )}`;
+  document.getElementById('cartTotal').textContent = `Total: S/ ${total.toFixed(2)}`;
 }
 
 function abrirCarrito() {
@@ -569,12 +588,11 @@ function cerrarCarrito() {
   document.getElementById('cartModal').classList.remove('active');
 }
 
-// NAVEGACION
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if(id === 'tiendaScreen') {
-    filtrar(); // Carga productos al entrar
+    filtrar();
   }
 }
 
@@ -582,43 +600,20 @@ function verProducto(id) {
   const p = productos.find(x => x.id === id);
   document.getElementById('pNom').textContent = p.nom;
   document.getElementById('pMarca').textContent = p.cat;
-  document.getElementById('pPrecio').innerHTML = `
-    <div class="precio">S/ ${p.precio.toFixed(2)}</div>
-  `;
-  document.getElementById('pDesc').innerHTML = p.desc
-    .map(d => `<li>${d}</li>`)
-    .join('');
+  document.getElementById('pPrecio').innerHTML = `<div class="precio" style="font-size:24px">S/ ${p.precio.toFixed(2)}</div>`;
+  document.getElementById('pDesc').innerHTML = p.desc.map(d => `<li>${d}</li>`).join('');
   document.getElementById('comprarBtn').onclick = () => addCart(id);
   show('productoScreen');
 }
 
-// PAGO SOLO YAPE
 function irAPago() {
   if (carrito.length === 0) return;
   cerrarCarrito();
-  let total = carrito.reduce(
-    (a, b) => a + b.qty * productos.find(p => p.id === b.id).precio,
-    0
-  );
-  document.getElementById('resumenPedido').innerHTML = carrito
-    .map(i => {
-      const p = productos.find(x => x.id === i.id);
-      return `${i.qty}x ${p.nom}`;
-    })
-    .join('<br>');
-  document.getElementById(
-    'pagoTotal'
-  ).textContent = `Total a Yapear: S/ ${total.toFixed(2)}`;
-
-  const msg = `Hola For Three Store! Ya Yapeé S/ ${total.toFixed(2)} ✅\n\nServicios:\n${carrito
-    .map(i => {
-      const p = productos.find(x => x.id === i.id);
-      return `${i.qty}x ${p.nom}`;
-    })
-    .join('\n')}\n\nAdjunto mi comprobante de Yape. Porfa instálame todo.`;
-  document.getElementById('wspBtn').href = `https://wa.me/51936994155?text=${encodeURIComponent(
-    msg
-  )}`;
+  let total = carrito.reduce((a, b) => a + b.qty * productos.find(p => p.id === b.id).precio, 0);
+  document.getElementById('resumenPedido').innerHTML = carrito.map(i => {const p = productos.find(x => x.id === i.id); return `${i.qty}x ${p.nom}`}).join('<br>');
+  document.getElementById('pagoTotal').textContent = `Total a Yapear: S/ ${total.toFixed(2)}`;
+  const msg = `Hola For Three Store! Ya Yapeé S/ ${total.toFixed(2)} ✅\n\nServicios:\n${carrito.map(i => {const p = productos.find(x => x.id === i.id); return `${i.qty}x ${p.nom}`}).join('\n')}\n\nAdjunto mi comprobante.`;
+  document.getElementById('wspBtn').href = `https://wa.me/51936994155?text=${encodeURIComponent(msg)}`;
   show('pagoScreen');
 }
 </script>
