@@ -42,14 +42,16 @@
 .cmd-list b{color:var(--text)}
 .btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px}
 .btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan);margin-bottom:10px}
+.btn-comprar-demo{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)} /* <- NUEVO */
 .btn-volver-abajo{display:block;width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-.video-screen{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px;z-index:200}
+/* VIDEO V42 FULLSCREEN */
+.video-screen{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center;z-index:200}
 .video-screen.active{display:flex}
-.video-box{width:100%;max-width:380px;background:#0f172a;border:1px solid var(--border);border-radius:16px;padding:8px;position:relative;box-shadow:0 0 30px rgba(0,229,255,.3)}
-.video-box video{width:100%;border-radius:10px;display:block;aspect-ratio:9/16;object-fit:cover;filter:brightness(1.3)}
-.sound-float{position:absolute;bottom:10px;left:10px;width:44px;height:44px;background:rgba(0,229,255,.95);border:0;border-radius:50%;font-size:1.3rem;cursor:pointer;z-index:10;color:#0a0a0f;font-weight:800}
-.btn-volver{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-/* PAGINA PRODUCTO V41 */
+.video-box{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+.video-box video{width:100%;height:100%;object-fit:contain;filter:brightness(1.3)}
+.sound-float{position:absolute;bottom:80px;left:24px;width:50px;height:50px;background:rgba(0,229,255,.95);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:10;color:#0a0a0f;font-weight:800}
+.btn-volver-video{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:420px;background:rgba(15,23,42,.95);backdrop-filter:blur(10px);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;z-index:10}
+/* FIN VIDEO */
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;border:1px solid var(--border)}
 .product-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
@@ -59,9 +61,8 @@
 .product-list li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:8px}
 .product-list li:last-child{border:0}
 .product-list li b{color:var(--cyan);font-size:1.1rem}
-.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)} /* <- VERDE */
+.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
 .btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
-/* FIN PRODUCTO */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
 .modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:360px}
@@ -121,22 +122,23 @@
         </ul>
       </div>
       <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL For Three Bot</a>
-      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button>
+      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button> <!-- <- PANTALLA COMPLETA -->
+      <button class="btn-comprar-demo" onclick="comprarDemo()">💚 Comprar Bot</button> <!-- <- NUEVO -->
       <button class="btn-volver-abajo" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
     </div>
   </div>
 
+  <!-- VIDEO FULLSCREEN V42 -->
   <div id="videoScreen" class="video-screen">
     <div class="video-box">
       <video id="demoVideo" loop playsinline preload="metadata">
         <source src="demo.mp4" type="video/mp4">
       </video>
-      <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button>
-      <button class="btn-volver" onclick="closeVideo()">← Volver</button>
     </div>
+    <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button>
+    <button class="btn-volver-video" onclick="closeVideo()">← Volver</button>
   </div>
 
-  <!-- PANTALLA PRODUCTO V41 -->
   <div id="productScreen" class="screen">
     <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">Detalle Producto</div><span></span></div></header>
     <div class="product-wrap" id="productDetail"></div>
@@ -155,7 +157,7 @@
   const videoScreen = document.getElementById('videoScreen');
   
   function openVideo(){
-    videoScreen.classList.add('active');
+    videoScreen.classList.add('active'); // <- FULLSCREEN
     demoVideo.play();
     demoVideo.muted = true;
     soundBtn.textContent = '🔇';
@@ -169,6 +171,11 @@
     demoVideo.muted =!demoVideo.muted;
     soundBtn.textContent = demoVideo.muted? '🔇' : '🔊';
     if(!demoVideo.paused) demoVideo.play();
+  }
+
+  function comprarDemo(){ // <- NUEVO: Comprar desde Probar
+    currentProduct = productosBots[0]; // <- Bot por defecto S/5
+    abrirPago();
   }
 
   const productosBots=[
@@ -190,12 +197,10 @@
     document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('');
   }
 
-  // FIX V41: PINTA LA PAGINA DE PRODUCTO
   function verInfo(id){
     const data=currentTab==='bots'?productosBots:productosHosting;
     currentProduct=data.find(p=>p.id===id);
     if(!currentProduct){toast('Error');return;}
-    
     document.getElementById('productDetail').innerHTML=`
       <div class="product-img" style="background-image:url('${currentProduct.img}')"></div>
       <div class="product-title">${currentProduct.nom}</div>
@@ -204,10 +209,10 @@
       <ul class="product-list">
         ${currentProduct.features.map(f=>`<li><b>✓</b> <span>${f}</span></li>`).join('')}
       </ul>
-      <button class="btn-comprar" onclick="abrirPago()">Comprar</button> <!-- <- VERDE -->
+      <button class="btn-comprar" onclick="abrirPago()">Comprar</button>
       <button class="btn-volver-prod" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
     `;
-    show('productScreen'); // <- ESTO ES LO QUE FALTABA
+    show('productScreen');
   }
 
   function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos();}
