@@ -2,17 +2,16 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Three Bot | Tienda Oficial</title>
+<title>FOR THREE BOT | Tienda Oficial</title>
 <style>
-:root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88}
+:root{--celeste:#00D9FF;--negro:#0a0a0a;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88;--morado:#A855F7}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
 body{color:#fff;text-align:center;min-height:100vh;padding:0;
-  /* FONDO TRANSPARENTE: Le quité el negro 0.88 */
   background: url('https://files.evogb.win/BLG4n2.jpg') no-repeat center fixed;
   background-size: cover;
 }
 .box{max-width:500px;margin:20px auto;background:rgba(26,26,26,0.95);border:1px solid var(--celeste);border-radius:16px;padding:25px;backdrop-filter: blur(5px)}
-header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.6);backdrop-filter: blur(6px)} /* Lo puse 0.6 para que se lea */
+header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:rgba(0,0,0,0.6);backdrop-filter: blur(6px)}
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
 .slogan{color:#ddd;margin-top:5px;font-size:14px;text-shadow:0 0 5px #000}
 .container{max-width:500px;margin:auto;padding:20px}
@@ -23,10 +22,11 @@ h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px v
 .badge-img{height:20px;width:auto;border-radius:4px;vertical-align:middle}
 .btn{display:block;background:var(--celeste);color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:15px;margin-top:8px;text-align:center}
 .btn-verde{background:var(--verde)}
+.btn-morado{background:var(--morado);color:#fff}
 .btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
-.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.6)} /* 0.6 para que se lea */
+.footer{color:#aaa;font-size:12px;padding:20px;background:rgba(0,0,0,0.6)}
 .sub{color:#aaa;font-size:14px;margin-bottom:15px}
-img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
+img.producto-img, img.comandos-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
 .precio-big{font-size:32px;color:var(--celeste);font-weight:bold;margin:15px 0}
 .ahorro{color:#00FF88;font-size:13px;margin-top:-10px;margin-bottom:15px}
 .lista{text-align:left;background:var(--gris2);border-radius:10px;padding:12px;margin:15px 0;font-size:14px;line-height:1.6}
@@ -35,6 +35,7 @@ img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid va
 .dato{font-size:15px;margin:6px 0;color:#eee;letter-spacing:1px;user-select: all;}
 .aviso{background:rgba(0,217,255,0.1);border-left:3px solid var(--celeste);padding:10px;border-radius:6px;font-size:13px;margin:15px 0;text-align:left}
 .volver{display:block;color:#aaa;font-size:13px;margin-top:10px;text-decoration:none}
+.top-btns{display:flex;gap:8px;margin-bottom:15px}
 </style>
 </head>
 <body>
@@ -47,10 +48,13 @@ img.producto-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid va
 
 <script>
 const datos = {
+  whatsapp: "51936994155", // 1. PON TU NUMERO AQUI SOLO: 51 + tu número sin espacios ni +
   yape: "936 994 155",
-  nombre: "Cristhofer Rojas",
-  cci: "[CCI BCP]",
+  nombre: "[Tu Nombre]", // CAMBIA ESTO
+  cci: "[CCI BCP]", // CAMBIA ESTO
   img: "https://files.evogb.win/BLG4n2.jpg",
+  comandosImg: "https://files.evogb.win/eMe9xu.jpg",
+  grupoWhatsApp: "https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk",
   productos: {
     "X1": {nombre: "Grupo X1", precio: "S/ 5", sub: "Bot para 1 Grupo | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 1 grupo de WhatsApp<br>✅ Comandos:.menu.sticker.play.ia<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
     "X3": {nombre: "Grupo X3", precio: "S/ 10", sub: "Bot para 3 Grupos | 1 Solo Pago", ahorro: "", incluye: "✅ Bot completo<br>✅ Para 3 grupos de WhatsApp<br>✅ Todos los comandos incluidos<br>✅ Logo Biselelado FOR THREE<br>✅ Instalación + Soporte 24/7"},
@@ -67,7 +71,9 @@ const page = params.get('page');
 const id = params.get('id');
 
 function renderCatalogo(){
-  let html = '';
+  let html = `<div class="top-btns">
+      <a class="btn btn-morado" href="?page=comandos">🚀 Probar Bot</a>
+    </div>`;
   for(const key in datos.productos){
     const p = datos.productos[key];
     html += `<div class="card">
@@ -79,21 +85,32 @@ function renderCatalogo(){
   app.innerHTML = html;
 }
 
+function renderComandos(){
+  app.innerHTML = `<div class="box">
+    <h1>Comandos FOR THREE BOT <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1>
+    <p class="sub">Prueba todos los comandos aquí</p>
+    <img src="${datos.comandosImg}" class="comandos-img" alt="Lista de Comandos">
+    <a class="btn btn-morado" href="${datos.grupoWhatsApp}" target="_blank">🚀 Probar Ahora</a>
+    <a class="volver" href="?">← Volver a Tienda</a>
+  </div>`;
+}
+
 function renderProducto(){
   const p = datos.productos[id];
   if(!p){ app.innerHTML = `<div class="box"><h1>Producto no encontrado</h1><a class="volver" href="?">← Volver</a></div>`; return; }
-  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${datos.img}" class="producto-img" alt="Demo"><h2 class="precio-big">${p.precio}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><a class="btn btn-outline" href="https://wa.me/51936994155?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`;
+  app.innerHTML = `<div class="box"><h1>${p.nombre} <img src="${datos.img}" class="badge-img" alt="FOR THREE BOT"></h1><p class="sub">${p.sub}</p><img src="${datos.img}" class="producto-img" alt="Demo"><h2 class="precio-big">${p.precio}</h2>${p.ahorro? `<p class="ahorro">${p.ahorro}</p>` : ''}<div class="lista"><b>Qué incluye:</b><br>${p.incluye}</div><a class="btn" href="?page=pago&id=${id}">Comprar Ahora</a><a class="btn btn-outline" href="https://wa.me/${datos.whatsapp}?text=Hola%20duda%20${encodeURIComponent(p.nombre)}" target="_blank">Tengo una Duda</a><a class="volver" href="?">← Volver</a></div>`;
 }
 
 function renderPago(){
   const p = datos.productos[id];
   if(!p){ app.innerHTML = `<div class="box"><h1>Producto no encontrado</h1><a class="volver" href="?">← Volver</a></div>`; return; }
   const mensaje = encodeURIComponent(`Bro ya te deposité ✅\n\nMonto: ${p.nombre} ${p.precio}\nAcá está mi captura 📸`);
-  app.innerHTML = `<div class="box"><h1>Métodos de Pago</h1><div class="producto" style="color:#00FF88;font-weight:bold;font-size:16px;margin-bottom:20px">${p.nombre} ${p.precio}</div><div class="metodo"><b>1. Yape / Plin</b><div class="dato">${datos.yape}</div><div class="dato">A nombre de: ${datos.nombre}</div></div><div class="metodo"><b>2. Prex Perú</b><div class="dato">${datos.yape}</div></div><div class="metodo"><b>3. Transferencia BCP</b><div class="dato">CCI: ${datos.cci}</div></div><div class="aviso">⚠️ Deposita el monto exacto, toma captura y dale al botón.</div><a class="btn btn-verde" href="https://wa.me/51936994155?text=${mensaje}" target="_blank">✅ Ya Deposité</a><a class="volver" href="?page=producto&id=${id}">← Volver</a></div>`;
+  app.innerHTML = `<div class="box"><h1>Métodos de Pago</h1><div class="producto" style="color:#00FF88;font-weight:bold;font-size:16px;margin-bottom:20px">${p.nombre} ${p.precio}</div><div class="metodo"><b>1. Yape / Plin</b><div class="dato">${datos.yape}</div><div class="dato">A nombre de: ${datos.nombre}</div></div><div class="metodo"><b>2. Prex Perú</b><div class="dato">${datos.yape}</div></div><div class="metodo"><b>3. Transferencia BCP</b><div class="dato">CCI: ${datos.cci}</div></div><div class="aviso">⚠️ Deposita el monto exacto, toma captura y dale al botón.</div><a class="btn btn-verde" href="https://wa.me/${datos.whatsapp}?text=${mensaje}" target="_blank">✅ Ya Deposité</a><a class="volver" href="?page=producto&id=${id}">← Volver</a></div>`;
 }
 
 if(page === 'producto') renderProducto();
 else if(page === 'pago') renderPago();
+else if(page === 'comandos') renderComandos();
 else renderCatalogo();
 </script>
 </body>
