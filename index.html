@@ -22,7 +22,29 @@ header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;b
 .tab{color:var(--muted);font-weight:600;cursor:pointer;padding-bottom:8px;border-bottom:2px solid transparent}
 .tab.active{color:var(--cyan);border-color:var(--cyan)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s}
+
+/* v47.2 ANIMADO - Cards que flotan */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:.3s ease;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeIn.4s ease forwards;
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
+  border-color:var(--cyan);
+  box-shadow:0 8px 25px rgba(0,229,255,.25);
+}
+.card:nth-child(1){animation-delay:.1s}
+.card:nth-child(2){animation-delay:.2s}
+.card:nth-child(3){animation-delay:.3s}
+.card:nth-child(4){animation-delay:.4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
 .card-img{height:140px;background:#000;position:relative;background-size:cover;background-position:center}
 .tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:6px}
 .card-body{padding:12px}
@@ -30,12 +52,14 @@ header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;b
 .card-title{font-size:.9rem;font-weight:700;margin-bottom:8px;min-height:38px}
 .card-price{font-size:1.1rem;font-weight:800;margin-bottom:4px;color:var(--cyan)}
 .card-price-sub{font-size:.7rem;color:var(--muted);margin-bottom:8px}
-.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px 8px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.9rem}
+.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px 8px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.9rem;transition:.2s}
+.btn-contratar:hover{transform:scale(1.03)}
 .features{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 16px}
 .feature{display:flex;gap:10px;align-items:flex-start;font-size:.85rem}
 .feature span{color:var(--muted)}
 footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
-.wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:50;text-decoration:none;font-size:1.8rem}
+.wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:50;text-decoration:none;font-size:1.8rem;transition:.3s}
+.wsp-float:hover{transform:scale(1.1)}
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;border:1px solid var(--border)}
 .product-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
@@ -46,18 +70,21 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 .product-list li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:8px}
 .product-list li:last-child{border:0}
 .product-list li b{color:var(--cyan);font-size:1.1rem}
-.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px}
-.btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
+.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;transition:.2s}
+.btn-comprar:hover{transform:scale(1.02)}
+.btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;transition:.2s}
+.btn-volver-prod:hover{border-color:var(--cyan)}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
-.modal-box{background:var(--card);border:1px solid var(--cyan);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2)}
+.modal-box{background:var(--card);border:1px solid var(--cyan);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2);animation:scaleIn.3s ease}
+@keyframes scaleIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
 .modal-header h3{font-size:1.2rem;font-weight:800}
 .x{background:rgba(255,255,255,.1);border:0;width:32px;height:32px;border-radius:50%;font-size:1.3rem;color:var(--muted);cursor:pointer}
 .amount{font-size:2.2rem;font-weight:800;color:var(--cyan);margin:16px 18px;text-align:center}
 .tc-info{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:12px;padding:0 18px}
 .payment-tabs{display:flex;gap:8px;margin:16px 0;overflow-x:auto;padding:0 18px}
-.payment-tab{padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-weight:600;font-size:.85rem;white-space:nowrap}
+.payment-tab{padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-weight:600;font-size:.85rem;white-space:nowrap;transition:.2s}
 .payment-tab.active{background:var(--cyan);color:#0a0a0f;border-color:var(--cyan)}
 .payment-content{padding:0 18px 18px}
 .copy-box{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.1);padding:12px 14px;border-radius:12px;margin:12px 0;font-size:.9rem;border:1px solid var(--border)}
@@ -66,11 +93,14 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 .paypal-breakdown{background:rgba(0,0,0,.1);border:1px solid var(--border);border-radius:12px;padding:12px;margin:12px 0}
 .paypal-row{display:flex;justify-content:space-between;padding:8px 0;font-size:.9rem}
 .paypal-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:12px;font-weight:800;color:var(--cyan)}
-.paypal-link{display:block;width:100%;background:#0070ba;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:800;text-decoration:none;margin-top:12px}
-.btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;margin-top:12px}
+.paypal-link{display:block;width:100%;background:#0070ba;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:800;text-decoration:none;margin-top:12px;transition:.2s}
+.paypal-link:hover{transform:scale(1.02)}
+.btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;margin-top:12px;transition:.2s}
+.btn-wsp:hover{transform:scale(1.02)}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 14px;border-radius:8px;opacity:0;transition:.2s;z-index:999;font-weight:600}
 .toast.show{opacity:1}
-.currency-item{padding:12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between}
+.currency-item{padding:12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between;transition:.2s}
+.currency-item:hover{background:var(--border)}
 .currency-item.active{background:var(--cyan);color:#0a0a0f}
 </style>
 </head>
@@ -161,28 +191,19 @@ function abrirPago(){document.getElementById('pagoModal').classList.add('active'
 function cerrarPago(){document.getElementById('pagoModal').classList.remove('active')}
 function selectPayment(t,ev){document.querySelectorAll('#paypalContent,#yapeContent,#bankContent,#prexContent').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block'}
 
-// v47.2 FITS - FIX: Checkout en la moneda correcta
 function updateMontos(){
-  const p=currentProduct.precio; // Precio base en PEN
-  const c=currencies[currentCurrency]; // Moneda que está viendo
-  const precioEnMoneda=p*c.rate; // Ej: 5 * 1000 = 5000 ARS
-  const usd=p/currentTC; // Para PayPal siempre en USD
+  const p=currentProduct.precio;
+  const c=currencies[currentCurrency];
+  const precioEnMoneda=p*c.rate;
+  const usd=p/currentTC;
   const fee=usd*0.054+0.30;
   const total=usd+fee;
-
-  // 1. Monto grande del Checkout: En tu moneda
   document.getElementById('montoTotal').textContent=`${c.sym} ${precioEnMoneda.toFixed(2)}`;
-
-  // 2. Info del TC: Referencia
   document.getElementById('tcInfo').textContent=`TC Ref: S/ ${currentTC.toFixed(2)} | 1 USD = ${c.sym} ${(c.rate/currentTC).toFixed(2)}`;
-
-  // 3. PayPal siempre en USD
   document.getElementById('paypalSubtotal').textContent=`$${usd.toFixed(2)}`;
   document.getElementById('paypalFee').textContent=`$${fee.toFixed(2)}`;
   document.getElementById('paypalTotal').textContent=`$${total.toFixed(2)}`;
   document.getElementById('paypalLink').href=`https://paypal.me/tuusuario/${total.toFixed(2)}`;
-
-  // 4. Cambiar texto de Yape/BCP/Prex según moneda
   if(currentCurrency==='PEN'){
     document.getElementById('yapeInfo').textContent='Yapea al número. Luego envía el comprobante.';
     document.getElementById('bcpInfo').textContent='BCP a nombre: For Three Bot';
