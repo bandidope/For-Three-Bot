@@ -6,10 +6,8 @@
 <style>
 :root{--celeste:#00D9FF;--negro:#000;--gris:#1a1a1a;--gris2:#222;--verde:#00FF88;--morado:#A855F7;--rojo:#FF4D4D}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif}
-body{color:#fff;text-align:center;min-height:100vh;padding:0;
-  background: #000; /* NEGRO SÓLIDO PARA TODO */
-}
-.box{max-width:500px;margin:20px auto;background:var(--gris);border:1px solid var(--celeste);border-radius:16px;padding:25px} /* SIN BLUR */
+body{color:#fff;text-align:center;min-height:100vh;padding:0;background: #000;}
+.box{max-width:500px;margin:20px auto;background:var(--gris);border:1px solid var(--celeste);border-radius:16px;padding:25px}
 .verificado{background:rgba(0,255,136,0.1);border:1px solid var(--verde);border-radius:12px;padding:15px;margin:15px 20px;text-align:center}
 .verificado b{color:var(--verde);font-size:16px}
 .verificado p{color:#ccc;font-size:13px;margin-top:5px}
@@ -17,11 +15,11 @@ body{color:#fff;text-align:center;min-height:100vh;padding:0;
 .oferta-box b{color:var(--morado);font-size:14px}
 .oferta-box p{color:#ccc;font-size:12px;margin-top:4px}
 .tachado{color:#888;text-decoration:line-through;font-size:20px;margin-right:8px}
-header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:var(--negro)} /* NEGRO SÓLIDO */
+header{padding:30px 20px;border-bottom:2px solid var(--celeste);background:var(--negro)}
 h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px var(--celeste)}
 .slogan{color:#ddd;margin-top:5px;font-size:14px;text-shadow:0 0 5px #000}
 .container{max-width:500px;margin:auto;padding:20px}
-.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;text-align:left;transition:.2s;position:relative} /* SIN BLUR */
+.card{background:var(--gris);border:1px solid var(--celeste);border-radius:12px;padding:15px;margin:12px 0;text-align:left;transition:.2s;position:relative}
 .card:hover{transform:scale(1.02);box-shadow:0 0 15px var(--celeste)}
 .tag-oferta{position:absolute;top:10px;right:10px;background:var(--rojo);color:#fff;font-size:11px;font-weight:bold;padding:4px 8px;border-radius:6px}
 .nombre{font-weight:bold;font-size:16px;display:flex;align-items:center;gap:8px}
@@ -31,13 +29,13 @@ h1{color:var(--celeste);font-size:34px;letter-spacing:2px;text-shadow:0 0 12px v
 .btn-verde{background:var(--verde)}
 .btn-morado{background:var(--morado);color:#fff}
 .btn-outline{background:transparent;border:1px solid var(--celeste);color:var(--celeste)}
-.footer{color:#aaa;font-size:12px;padding:20px;background:var(--negro)} /* NEGRO SÓLIDO */
+.footer{color:#aaa;font-size:12px;padding:20px;background:var(--negro)}
 .sub{color:#aaa;font-size:14px;margin-bottom:15px}
 img.producto-img, img.comandos-img{width:100%;border-radius:12px;margin:15px 0;border:1px solid var(--gris2)}
 .precio-big{font-size:32px;color:var(--celeste);font-weight:bold;margin:15px 0}
 .ahorro{color:#00FF88;font-size:13px;margin-top:-10px;margin-bottom:15px}
 .lista{text-align:left;background:var(--gris2);border-radius:10px;padding:12px;margin:15px 0;font-size:14px;line-height:1.6}
-.metodo{background:var(--gris2);border:1px solid #333;border-radius:10px;padding:15px;margin:12px 0;text-align:left} /* NEGRO SÓLIDO */
+.metodo{background:var(--gris2);border:1px solid #333;border-radius:10px;padding:15px;margin:12px 0;text-align:left}
 .metodo b{color:var(--celeste);font-size:16px}
 .dato{font-size:15px;margin:6px 0;color:#eee;letter-spacing:1px;user-select: all;}
 .aviso{background:rgba(0,217,255,0.1);border-left:3px solid var(--celeste);padding:10px;border-radius:6px;font-size:13px;margin:15px 0;text-align:left}
@@ -81,11 +79,11 @@ const datos = {
       incluye: "✅ Bot desde cero a tu gusto<br>✅ Comandos personalizados<br>✅ Nombre + Logo exclusivo<br>✅ Menú a tu estilo<br>✅ Instalación + Soporte 24/7"
     },
     "SERVIDOR": {nombre: "Servidor 24/7", precio: "S/ 10", sub: "Hosting para tu Bot", ahorro: "", incluye: "✅ Bot siempre online 24/7<br>✅ Sin caídas ni lag<br>✅ Panel para reiniciar<br>✅ Te lo instalo todo yo<br>✅ Soporte 24/7"},
-    "COMBO": {
-      nombre: "Combo For",
+    "COMBO": { // COMBO RENOMBRADO NOMÁS
+      nombre: "Combo Bot + Servidor", // CAMBIADO
       precio: "S/ 22",
       precioReal: "S/ 25",
-      sub: "X5 + Servidor 24/7",
+      sub: "X5 + Servidor 24/7", // SE MANTIENE IGUAL
       ahorro: "🔥 Oferta Hoy: Ahorras S/ 3. Voy 3/5 cupos",
       tag: "OFERTA",
       incluye: "✅ Bot para 5 grupos<br>✅ + Servidor 24/7 incluido<br>✅ Todo instalado y listo<br>✅ Logo FOR THREE<br>✅ Soporte 24/7"
@@ -101,7 +99,7 @@ const id = params.get('id');
 function renderCatalogo(){
   let html = `<div class="oferta-box">
       <b>🔥 OFERTAS POR TIEMPO LIMITADO</b>
-      <p>Combo y Personalizado con descuento solo por cupos limitados</p>
+      <p>Combo Bot + Servidor y Personalizado con descuento solo por cupos limitados</p>
     </div>`;
   html += `<div class="top-btns">
       <a class="btn btn-morado" href="?page=comandos">🚀 Probar Bot</a>
