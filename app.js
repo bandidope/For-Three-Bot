@@ -1,15 +1,15 @@
 /* ===================
-   FOR THREE BOT - STORE V3 FIX
+   FOR THREE BOT - STORE V3 COMPATIBLE
    =================== */
-const TU_NUMERO_WSP = '51936994155'; // <-- CAMBIA TU NUMERO AQUI
+const TU_NUMERO_WSP = '51936994155'; // <-- TU NUMERO
 const REDIR_WSP = `https://wa.me/${TU_NUMERO_WSP}`;
 
 const state = {
-  tab: 'todos', // <- FIX: Ya no 'serv'
+  tab: 'todos', // <- FIX: Siempre todos al iniciar
   query: '',
-  theme: localStorage.getItem('f3_theme') || 'dark', // <- Dark por defecto como tu web
+  theme: localStorage.getItem('f3_theme') || 'dark',
   descuentoAplicado: { code: null, percent: 0 },
-  metodoPago: 'Yape',
+  metodoPago: 'yape',
   productoSeleccionado: null
 };
 
@@ -18,7 +18,7 @@ const $$ = s => document.querySelectorAll(s);
 
 const THEME = {
   light: { bg:'#f5f5f5', card:'#fff', text:'#1a1a1a', muted:'#666', border:'#e0e0e0', red:'#e60000', header:'#e60000' },
-  dark:  { bg:'#0a0a0a', card:'#1a1a1a', text:'#f5f5f5', muted:'#b3b3b3', border:'#2a2a2a', red:'#e60000', header:'#000' }
+  dark: { bg:'#0a0a0a', card:'#1a1a1a', text:'#f5f5f5', muted:'#b3b3b3', border:'#2a2a2a', red:'#e60000', header:'#000' }
 };
 
 const PRODUCTOS = [
@@ -32,49 +32,53 @@ const CUPONES = { F3DIEZ: 10, F3CINCO: 5 };
 
 const CUENTAS = {
   yape: { nom:'Yape', num:'936994155', titular:'For Three' },
-  bank: { nom:'BCP', cci:'00219100234567890123', titular:'For Three' },
+  bank: { nom:'BCP', cci:'00219100234567890123', cuenta:'191-23456789-0-12', titular:'For Three' },
   prex: { nom:'Prex', num:'948572136', titular:'For Three' },
-  paypal: { nom:'PayPal', link:'https://paypal.me/ForThree' }
+  paypal: { nom:'PayPal', link:'https://paypal.me/ForThree', usd: 0.28 } // <- 15 soles = $4.2 USD
 };
 
-function init(){ aplicarTheme(); bind(); resetFiltro(); mostrar('inicio'); }
+function init(){ aplicarTheme(); bind(); renderSubnav(); resetFiltro(); mostrar('inicioScreen'); }
 
 function aplicarTheme(){
   document.body.classList.toggle('dark', state.theme==='dark');
   const root = document.documentElement;
   const t = THEME[state.theme];
   Object.entries(t).forEach(([k,v])=>root.style.setProperty(`--${k}`,v));
+  $('#themeBtn').textContent = state.theme==='dark'? '☀️' : '🌙';
 }
 
 function bind(){
-  $('#btnTheme').onclick = ()=>{ 
-    state.theme = state.theme==='light'?'dark':'light'; 
-    localStorage.setItem('f3_theme', state.theme); 
-    aplicarTheme(); 
-  };
-  $('#btnIrTienda').onclick = ()=>{ mostrar('tienda'); resetFiltro(); }
-  $('#logo').onclick = ()=>{ mostrar('tienda'); resetFiltro(); }
-  $('#search').oninput = e=>{ state.query=e.target.value; render(); };
-  $$('.subnav button').forEach(b=>b.onclick=()=>{ 
-    $$('.subnav button').forEach(x=>x.classList.remove('active')); 
-    b.classList.add('active'); 
-    state.tab=b.dataset.tab; 
-    render(); 
+  $('#themeBtn').onclick = toggleDark;
+}
+
+function toggleDark(){
+  state.theme = state.theme==='light'?'dark':'light';
+  localStorage.setItem('f3_theme', state.theme);
+  aplicarTheme();
+}
+
+function renderSubnav(){ // <- Crea los botones TODOS BOT SERV
+  $('#subnav').innerHTML = `
+    <button data-tab="todos" class="active">TODOS</button>
+    <button data-tab="bot">BOT</button>
+    <button data-tab="serv">SERVICIOS</button>
+  `;
+  $$('.subnav button').forEach(b=>b.onclick=()=>{
+    $$('.subnav button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    state.tab=b.dataset.tab;
+    render();
   });
-  $('#aplicarCupon').onclick = aplicarCupon;
-  $$('.payment-tab').forEach(b=>b.onclick=()=>cambiarTab(b.dataset.tab));
 }
 
 function resetFiltro(){
   state.tab = 'todos';
-  state.query = '';
-  if($('#search')) $('#search').value = '';
   $$('.subnav button').forEach(x=>x.classList.remove('active'));
-  const btnTodos = $('.subnav button[data-tab="todos"]');
-  if(btnTodos) btnTodos.classList.add('active');
+  $('.subnav button[data-tab="todos"]').classList.add('active');
   render();
 }
 
+function show(pantalla){ mostrar(pantalla); } // <- Para tu onclick
 function mostrar(pantalla){
   $$('.screen').forEach(s=>s.classList.remove('active'));
   $(`#${pantalla}`).classList.add('active');
@@ -82,14 +86,13 @@ function mostrar(pantalla){
 }
 
 function render(){
-  const grid = $('#grid');
+  const grid = $('#productos'); // <- FIX: Era #grid, ahora #productos
   if(!grid) return;
   let lista = PRODUCTOS.filter(p=>{
     if(state.tab!=='todos' && p.cat!==state.tab) return false;
-    if(state.query && !p.nom.toLowerCase().includes(state.query.toLowerCase())) return false;
     return true;
   });
-  
+
   grid.innerHTML = lista.map(p=>`
     <div class="card" onclick="verProducto(${p.id})">
       <img src="${p.img}" loading="lazy" alt="${p.nom}">
@@ -98,7 +101,7 @@ function render(){
         <div class="marca">${p.marca}</div>
         <b>${p.nom}</b>
         <div class="precio">S/ ${p.precio.toFixed(2)}</div>
-        <button class="btn" onclick="event.stopPropagation(); comprar(${p.id})">Comprar</button>
+        <button class="btn" onclick="event.stopPropagation(); comprar(${p.id})">Contratar</button>
       </div>
     </div>
   `).join('') || '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">No hay productos</p>';
@@ -109,10 +112,12 @@ function verProducto(id){
   if(!p) return;
   state.productoSeleccionado = p;
   $('#pImg').src = p.img;
+  $('#pMarca').textContent = p.marca;
   $('#pNom').textContent = p.nom;
   $('#pPrecio').textContent = `S/ ${p.precio.toFixed(2)}`;
   $('#pDesc').innerHTML = p.desc.map(d=>`<li>${d}</li>`).join('');
-  mostrar('producto');
+  $('#comprarBtn').onclick = ()=>abrirPago();
+  mostrar('productoScreen');
 }
 
 function comprar(id){
@@ -125,57 +130,81 @@ function comprar(id){
 function abrirPago(){
   const p = state.productoSeleccionado;
   if(!p) return;
-  $('#payImg').src = p.img;
-  $('#payNom').textContent = p.nom;
-  $('#payPrecio').textContent = `S/ ${p.precio.toFixed(2)}`;
-  $('#payTotal').textContent = `S/ ${p.precio.toFixed(2)}`;
+
+  // Card del servicio
+  $('#serviceCard').innerHTML = `
+    <img src="${p.img}">
+    <div><b>${p.nom}</b><div class="precio">S/ ${p.precio.toFixed(2)}</div></div>
+  `;
+
+  // Datos de pago
+  $('#yapeNum').textContent = CUENTAS.yape.num;
+  $('#yapeName').textContent = CUENTAS.yape.titular;
+  $('#bcpCci').textContent = CUENTAS.bank.cci;
+  $('#bcpCuenta').textContent = CUENTAS.bank.cuenta;
+  $('#bcpNombre').textContent = CUENTAS.bank.titular;
+  $('#prexNum').textContent = CUENTAS.prex.num;
+  $('#prexName').textContent = CUENTAS.prex.titular;
+  $('#paypalLink').href = CUENTAS.paypal.link;
+
   state.descuentoAplicado = { code: null, percent: 0 };
-  $('#cuponInput').value = '';
-  $('#cuponAplicado').style.display = 'none';
-  $('#cuponBox').style.display = 'block';
-  cambiarTab('yape');
-  $('#modalPago').classList.add('active');
+  $('#couponCode').value = '';
+  $('#couponApplied').style.display = 'none';
+  $('#couponInput').style.display = 'flex';
+
+  selectPayment('yape');
+  $('#pagoModal').classList.add('active');
+  actualizarMontos();
 }
 
-function cerrarPago(){ $('#modalPago').classList.remove('active'); }
+function cerrarPago(){ $('#pagoModal').classList.remove('active'); }
 
-function aplicarCupon(){
-  const code = $('#cuponInput').value.trim().toUpperCase();
+function applyCoupon(){
+  const code = $('#couponCode').value.trim().toUpperCase();
   if(!CUPONES[code]) return showToast('Cupón inválido', true);
   state.descuentoAplicado = { code, percent: CUPONES[code] };
-  const precioFinal = getPrecioFinal();
-  $('#payTotal').textContent = `S/ ${precioFinal.toFixed(2)}`;
-  $('#cuponDesc').textContent = `${CUPONES[code]}% OFF`;
-  $('#cuponBox').style.display = 'none';
-  $('#cuponAplicado').style.display = 'flex';
+  $('#couponText').textContent = `${code} -${CUPONES[code]}%`;
+  $('#couponInput').style.display = 'none';
+  $('#couponApplied').style.display = 'flex';
+  actualizarMontos();
   showToast(`Cupón ${code} aplicado`);
 }
 
-function quitarCupon(){
+function removeCoupon(){
   state.descuentoAplicado = { code: null, percent: 0 };
-  $('#payTotal').textContent = `S/ ${state.productoSeleccionado.precio.toFixed(2)}`;
-  $('#cuponBox').style.display = 'block';
-  $('#cuponAplicado').style.display = 'none';
+  $('#couponInput').style.display = 'flex';
+  $('#couponApplied').style.display = 'none';
+  actualizarMontos();
 }
 
 function getPrecioFinal(){
   const p = state.productoSeleccionado.precio;
   const d = state.descuentoAplicado.percent;
-  return d ? p * (1 - d/100) : p;
+  return d? p * (1 - d/100) : p;
 }
 
-function cambiarTab(tab){
-  state.metodoPago = tab;
-  $$('.payment-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
-  $$('.payment-content').forEach(c=>c.classList.toggle('active', c.dataset.tab===tab));
+function actualizarMontos(){
   const precio = getPrecioFinal();
-  $('#yapeMonto').textContent = `S/ ${precio.toFixed(2)}`;
-  $('#bankMonto').textContent = `S/ ${precio.toFixed(2)}`;
-  $('#prexMonto').textContent = `S/ ${precio.toFixed(2)}`;
-  $('#paypalMonto').textContent = `S/ ${precio.toFixed(2)}`;
+  const usd = (precio * CUENTAS.paypal.usd).toFixed(2);
+  $('#montoYape').textContent = `S/ ${precio.toFixed(2)}`;
+  $('#montoTarjeta').textContent = `S/ ${precio.toFixed(2)}`;
+  $('#montoPrex').textContent = `S/ ${precio.toFixed(2)}`;
+  $('#montoPaypal').textContent = `$${usd} USD`;
 }
 
-function copiar(txt){ navigator.clipboard.writeText(txt); showToast('Copiado ✅'); }
+function selectPayment(tab, e){ // <- FIX: Para tus tabs
+  state.metodoPago = tab;
+  $$('.payment-tab').forEach(b=>b.classList.remove('active'));
+  if(e) e.target.classList.add('active');
+  $$('.payment-content').forEach(c=>c.classList.remove('active'));
+  $(`#${tab}Content`).classList.add('active');
+  actualizarMontos();
+}
+
+function copyText(txt){
+  navigator.clipboard.writeText(txt);
+  showToast('Copiado ✅');
+}
 
 /* ===== BOT CONECTADO ===== */
 async function guardarVenta(){
@@ -201,9 +230,10 @@ async function guardarVenta(){
   showToast('Pedido enviado al Bot ✅');
 }
 
+$('#wspBtn').onclick = guardarVenta; // <- Conecta tu botón
+
 function showToast(msg, error=false){
   const t = $('#toast');
-  if(!t) return alert(msg);
   t.textContent = msg;
   t.className = 'toast show' + (error?' error':'');
   setTimeout(()=>t.classList.remove('show'), 3000);
@@ -213,9 +243,11 @@ window.verProducto = verProducto;
 window.comprar = comprar;
 window.abrirPago = abrirPago;
 window.cerrarPago = cerrarPago;
-window.aplicarCupon = aplicarCupon;
-window.quitarCupon = quitarCupon;
-window.copiar = copiar;
-window.guardarVenta = guardarVenta;
+window.applyCoupon = applyCoupon;
+window.removeCoupon = removeCoupon;
+window.selectPayment = selectPayment;
+window.copyText = copyText;
+window.show = show;
+window.toggleDark = toggleDark;
 
 init();
