@@ -1,1 +1,132 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>For Three Bot</title><style>:root[data-theme="dark"]{--bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366}:root[data-theme="light"]{--bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;--cyan:#0891b2;--border:#cbd5e1;--green:#16a34a}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;padding:16px}.screen{display:none}.screen.active{display:block}.topbar{display:flex;justify-content:space-between}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}.card-img{height:140px;background-size:cover}.card-body{padding:12px}.card-price{color:var(--cyan);font-weight:800}.btn{background:var(--cyan);color:#000;border:0;padding:12px;border-radius:10px;width:100%;font-weight:800;margin-top:8px}</style></head><body><div id="tiendaScreen" class="screen active"><div class="topbar"><h2>For Three Bot</h2><button id="currencyBtn" onclick="alert('USD, PEN, ARS')">🌎 PEN</button></div><div class="grid" id="productos">Cargando...</div></div><script>let currentTC=3.70;const products=[{nom:"Bot Grupos",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600"},{nom:"Hosting 1GB",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600"}];async function getTipoCambio(){try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');const j=await r.json();currentTC=j.rates.PEN}catch(e){currentTC=3.70}renderProductos()}function renderProductos(){document.getElementById('productos').innerHTML=products.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"></div><div class="card-body"><div>${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn">Comprar</button></div></div>`).join('')}document.addEventListener('DOMContentLoaded',getTipoCambio);</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Three Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"]{--bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366}
+:root[data-theme="light"]{--bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#64748b;--cyan:#0891b2;--border:#cbd5e1;--green:#16a34a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:70px}
+header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;border-bottom:1px solid var(--border)}
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:1.3rem}
+.currency-btn{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:50px;font-weight:700;cursor:pointer;font-size:.85rem;color:var(--cyan)}
+.theme-btn{background:var(--card);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer}
+.tabs{display:flex;gap:24px;justify-content:center;margin-top:14px}
+.tab{color:var(--muted);font-weight:600;cursor:pointer;padding-bottom:8px;border-bottom:2px solid transparent}
+.tab.active{color:var(--cyan);border-color:var(--cyan)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.card-img{height:140px;background:#000;background-size:cover;background-position:center;position:relative}
+.tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:6px}
+.card-body{padding:12px}
+.card-title{font-size:.9rem;font-weight:700;margin-bottom:8px}
+.card-price{font-size:1.1rem;font-weight:800;color:var(--cyan);margin-bottom:4px}
+.card-price-sub{font-size:.7rem;color:var(--muted);margin-bottom:8px}
+.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px;border-radius:10px;font-weight:800;cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+.modal.active{display:flex}
+.modal-box{background:var(--card);border:1px solid var(--cyan);border-radius:20px;width:100%;max-width:380px;padding:16px}
+.currency-item{padding:12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between}
+.currency-item.active{background:var(--cyan);color:#0a0a0f}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 14px;border-radius:8px;opacity:0;transition:.2s;z-index:999}
+.toast.show{opacity:1}
+.wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:50;text-decoration:none;font-size:1.8rem}
+</style>
+</head>
+<body>
+<div id="tiendaScreen" class="screen active">
+<header>
+<div class="topbar">
+<div class="logo">For Three Bot</div>
+<div style="display:flex;gap:8px;align-items:center">
+<button class="currency-btn" id="currencyBtn" onclick="openCurrency()">🌎 PEN</button>
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+</div>
+</div>
+<div class="tabs"><div class="tab active" onclick="setTab('bots', this)">Bots</div><div class="tab" onclick="setTab('hosting', this)">Hosting</div></div>
+</header>
+<div class="grid" id="productos">Cargando...</div>
+</div>
+
+<div id="productScreen" class="screen" style="padding:16px;max-width:600px;margin:0 auto">
+<header style="position:static;border:0;padding:0 0 16px 0"><button onclick="show('tiendaScreen')" style="background:0;border:0;color:var(--text);font-size:1.2rem;cursor:pointer">←</button></header>
+<div id="productDetail"></div>
+</div>
+
+<div id="currencyModal" class="modal"><div class="modal-box">
+<h3>Elige tu moneda</h3>
+<div id="currencyList" style="margin-top:12px"></div>
+<button onclick="closeCurrency()" style="width:100%;margin-top:12px;padding:12px;background:var(--border);border:0;border-radius:12px;color:var(--text);font-weight:700;cursor:pointer">Cerrar</button>
+</div></div>
+
+<div id="pagoModal" class="modal"><div class="modal-box">
+<h3>Checkout</h3>
+<div style="display:flex;gap:8px;margin:16px 0;overflow-x:auto">
+<button class="payment-tab active" onclick="selectPayment('yape',event)">💜 Yape</button>
+<button class="payment-tab" onclick="selectPayment('bank',event)">🏦 BCP</button>
+<button class="payment-tab" onclick="selectPayment('prex',event)">💳 Prex</button>
+<button class="payment-tab" onclick="selectPayment('paypal',event)">🅿️ PayPal</button>
+</div>
+<div id="montoTotal" style="font-size:2rem;font-weight:800;color:var(--cyan);text-align:center;margin:16px 0">S/ 0.00</div>
+<div id="tcInfo" style="font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:12px">TC: Cargando...</div>
+<div id="yapeContent"><p style="text-align:center;color:var(--muted)">Yapea a: 936994155</p></div>
+<div id="bankContent" style="display:none"><p style="text-align:center;color:var(--muted)">CCI: 002-12345678901<br>BCP: For Three Bot</p></div>
+<div id="prexContent" style="display:none"><p style="text-align:center;color:var(--muted)">Prex: 936994155</p></div>
+<div id="paypalContent" style="display:none">
+<div style="background:rgba(0,0,0,.1);border:1px solid var(--border);border-radius:12px;padding:12px">
+<div style="display:flex;justify-content:space-between;padding:8px 0"><span>Subtotal</span><span id="paypalSubtotal">$0.00</span></div>
+<div style="display:flex;justify-content:space-between;padding:8px 0"><span>Fee 5.4% + $0.30</span><span id="paypalFee">$0.00</span></div>
+<div style="display:flex;justify-content:space-between;padding:8px 0;font-weight:800;color:var(--cyan)"><span>Total</span><span id="paypalTotal">$0.00</span></div>
+</div><a id="paypalLink" target="_blank" style="display:block;width:100%;background:#0070ba;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:800;margin-top:12px;text-decoration:none">Pagar con PayPal</a>
+</div>
+<button id="wspBtn" style="width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;margin-top:12px;cursor:pointer">💬 Enviar Comprobante</button>
+<button onclick="cerrarPago()" style="width:100%;margin-top:8px;padding:12px;background:var(--border);border:0;border-radius:12px;color:var(--text);font-weight:700;cursor:pointer">Cerrar</button>
+</div></div>
+
+<a class="wsp-float" href="https://wa.me/51936994155" target="_blank">💬</a>
+<div id="toast" class="toast"></div>
+
+<script>
+let currentTC=3.70;let currentCurrency=localStorage.getItem('currency')||'PEN';
+const currencies={PEN:{sym:'S/',rate:1},USD:{sym:'$',rate:1/3.70},ARS:{sym:'$',rate:1/3.70*1000},CLP:{sym:'$',rate:1/3.70*950},BOB:{sym:'Bs',rate:1/3.70*7}};
+
+async function getTipoCambio(){
+  const c=localStorage.getItem('tc_pen_usd');const t=localStorage.getItem('tc_pen_usd_time');const d=24*60*60*1000;
+  if(c&&t&&Date.now()-t<d){currentTC=parseFloat(c)}else{
+    try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');const j=await r.json();currentTC=j.rates.PEN;localStorage.setItem('tc_pen_usd',currentTC);localStorage.setItem('tc_pen_usd_time',Date.now())}
+    catch(e){currentTC=3.70}
+  }
+  currencies.USD.rate=1/currentTC;currencies.ARS.rate=1/currentTC*1000;currencies.CLP.rate=1/currentTC*950;currencies.BOB.rate=1/currentTC*7;
+  updateCurrencyBtn();renderProductos()
+}
+function formatPrice(p){const c=currencies[currentCurrency];return`${c.sym} ${(p*c.rate).toFixed(2)}`}
+function updateCurrencyBtn(){document.getElementById('currencyBtn').textContent=`🌎 ${currentCurrency}`}
+function openCurrency(){const l=document.getElementById('currencyList');l.innerHTML=Object.keys(currencies).map(k=>`<div class="currency-item ${k===currentCurrency?'active':''}" onclick="selectCurrency('${k}')"><span>${k}</span><span>${currencies[k].sym}</span></div>`).join('');document.getElementById('currencyModal').classList.add('active')}
+function closeCurrency(){document.getElementById('currencyModal').classList.remove('active')}
+function selectCurrency(k){currentCurrency=k;localStorage.setItem('currency',k);updateCurrencyBtn();renderProductos();closeCurrency();toast(`Moneda: ${k}`)}
+document.addEventListener('DOMContentLoaded',async()=>{await getTipoCambio();loadTheme()});
+function loadTheme(){const s=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',s);document.getElementById('themeBtn').textContent=s==='dark'?'🌙':'☀️'}
+function toggleTheme(){const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeBtn').textContent=n==='dark'?'🌙':'☀️';toast(n==='dark'?'Oscuro':'Claro')}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
+
+const productosBots=[{id:1,nom:"Bot Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600",desc:"Bot completo 24/7. Descargas, IA, Admin.",features:["YT, TikTok, FB, IG","Juegos: PPT, Trivia","IA ChatGPT","Soporte 24/7"]},{id:2,nom:"Bot VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600",desc:"Tu bot con tu marca. 100% único.",features:["Todo lo del Bot Grupos","Comandos propios","Logo propio","Hosting 1GB 1 mes"]}];
+const productosHosting=[{id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600",desc:"Para 1 bot. 99.9% Uptime.",features:["1GB RAM + 10GB SSD","Panel Pterodactyl","Backups diarios","Soporte 24/7"]},{id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600",desc:"Para 3-4 bots pesados.",features:["4GB RAM + 40GB SSD","DDoS Protection","Panel completo","Soporte prioritario"]}];
+let currentTab='bots';let currentProduct=null;
+
+function setTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderProductos()}
+function renderProductos(){const d=currentTab==='bots'?productosBots:productosHosting;document.getElementById('productos').innerHTML=d.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-title">${p.nom}</div><div class="card-price">${formatPrice(p.precio)}</div><div class="card-price-sub">≈ S/ ${p.precio}.00 PEN</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('')}
+function verInfo(id){const d=currentTab==='bots'?productosBots:productosHosting;currentProduct=d.find(p=>p.id===id);document.getElementById('productDetail').innerHTML=`<div style="width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;background-image:url('${currentProduct.img}')"></div><div style="font-size:1.6rem;font-weight:800;margin-bottom:8px">${currentProduct.nom}</div><div style="font-size:2rem;font-weight:800;color:var(--cyan);margin-bottom:4px">${formatPrice(currentProduct.precio)}</div><div style="font-size:.85rem;color:var(--muted);margin-bottom:14px">≈ S/ ${currentProduct.precio}.00 PEN</div><div style="color:var(--muted);margin-bottom:18px">${currentProduct.desc}</div><ul style="list-style:none;margin-bottom:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px">${currentProduct.features.map(f=>`<li style="padding:10px 0;border-bottom:1px solid var(--border)">✓ ${f}</li>`).join('')}</ul><button style="width:100%;background:var(--green);color:#fff;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;margin-bottom:10px" onclick="abrirPago()">Comprar</button><button style="width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer" onclick="show('tiendaScreen')">← Volver</button>`;show('productScreen')}
+
+function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos()}
+function cerrarPago(){document.getElementById('pagoModal').classList.remove('active')}
+function selectPayment(t,ev){document.querySelectorAll('#paypalContent,#yapeContent,#bankContent,#prexContent').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block'}
+function updateMontos(){const p=currentProduct.precio;const usd=p/currentTC;const fee=usd*0.054+0.30;const total=usd+fee;document.getElementById('montoTotal').textContent=`S/ ${p}.00`;document.getElementById('tcInfo').textContent=`TC del día: S/ ${currentTC.toFixed(2)}`;document.getElementById('paypalSubtotal').textContent=`$${usd.toFixed(2)}`;document.getElementById('paypalFee').textContent=`$${fee.toFixed(2)}`;document.getElementById('paypalTotal').textContent=`$${total.toFixed(2)}`;document.getElementById('paypalLink').href=`https://paypal.me/tuusuario/${total.toFixed(2)}`}
+document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - S/ ${currentProduct.precio}.00`)}`,'_blank')}
+</script>
+</body>
+</html>
