@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Three Store | Tienda</title>
+<title>For Three Store | Servicios Digitales</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -200,22 +200,17 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-  }
-  @media (max-width: 1100px) {
-    .grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
   @media (max-width: 900px) {
     .grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   @media (max-width: 640px) {
     .grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
     }
   }
   .card {
@@ -228,25 +223,9 @@
   }
   .card img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 16/9;
     object-fit: cover;
-  }
-  .fav {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #fff;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    font-size: 18px;
-    border: 0;
-  }
-  .fav.active {
-    color: var(--red);
+    background: #0a0a0a;
   }
   .tag {
     background: var(--red);
@@ -259,23 +238,40 @@
     top: 8px;
     left: 8px;
   }
+  .tag.green {
+    background: var(--green);
+  }
   .card-body {
     padding: 12px;
   }
+  .marca {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
   .precio {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
+    margin: 8px 0;
+  }
+  .precio del {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 400;
   }
   .btn {
     background: var(--red);
     color: #fff;
     border: 0;
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     font-weight: 700;
     width: 100%;
     cursor: pointer;
     margin-top: 8px;
+    font-size: 14px;
   }
   .modal {
     position: fixed;
@@ -346,6 +342,15 @@
     place-items: center;
     z-index: 100;
   }
+  .desc-list {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 8px 0;
+  }
+  .desc-list li {
+    margin-left: 16px;
+  }
 </style>
 </head>
 <body>
@@ -356,7 +361,7 @@
     <div class="topbar">
       <div class="logo" onclick="resetFiltros()">For Three Store</div>
       <div class="buscador">
-        <input id="search" placeholder="Busca tu producto" oninput="filtrar()">
+        <input id="search" placeholder="Busca tu servicio" oninput="filtrar()">
         <button onclick="filtrar()">Buscar</button>
       </div>
       <div class="top-icons">
@@ -375,14 +380,14 @@
   <div class="container">
     <div class="banner-wrap">
       <div class="banners" id="banners">
-        <div class="banner">NUEVA COLECCIÓN OTOÑO 2026</div>
-        <div class="banner" style="background:#e60000;color:#fff">HASTA -60% SOLO ESTA SEMANA</div>
+        <div class="banner">BOTS Y HOSTING 24/7 PARA WHATSAPP</div>
+        <div class="banner" style="background:#e60000;color:#fff">ENTREGA INMEDIATA POR YAPE</div>
       </div>
       <div class="banner-dots" id="bannerDots"></div>
     </div>
 
     <div class="toolbar">
-      <div id="resultados">0 productos</div>
+      <div id="resultados">0 servicios</div>
       <select class="select" id="ordenar" onchange="filtrar()">
         <option value="relevancia">Más relevantes</option>
         <option value="precio-asc">Menor a Mayor</option>
@@ -396,26 +401,26 @@
   <section class="features">
     <div class="features-grid">
       <div>
-        <h3>🚚 Envío Rápido en Ica</h3>
-        <p>Recibe en 24h</p>
+        <h3>⚡ Entrega Inmediata</h3>
+        <p>Te lo configuro en minutos por WhatsApp</p>
       </div>
       <div>
         <h3>💜 Solo Yape</h3>
         <p>Pago directo y seguro</p>
       </div>
       <div>
-        <h3>↩️ Cambios Fáciles</h3>
-        <p>7 días</p>
+        <h3>🛠️ Soporte 24/7</h3>
+        <p>Te ayudo si algo falla</p>
       </div>
       <div>
-        <h3>✅ +500 Clientes</h3>
-        <p>WhatsApp 24/7</p>
+        <h3>✅ +200 Clientes</h3>
+        <p>Servicios digitales en Perú</p>
       </div>
     </div>
   </section>
 
   <footer>
-    © 2026 For Three Store | Ica, Perú | WhatsApp: 936 994 155
+    © 2026 For Three Store | Servicios Digitales | WhatsApp: 936 994 155
   </footer>
 </div>
 
@@ -426,10 +431,12 @@
       <span onclick="show('catalogoScreen')">← Volver</span>
     </div>
   </header>
-  <div class="container">
+  <div class="container" style="max-width:700px">
     <h1 id="pNom"></h1>
+    <div class="marca" id="pMarca"></div>
     <div id="pPrecio"></div>
-    <button class="btn" id="comprarBtn">Agregar al carrito</button>
+    <ul class="desc-list" id="pDesc"></ul>
+    <button class="btn" id="comprarBtn">Contratar ahora</button>
   </div>
 </div>
 
@@ -459,7 +466,7 @@
       <div style="background:#fff;padding:20px;border-radius:8px;color:#000;margin:10px 0">
         📱 ESCANEA TU QR AQUÍ
       </div>
-      <small>Pon el monto exacto de tu compra</small>
+      <small>Pon el monto exacto de tu servicio</small>
     </div>
 
     <div id="resumenPedido" style="margin:16px 0"></div>
@@ -469,7 +476,7 @@
             2. Ya Yapeé ✅ Enviar comprobante por WhatsApp
     </a>
     <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px">
-      Te confirmamos en minutos y coordinamos tu envío
+      Te instalo todo en minutos al confirmar tu pago
     </p>
   </div>
 </div>
@@ -485,36 +492,56 @@
 const productos = [
   {
     id: 1,
-    nom: "Top básico Algodón S M L XL",
-    precio: 39.90,
-    precioOld: 79.90,
-    imgs: ["https://via.placeholder.com/400"],
-    stock: 12,
+    nom: "Bot Para Grupos - WhatsApp",
+    precio: 25.00,
+    precioOld: 40.00,
+    imgs: ["https://via.placeholder.com/600x338/0a0a0a/25D366?text=BOT+GRUPOS"],
+    stock: 99,
     marca: "FOR THREE STORE",
-    cat: "Moda Mujer"
+    cat: "Bots",
+    desc: [
+      "Anti-fake y anti-link",
+      "Comandos: /kick /ban /menu",
+      "Auto-respuestas 24/7",
+      "Instalación inmediata",
+      "Soporte 1 mes incluido"
+    ]
   },
   {
     id: 2,
-    nom: "Vestido floral Talla única",
-    precio: 63.90,
-    imgs: ["https://via.placeholder.com/400"],
-    stock: 3,
+    nom: "Bot Personalizado",
+    precio: 80.00,
+    imgs: ["https://via.placeholder.com/600x338/0a0a0a/FFB400?text=BOT+VIP"],
+    stock: 99,
     marca: "FOR THREE STORE",
-    cat: "Moda Mujer"
+    cat: "Bots",
+    desc: [
+      "Lo hago 100% a tu medida",
+      "Tus comandos, tu logo, tu estilo",
+      "Base de datos incluida",
+      "Panel web para controlarlo",
+      "Soporte 3 meses incluido"
+    ]
   },
   {
     id: 3,
-    nom: "Polera oversize negra",
-    precio: 89.90,
-    imgs: ["https://via.placeholder.com/400"],
-    stock: 8,
+    nom: "Hosting para Bot 24/7",
+    precio: 15.00,
+    imgs: ["https://via.placeholder.com/600x338/0a0a0a/007600?text=HOSTING"],
+    stock: 99,
     marca: "FOR THREE STORE",
-    cat: "Moda Hombre"
+    cat: "Hosting",
+    desc: [
+      "Tu bot encendido 24/7 sin PC",
+      "Servidor en Perú, ping bajo",
+      "1GB RAM + 5GB SSD",
+      "Respaldo automático semanal",
+      "Renovación mensual S/ 15"
+    ]
   }
 ];
 
 let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-let favoritos = JSON.parse(localStorage.getItem('fav') || '[]');
 
 // TEMA OSCURO AUTO
 const themeBtn = document.getElementById('themeBtn');
@@ -566,24 +593,34 @@ function setCat(c) {
 
 // FILTRAR Y MOSTRAR PRODUCTOS
 function filtrar() {
-  const list = productos;
-  document.getElementById('resultados').textContent = `${list.length} productos`;
+  const q = document.getElementById('search').value.toLowerCase();
+  const list = productos.filter(p => 
+    (c === 'Todos' || p.cat === c) && p.nom.toLowerCase().includes(q)
+  );
+  document.getElementById('resultados').textContent = `${list.length} servicios`;
   document.getElementById('productos').innerHTML = list
     .map(
       p => `
     <div class="card" onclick="verProducto(${p.id})">
-      <button class="fav" onclick="event.stopPropagation()">♥</button>
-      <div class="tag">-${p.precioOld ? Math.round((1 - p.precio / p.precioOld) * 100) : 0}%</div>
+      <div class="tag ${p.precioOld ? '' : 'green'}">${p.precioOld ? '-' + Math.round((1 - p.precio / p.precioOld) * 100) + '%' : 'DIGITAL'}</div>
       <img src="${p.imgs[0]}">
       <div class="card-body">
+        <div class="marca">${p.cat}</div>
         <b>${p.nom}</b>
-        <div class="precio">S/ ${p.precio.toFixed(2)}</div>
-        <button class="btn" onclick="event.stopPropagation();addCart(${p.id})">Agregar</button>
+        <div class="precio">${p.precioOld ? `<del>S/ ${p.precioOld.toFixed(2)}</del> ` : ''}S/ ${p.precio.toFixed(2)}</div>
+        <button class="btn" onclick="event.stopPropagation();addCart(${p.id})">Contratar</button>
       </div>
     </div>
   `
     )
     .join('');
+}
+
+let c = 'Todos';
+function resetFiltros() {
+  document.getElementById('search').value = '';
+  c = 'Todos';
+  setCat('Todos');
 }
 
 // CARRITO
@@ -633,7 +670,13 @@ function show(id) {
 function verProducto(id) {
   const p = productos.find(x => x.id === id);
   document.getElementById('pNom').textContent = p.nom;
-  document.getElementById('pPrecio').textContent = `S/ ${p.precio.toFixed(2)}`;
+  document.getElementById('pMarca').textContent = p.cat;
+  document.getElementById('pPrecio').innerHTML = `
+    <div class="precio">${p.precioOld ? `<del>S/ ${p.precioOld.toFixed(2)}</del> ` : ''}S/ ${p.precio.toFixed(2)}</div>
+  `;
+  document.getElementById('pDesc').innerHTML = p.desc
+    .map(d => `<li>${d}</li>`)
+    .join('');
   document.getElementById('comprarBtn').onclick = () => addCart(id);
   show('productoScreen');
 }
@@ -656,12 +699,12 @@ function irAPago() {
     'pagoTotal'
   ).textContent = `Total a Yapear: S/ ${total.toFixed(2)}`;
 
-  const msg = `Hola For Three Store! Ya Yapeé S/ ${total.toFixed(2)} ✅\n\nProductos:\n${carrito
+  const msg = `Hola For Three Store! Ya Yapeé S/ ${total.toFixed(2)} ✅\n\nServicios:\n${carrito
     .map(i => {
       const p = productos.find(x => x.id === i.id);
       return `${i.qty}x ${p.nom}`;
     })
-    .join('\n')}\n\nAdjunto mi comprobante de Yape.`;
+    .join('\n')}\n\nAdjunto mi comprobante de Yape. Porfa instálame todo.`;
   document.getElementById('wspBtn').href = `https://wa.me/51936994155?text=${encodeURIComponent(
     msg
   )}`;
