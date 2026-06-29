@@ -25,7 +25,7 @@
 .card-cat{font-size:.65rem;color:var(--muted);margin-bottom:4px}
 .card-title{font-size:.9rem;font-weight:700;margin-bottom:8px;min-height:38px}
 .card-price{font-size:1.1rem;font-weight:800;margin-bottom:8px;color:var(--cyan)}
-.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px 8px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-contratar{width:100%;background:var(--cyan);color:#0a0a0f;border:0;padding:12px 8px;border-radius:10px;font-weight:800;cursor:pointer;font-size:.9rem}
 .features{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 16px}
 .feature{display:flex;gap:10px;align-items:flex-start;font-size:.85rem}
 .feature span{color:var(--muted)}
@@ -33,28 +33,6 @@
 .wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.3);cursor:pointer;z-index:99}
 .wsp-float svg{width:28px;height:28px;fill:#fff}
 .probar-float{position:fixed;bottom:78px;right:16px;background:var(--cyan);color:#0a0a0f;font-weight:800;padding:11px 20px;border-radius:50px;cursor:pointer;z-index:99;font-size:.9rem}
-.music-player{position:fixed;bottom:130px;right:16px;width:220px;background:#0f172a;border:1px solid var(--border);border-radius:12px;z-index:98;overflow:hidden;transition:height.2s}
-.music-player.minimized{height:40px}
-.music-player.minimized.player-controls,.music-player.minimized #volumeBar{display:none}
-.player-header{display:flex;justify-content:space-between;padding:8px 12px;color:var(--cyan);font-size:.75rem;cursor:pointer;font-weight:700}
-.player-controls{display:flex;justify-content:center;gap:8px;padding:8px}
-.player-controls button{background:var(--cyan);border:0;width:30px;height:30px;border-radius:50%;font-size:1rem;color:#0a0a0f;cursor:pointer}
-  #volumeBar{width:88%;accent-color:var(--cyan);margin:0 12px 8px;height:3px}
-.demo-wrap{padding:16px;max-width:600px;margin:0 auto;padding-bottom:90px}
-.demo-title{font-size:1.6rem;font-weight:800;color:var(--cyan);text-align:center;margin:16px 0}
-.cmd-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px}
-.cmd-cat{color:var(--cyan);font-weight:800;margin:12px 0 6px;font-size:.85rem}
-.cmd-list{list-style:none;font-size:.85rem;color:var(--muted)}
-.cmd-list li{margin:5px 0;padding-left:10px;border-left:2px solid var(--border)}
-.cmd-list b{color:var(--text)}
-.btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px}
-.btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan);margin-bottom:10px}
-.btn-volver-abajo{display:block;width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-.video-screen{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:16px}
-.video-box{width:100%;max-width:420px;background:#0f172a;border:1px solid var(--border);border-radius:16px;padding:8px;box-shadow:0 0 20px rgba(0,229,255,.2)}
-.video-box video{width:100%;border-radius:10px;display:block;aspect-ratio:9/16;object-fit:cover}
-.sound-float{position:absolute;top:24px;right:24px;width:50px;height:50px;background:rgba(0,229,255,.9);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:100;color:#0a0a0f;font-weight:800}
-.btn-volver{width:100%;max-width:420px;background:var(--card);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:220px;background-size:cover;background-position:center;border-radius:14px;margin-bottom:16px;border:1px solid var(--border)}
 .product-title{font-size:1.5rem;font-weight:800;margin-bottom:6px}
@@ -84,7 +62,7 @@
 <body>
   <div id="tiendaScreen" class="screen active">
     <header><div class="topbar"><div class="logo">For Three Bot</div></div><div class="tabs"><div class="tab active" onclick="setTab('bots', this)">Bots</div><div class="tab" onclick="setTab('hosting', this)">Hosting</div></div></header>
-    <div class="grid" id="productos"></div>
+    <div class="grid" id="productos">Cargando...</div> <!-- <- TEXTO PARA VER SI CARGA -->
     <div class="features"><div class="feature"><div>⚡</div><div><b>Entrega Inmediata</b><br><span>Por WhatsApp</span></div></div><div class="feature"><div>💜</div><div><b>Yape, Tarjeta, Prex, PayPal</b><br><span>4 métodos</span></div></div><div class="feature"><div>🛠️</div><div><b>Soporte 24/7</b><br><span>Te ayudo</span></div></div><div class="feature"><div>✅</div><div><b>+200 Clientes</b><br><span>En Perú</span></div></div></div>
     <footer>© 2026 For Three Bot | WhatsApp: +51 936 994 155</footer>
   </div>
@@ -94,99 +72,14 @@
     <div class="product-wrap" id="productDetail"></div>
   </div>
 
-  <div id="demoScreen" class="screen">
-    <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">For Three Bot</div><span></span></div></header>
-    <div class="demo-wrap">
-      <h1 class="demo-title">For Three Bot V1</h1>
-      <div class="cmd-box">
-        <div class="cmd-cat">📥 DESCARGAS</div><ul class="cmd-list">
-          <li><b>.ytmp4 [link]</b> - Descargar video YouTube</li>
-          <li><b>.ytmp3 [link]</b> - Descargar audio YouTube</li>
-          <li><b>.tiktok [link]</b> - Descargar TikTok sin marca</li>
-          <li><b>.fb [link]</b> - Descargar Facebook</li>
-          <li><b>.ig [link]</b> - Descargar Instagram</li>
-          <li><b>.img [texto]</b> - Generar imagen con IA</li>
-        </ul>
-        <div class="cmd-cat">🎮 JUEGOS</div><ul class="cmd-list">
-          <li><b>.ppt</b> - Piedra Papel Tijera</li>
-          <li><b>.trivia</b> - Preguntas random</li>
-          <li><b>.match</b> - Encuentra parejas</li>
-          <li><b>.ahorcado</b> - Juega ahorcado</li>
-          <li><b>.top</b> - Top 10 del grupo</li>
-        </ul>
-        <div class="cmd-cat">🤖 IA + UTILIDADES</div><ul class="cmd-list">
-          <li><b>.ia [texto]</b> - Pregunta a la IA</li>
-          <li><b>.sticker</b> - Convierte imagen a sticker</li>
-          <li><b>.logo [texto]</b> - Crea logos</li>
-          <li><b>.removebg</b> - Quita fondo a imagen</li>
-          <li><b>.menu</b> - Ver menú completo</li>
-        </ul>
-        <div class="cmd-cat">⚙️ ADMIN</div><ul class="cmd-list">
-          <li><b>.kick @user</b> - Expulsar miembro</li>
-          <li><b>.promote @user</b> - Dar admin</li>
-          <li><b>.group open/close</b> - Abrir/cerrar grupo</li>
-        </ul>
-      </div>
-      <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL For Three Bot</a>
-      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button>
-      <button class="btn-volver-abajo" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
-    </div>
-  </div>
-
-  <div id="videoScreen" class="screen video-screen">
-    <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button>
-    <div class="video-box">
-      <video id="demoVideo" loop playsinline preload="metadata">
-        <source src="demo.mp4" type="video/mp4">
-      </video>
-    </div>
-    <button class="btn-volver" onclick="closeVideo()">← Volver</button>
-  </div>
-
   <div id="pagoModal" class="modal"><div class="modal-box"><div class="modal-header"><h3>Checkout</h3><button class="x" onclick="cerrarPago()">×</button></div><div class="payment-tabs"><button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button><button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button><button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button><button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button></div><div id="yapeContent" class="payment-content active"><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div><div id="bankContent" class="payment-content" style="display:none"><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div><div id="prexContent" class="payment-content" style="display:none"><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div><div id="paypalContent" class="payment-content" style="display:none"><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-contratar" target="_blank" style="display:block;text-align:center;text-decoration:none;margin:0 16px;">Pagar PayPal</a></div><button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button></div></div>
 
-  <div class="music-player" id="musicPlayer">
-    <div class="player-header" onclick="toggleMinimize()"><span id="songName">Toca ▶️ para iniciar</span><span id="minBtn">▼</span></div>
-    <div class="player-controls"><button onclick="prevSong()">⏮️</button><button id="playBtn" onclick="togglePlay()">▶️</button><button onclick="nextSong()">⏭️</button></div>
-    <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8">
-    <audio id="bgMusic" loop preload="metadata"></audio>
-  </div>
-
-  <div class="probar-float" onclick="show('demoScreen')">Probar</div>
   <a class="wsp-float" href="https://wa.me/51936994155" target="_blank"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.7.9 5.2 2.4 7.2L4 29l7-2.3c1.9 1 4.1 1.6 6.4 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg></a>
   <div id="toast" class="toast"></div>
   <script>
-  const music=document.getElementById('bgMusic');const playBtn=document.getElementById('playBtn');const volumeBar=document.getElementById('volumeBar');const player=document.getElementById('musicPlayer');const minBtn=document.getElementById('minBtn');const songName=document.getElementById('songName');
-  const playlist = ['audioNormal.mp3', 'audio2.mp3'];
-  let currentSong = 0;
-  function loadSong(index){music.src = playlist[index];songName.textContent = playlist[index];}
-  loadSong(0);
-  music.loop=true;music.volume=0.8;volumeBar.value=0.8;
-  function togglePlay(){if(music.paused){music.play().then(()=>{playBtn.textContent='⏸️';songName.textContent=playlist[currentSong];}).catch(()=>{toast('Toca ▶️ otra vez')});}else{music.pause();playBtn.textContent='▶️';}}
-  function prevSong(){currentSong=(currentSong-1+playlist.length)%playlist.length;loadSong(currentSong);if(!music.paused)music.play();toast('Anterior')}
-  function nextSong(){currentSong=(currentSong+1)%playlist.length;loadSong(currentSong);if(!music.paused)music.play();toast('Siguiente')}
-  volumeBar.oninput=()=>music.volume=volumeBar.value;
-  function toggleMinimize(){player.classList.toggle('minimized');minBtn.textContent=player.classList.contains('minimized')?'▲':'▼';}
   function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
   
-  const demoVideo = document.getElementById('demoVideo');
-  const soundBtn = document.getElementById('soundBtn');
-  function openVideo(){
-    show('videoScreen');
-    demoVideo.play(); 
-    demoVideo.muted = true;
-    soundBtn.textContent = '🔇';
-  }
-  function closeVideo(){
-    demoVideo.pause();
-    show('demoScreen');
-  }
-  function toggleVideoSound(){
-    demoVideo.muted =!demoVideo.muted;
-    soundBtn.textContent = demoVideo.muted? '🔇' : '🔊';
-    if(!demoVideo.paused) demoVideo.play();
-  }
-
+  // PRODUCTOS HARDCODEADOS
   const productosBots=[
     {id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&auto=format&fit=crop",desc:"El bot más vendido para administrar grupos. Automático 24/7.",features:["Descargas YouTube, TikTok, FB, IG","Juegos: PPT, Trivia, Match","IA + Sticker + Logo IA","Panel Admin: Kick, Promote"]},
     {id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop",desc:"Tu bot con tu nombre, tus comandos y tu logo. 100% exclusivo.",features:["Todo lo del Bot Grupos +","Comandos personalizados","Logo y nombre propio","Soporte prioritario 24/7"]}
@@ -197,14 +90,18 @@
   ];
 
   let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMBIAME"},prex:{num:"936994155"},paypal:"https://paypal.me/tuusuario"};
-  let currentProduct=null; // <- GLOBAL FIX
+  let currentProduct=null; 
   
   function setTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderProductos();}
-  function renderProductos(){const data=currentTab==='bots'?productosBots:productosHosting;document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('');}
+  
+  function renderProductos(){
+    const data=currentTab==='bots'?productosBots:productosHosting;
+    document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('');
+  }
 
   function verInfo(id){
     const data=currentTab==='bots'?productosBots:productosHosting;
-    currentProduct=data.find(p=>p.id===id); // <- GUARDA GLOBAL
+    currentProduct=data.find(p=>p.id===id); 
     document.getElementById('productDetail').innerHTML=`
       <div class="product-img" style="background-image:url('${currentProduct.img}')"></div>
       <div class="product-title">${currentProduct.nom}</div>
@@ -213,16 +110,22 @@
       <ul class="product-list">
         ${currentProduct.features.map(f=>`<li><b>✓</b> ${f}</li>`).join('')}
       </ul>
-      <button class="btn-comprar" onclick="abrirPago()">Comprar</button> <!-- <- SIN PARAMS -->
-      <button class="btn-volver" onclick="show('tiendaScreen')">← Volver</button>
+      <button class="btn-comprar" onclick="abrirPago()">Comprar</button>
+      <button class="btn-comprar" style="background:var(--card);color:var(--text);border:1px solid var(--border)" onclick="show('tiendaScreen')">← Volver</button>
     `;
     show('productScreen');
   }
 
-  function abrirPago(){ // <- FIX: YA NO PIDE PARAMS
-    document.getElementById('pagoModal').classList.add('active');
-    updateMontos();
-  }
+  function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos();}
   function cerrarPago(){document.getElementById('pagoModal').classList.remove('active');}
   function selectPayment(t,ev){document.querySelectorAll('.payment-content').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block';}
-  function updateMontos(){const precio=currentProduct.precio;const usd=(precio/3.7).toFixed(2);['montoYape','montoTarjeta','montoPrex'].forEach(id=>document.getElementById(id).textContent=`S/ ${precio}.00`);document.getElementById('montoPaypal').textContent=`$${usd} USD`;document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;document.getElementById('yapeNum').textContent=pagos.yape.num;document.getElementById('bcpCci')
+  function updateMontos(){const precio=currentProduct.precio;const usd=(precio/3.7).toFixed(2);['montoYape','montoTarjeta','montoPrex'].forEach(id=>document.getElementById(id).textContent=`S/ ${precio}.00`);document.getElementById('montoPaypal').textContent=`$${usd} USD`;document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;document.getElementById('yapeNum').textContent=pagos.yape.num;document.getElementById('bcpCci').textContent=pagos.bcp.cci;document.getElementById('prexNum').textContent=pagos.prex.num;}
+  document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - S/ ${currentProduct.precio}.00`)}`,'_blank');};
+  function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado!')}
+  function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500);}
+  
+  // FIX CLAVE: EJECUTAR AL FINAL
+  renderProductos(); // <- ESTO PINTA LOS PRODUCTOS ALTIRO
+  </script>
+</body>
+</html>
