@@ -30,9 +30,9 @@
 .feature{display:flex;gap:10px;align-items:flex-start;font-size:.85rem}
 .feature span{color:var(--muted)}
   footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
-.wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:999}
+.wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:50}
 .wsp-float svg{width:28px;height:28px;fill:#fff}
-.probar-float{position:fixed;bottom:78px;right:16px;background:var(--cyan);color:#0a0a0f;font-weight:800;padding:11px 20px;border-radius:50px;cursor:pointer;z-index:999;font-size:.9rem;box-shadow:0 4px 15px rgba(0,229,255,.3)}
+.probar-float{position:fixed;bottom:78px;right:16px;background:var(--cyan);color:#0a0a0f;font-weight:800;padding:11px 20px;border-radius:50px;cursor:pointer;z-index:50;font-size:.9rem;box-shadow:0 4px 15px rgba(0,229,255,.3)}
 .demo-wrap{padding:16px;max-width:600px;margin:0 auto;padding-bottom:90px}
 .demo-title{font-size:1.6rem;font-weight:800;color:var(--cyan);text-align:center;margin:16px 0}
 .cmd-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px}
@@ -43,12 +43,12 @@
 .btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px}
 .btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan);margin-bottom:10px}
 .btn-volver-abajo{display:block;width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-/* PANTALLA VIDEO V37 */
-.video-screen{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;gap:16px}
-.video-box{width:100%;max-width:420px;background:#0f172a;border:1px solid var(--border);border-radius:16px;padding:8px;box-shadow:0 0 20px rgba(0,229,255,.2)}
-.video-box video{width:100%;border-radius:10px;display:block;aspect-ratio:9/16;object-fit:cover}
-.sound-float{position:absolute;top:24px;right:24px;width:50px;height:50px;background:rgba(0,229,255,.9);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:100;color:#0a0a0f;font-weight:800}
-.btn-volver{width:100%;max-width:420px;background:var(--card);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
+/* VIDEO V39 FULL */
+.video-screen{background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;gap:0;min-height:100vh}
+.video-box{width:100vw;max-width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#000;border:0;border-radius:0;padding:0;box-shadow:none}
+.video-box video{width:100%;height:100%;border-radius:0;display:block;aspect-ratio:9/16;object-fit:contain;filter:brightness(1.4) contrast(1.1)} /* <- object-fit:contain = se ve todo */
+.sound-float{position:absolute;bottom:90px;left:24px;width:50px;height:50px;background:rgba(0,229,255,.9);border:0;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:100;color:#0a0a0f;font-weight:800} /* <- ABAJO IZQUIERDA */
+.btn-volver{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:420px;background:rgba(15,23,42,.9);backdrop-filter:blur(10px);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;z-index:60} /* <- CENTRADO ABAJO */
 /* FIN VIDEO */
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:220px;background-size:cover;background-position:center;border-radius:14px;margin-bottom:16px;border:1px solid var(--border)}
@@ -118,20 +118,19 @@
         </ul>
       </div>
       <a class="btn-grupo" href="https://chat.whatsapp.com/LjPhgjqCM934QEzYz3vrVk" target="_blank">GRUPO OFICIAL For Three Bot</a>
-      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button> <!-- <- YA FUNCIONA -->
+      <button class="btn-video" onclick="openVideo()">▶️ Ver cómo funciona el Bot</button>
       <button class="btn-volver-abajo" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
     </div>
   </div>
 
-  <!-- PANTALLA VIDEO V37 -->
   <div id="videoScreen" class="screen video-screen">
-    <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button>
     <div class="video-box">
       <video id="demoVideo" loop playsinline preload="metadata">
-        <source src="demo.mp4" type="video/mp4"> <!-- <- TU VIDEO DEL REPO -->
+        <source src="demo.mp4" type="video/mp4">
       </video>
     </div>
-    <button class="btn-volver" onclick="closeVideo()">← Volver</button>
+    <button class="sound-float" id="soundBtn" onclick="toggleVideoSound()">🔇</button> <!-- <- ABAJO IZQ -->
+    <button class="btn-volver" onclick="closeVideo()">← Volver</button> <!-- <- CENTRO ABAJO -->
   </div>
 
   <div id="productScreen" class="screen">
@@ -147,26 +146,28 @@
   <script>
   function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
-  // VIDEO LOGIC V37
   const demoVideo = document.getElementById('demoVideo');
   const soundBtn = document.getElementById('soundBtn');
   function openVideo(){
     show('videoScreen');
     demoVideo.play();
-    demoVideo.muted = true; // <- Empieza sin sonido por Chrome
+    demoVideo.muted = true;
     soundBtn.textContent = '🔇';
+    document.querySelector('.probar-float').style.display='none';
+    document.querySelector('.wsp-float').style.display='none';
   }
   function closeVideo(){
     demoVideo.pause();
-    demoVideo.currentTime = 0; // <- Reinicia
+    demoVideo.currentTime = 0;
     show('demoScreen');
+    document.querySelector('.probar-float').style.display='flex';
+    document.querySelector('.wsp-float').style.display='flex';
   }
   function toggleVideoSound(){
     demoVideo.muted =!demoVideo.muted;
     soundBtn.textContent = demoVideo.muted? '🔇' : '🔊';
     if(!demoVideo.paused) demoVideo.play();
   }
-  // FIN VIDEO
 
   const productosBots=[
     {id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&auto=format&fit=crop",desc:"El bot más vendido para administrar grupos. Automático 24/7.",features:["Descargas YouTube, TikTok, FB, IG","Juegos: PPT, Trivia, Match","IA + Sticker + Logo IA","Panel Admin: Kick, Promote"]},
