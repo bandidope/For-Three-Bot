@@ -1,48 +1,69 @@
-:root{
-  --bg:#0a0a0f;--card:#0d1b2a;--text:#e0e6ed;--muted:#7a8a99;
-  --cyan:#00e5ff;--cyan-glow:rgba(0,229,255,0.4);--border:#1e2d3d;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:120px}
-h1,h2,h3,.logo{font-family:'Orbitron',sans-serif}
-.screen{display:none;min-height:100vh}.screen.active{display:block}
-.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100vh;padding:20px;background:radial-gradient(circle at 50% 30%, #0d1b2a 0%, #0a0a0f 70%)}
-.logo-3d{font-size:5rem;font-weight:900;color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow);margin-bottom:10px}
-.hero h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:10px;color:var(--cyan);text-shadow:0 0 20px var(--cyan-glow)}
-.btn-glow{background:var(--cyan);color:#0a0a0f;border:0;padding:14px 32px;border-radius:8px;font-weight:900;font-family:'Orbitron';cursor:pointer;box-shadow:0 0 15px var(--cyan-glow);transition:.3s}
-.btn-glow:hover{box-shadow:0 0 30px var(--cyan)}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:rgba(13,27,42,0.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
-.logo{font-weight:900;font-size:1.5rem;color:var(--cyan);cursor:pointer}
-.icon-btn{background:var(--card);border:1px solid var(--border);color:var(--cyan);width:40px;height:40px;border-radius:10px;font-size:1.2rem;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:20px;padding:20px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:15px;cursor:pointer;transition:.3s}
-.card:hover{border-color:var(--cyan);box-shadow:0 0 20px var(--cyan-glow);transform:translateY(-4px)}
-.card img{width:100%;border-radius:12px;aspect-ratio:1;object-fit:cover;margin-bottom:10px}
-.precio{color:var(--cyan);font-weight:900;font-size:1.1rem}
-.p-wrap{padding:20px;max-width:600px;margin:0 auto}
-.img-box{padding:20px;background:var(--card);border-radius:20px;border:1px solid var(--border);margin-bottom:15px}
-.p-wrap img{width:100%;border-radius:12px}
-.tag{display:inline-block;background:var(--cyan);color:#0a0a0f;padding:5px 12px;border-radius:6px;font-weight:700;font-size:.8rem;margin-bottom:10px}
-.p-desc{list-style:none;margin:15px 0;color:var(--muted)}
-.p-desc li{margin:8px 0}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
-.modal.active{display:flex}
-.modal-box{background:var(--card);border:1px solid var(--border);border-radius:20px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;box-shadow:0 0 40px var(--cyan-glow)}
-.modal-header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1px solid var(--border)}
-.x{background:0;border:0;font-size:1.5rem;color:var(--muted);cursor:pointer}
-.payment-tabs{display:flex;gap:8px;margin:15px 0;overflow-x:auto}
-.payment-tab{padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;white-space:nowrap;color:var(--muted)}
-.payment-tab.active{background:var(--cyan);color:#0a0a0f;border-color:var(--cyan)}
-.amount{font-size:2rem;font-weight:900;color:var(--cyan);margin:10px 0;text-shadow:0 0 10px var(--cyan-glow)}
-.copy-box{display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:12px;border-radius:8px;margin:8px 0;border:1px solid var(--border)}
-.copy-btn{padding:8px 14px;background:var(--cyan);border:0;border-radius:6px;color:#0a0a0f;font-weight:700;cursor:pointer}
-.btn-wsp{width:100%;margin-top:15px;background:#25D366;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:700;cursor:pointer}
-.music-player{position:fixed;bottom:20px;right:20px;width:300px;background:rgba(13,27,42,0.9);backdrop-filter:blur(15px);border:1px solid var(--cyan);border-radius:16px;box-shadow:0 0 30px var(--cyan-glow);z-index:999;overflow:hidden;transition:height .3s}
-.music-player.min{height:50px}
-.music-player.min .player-controls,.music-player.min #volumeBar{display:none}
-.player-header{display:flex;justify-content:space-between;padding:12px;color:var(--cyan);font-weight:600;cursor:pointer}
-.player-controls{display:flex;justify-content:center;gap:12px;padding:14px}
-.player-controls button{background:var(--cyan);border:0;width:44px;height:44px;border-radius:50%;font-size:1.3rem;color:#0a0a0f;cursor:pointer;box-shadow:0 0 10px var(--cyan-glow)}
-#volumeBar{width:94%;accent-color:var(--cyan);margin:0 12px 12px}
-.toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--card);border:1px solid var(--cyan);padding:12px 20px;border-radius:10px;opacity:0;transition:.3s;z-index:9999;box-shadow:0 0 20px var(--cyan-glow)}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>For Three Store</title>
+  <link rel="stylesheet" href="style.css?v=12"> <!-- <- CAMBIÉ A V12 -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="inicioScreen" class="screen active">
+    <div class="hero">
+      <div class="logo-3d">F3</div>
+      <h1>FOR THREE STORE</h1>
+      <p>Servicios Digitales al Instante</p>
+      <button class="btn-glow" onclick="show('tiendaScreen')">Explorar Tienda</button>
+    </div>
+  </div>
+
+  <div id="tiendaScreen" class="screen">
+    <header><div class="topbar"><div class="logo" onclick="show('inicioScreen')">F3</div><button id="themeBtn" class="icon-btn">🌙</button></div></header>
+    <div class="grid" id="productos"></div>
+  </div>
+
+  <div id="productoScreen" class="screen">
+    <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">DETALLE</div><span></span></div></header>
+    <div class="p-wrap">
+      <div class="img-box"><img id="pImg" alt=""></div>
+      <div class="tag" id="pMarca"></div><h2 id="pNom"></h2>
+      <div class="precio" id="pPrecio"></div><ul class="p-desc" id="pDesc"></ul>
+      <button class="btn-glow" id="comprarBtn">Contratar Ahora</button>
+    </div>
+  </div>
+
+  <div id="pagoModal" class="modal">
+    <div class="modal-box">
+      <div class="modal-header"><h3>Checkout</h3><button class="x" onclick="cerrarPago()">×</button></div>
+      <div class="modal-body">
+        <div id="serviceCard" class="service-card"></div>
+        <div class="coupon-box">
+          <div id="couponInput" class="coupon-input"><input id="couponCode" placeholder="Código F3DIEZ"><button class="btn-apply" onclick="applyCoupon()">Aplicar</button></div>
+          <div id="couponApplied" class="coupon-applied" style="display:none"><span id="couponText"></span><button class="btn-remove" onclick="removeCoupon()">×</button></div>
+        </div>
+        <div class="payment-tabs">
+          <button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button>
+          <button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button>
+          <button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button>
+          <button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button>
+        </div>
+        <div id="yapeContent" class="payment-content active"><div class="payment-box"><b>Pagar con Yape</b><div class="amount" id="montoYape">S/ 0.00</div><div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div></div></div>
+        <div id="bankContent" class="payment-content"><div class="payment-box"><b>Transferencia BCP</b><div class="amount" id="montoTarjeta">S/ 0.00</div><div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div></div></div>
+        <div id="prexContent" class="payment-content"><div class="payment-box"><b>Pagar con Prex</b><div class="amount" id="montoPrex">S/ 0.00</div><div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div></div></div>
+        <div id="paypalContent" class="payment-content"><div class="payment-box"><b>Pagar con PayPal</b><div class="amount" id="montoPaypal">$0.00 USD</div><a id="paypalLink" class="btn-glow" target="_blank">Pagar en PayPal</a></div></div>
+        <button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-player" id="musicPlayer">
+    <div class="player-header" onclick="togglePlayer()"><span id="songName">audioNormal.mp3</span><span>▼</span></div>
+    <div class="player-controls"><button onclick="prevSong()">⏮️</button><button id="playBtn" onclick="togglePlay()">▶️</button><button onclick="nextSong()">⏭️</button></div>
+    <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8">
+    <audio id="bgMusic" loop preload="auto"><source src="audioNormal.mp3" type="audio/mpeg"></audio>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js?v=12"></script> <!-- <- CAMBIÉ A V12 -->
+</body>
+</html>
