@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>For Three Store</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-  <!-- PANTALLA INICIO -->
   <div id="inicioScreen" class="screen active">
     <div class="hero">
       <img src="https://i.ibb.co/3y0p0sP/bot-vip.jpg" alt="For Three">
@@ -17,7 +16,6 @@
     </div>
   </div>
 
-  <!-- PANTALLA TIENDA -->
   <div id="tiendaScreen" class="screen">
     <header>
       <div class="topbar">
@@ -29,7 +27,6 @@
     <div class="grid" id="productos"></div>
   </div>
 
-  <!-- PANTALLA PRODUCTO -->
   <div id="productoScreen" class="screen">
     <header>
       <div class="topbar">
@@ -48,7 +45,6 @@
     </div>
   </div>
 
-  <!-- MODAL PAGO -->
   <div id="pagoModal" class="modal">
     <div class="modal-box">
       <div class="modal-header">
@@ -57,11 +53,9 @@
       </div>
       <div class="modal-body">
         <div id="serviceCard" class="service-card"></div>
-        
-        <!-- CUPON -->
         <div class="coupon-box">
           <div id="couponInput" class="coupon-input">
-            <input id="couponCode" placeholder="Código de descuento">
+            <input id="couponCode" placeholder="Código F3DIEZ">
             <button class="btn-apply" onclick="applyCoupon()">Aplicar</button>
           </div>
           <div id="couponApplied" class="coupon-applied" style="display:none">
@@ -69,65 +63,37 @@
             <button class="btn-remove" onclick="removeCoupon()">×</button>
           </div>
         </div>
-
-        <!-- TABS PAGO -->
         <div class="payment-tabs">
           <button class="payment-tab active" onclick="selectPayment('yape', event)">Yape</button>
           <button class="payment-tab" onclick="selectPayment('bank', event)">BCP</button>
           <button class="payment-tab" onclick="selectPayment('prex', event)">Prex</button>
           <button class="payment-tab" onclick="selectPayment('paypal', event)">PayPal</button>
         </div>
-
-        <!-- CONTENIDO YAPE -->
         <div id="yapeContent" class="payment-content active">
           <div class="payment-box yape-box">
             <b>Pagar con Yape</b>
             <div class="amount" id="montoYape">S/ 0.00</div>
-            <div class="copy-box">
-              <span>Número: <b id="yapeNum"></b></span>
-              <button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button>
-            </div>
-            <div class="copy-box">
-              <span>Nombre: <b id="yapeName"></b></span>
-            </div>
+            <div class="copy-box"><span>Número: <b id="yapeNum"></b></span><button class="copy-btn" onclick="copyText(yapeNum.textContent)">Copiar</button></div>
+            <div class="copy-box"><span>Nombre: <b id="yapeName"></b></span></div>
           </div>
         </div>
-
-        <!-- CONTENIDO BCP -->
         <div id="bankContent" class="payment-content">
           <div class="payment-box bank-box">
             <b>Transferencia BCP</b>
             <div class="amount" id="montoTarjeta">S/ 0.00</div>
-            <div class="copy-box">
-              <span>CCI: <b id="bcpCci"></b></span>
-              <button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button>
-            </div>
-            <div class="copy-box">
-              <span>Cuenta: <b id="bcpCuenta"></b></span>
-              <button class="copy-btn" onclick="copyText(bcpCuenta.textContent)">Copiar</button>
-            </div>
-            <div class="copy-box">
-              <span>Nombre: <b id="bcpNombre"></b></span>
-            </div>
+            <div class="copy-box"><span>CCI: <b id="bcpCci"></b></span><button class="copy-btn" onclick="copyText(bcpCci.textContent)">Copiar</button></div>
+            <div class="copy-box"><span>Cuenta: <b id="bcpCuenta"></b></span><button class="copy-btn" onclick="copyText(bcpCuenta.textContent)">Copiar</button></div>
+            <div class="copy-box"><span>Nombre: <b id="bcpNombre"></b></span></div>
           </div>
         </div>
-
-        <!-- CONTENIDO PREX -->
         <div id="prexContent" class="payment-content">
           <div class="payment-box prex-box">
             <b>Pagar con Prex</b>
             <div class="amount" id="montoPrex">S/ 0.00</div>
-            <div class="copy-box">
-              <span>Número: <b id="prexNum"></b></span>
-              <button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button>
-            </div>
-            <div class="copy-box">
-              <span>Nombre: <b id="prexName"></b></span>
-            </div>
+            <div class="copy-box"><span>Número: <b id="prexNum"></b></span><button class="copy-btn" onclick="copyText(prexNum.textContent)">Copiar</button></div>
+            <div class="copy-box"><span>Nombre: <b id="prexName"></b></span></div>
           </div>
         </div>
-
-        <!-- CONTENIDO PAYPAL -->
         <div id="paypalContent" class="payment-content">
           <div class="payment-box paypal-box">
             <b>Pagar con PayPal</b>
@@ -135,13 +101,11 @@
             <a id="paypalLink" class="btn-paypal" target="_blank">Pagar en PayPal</a>
           </div>
         </div>
-
         <button id="wspBtn" class="btn-wsp">Enviar Comprobante por WhatsApp</button>
       </div>
     </div>
   </div>
-
   <div id="toast" class="toast"></div>
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
