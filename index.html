@@ -6,19 +6,27 @@
   <title>For Three Bot</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
   <style>
-  :root{--bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366;--yape:#7200ff;}
+  /* V45 THEME VARIABLES */
+  :root[data-theme="dark"]{
+    --bg:#0a0a0f;--card:#0f172a;--text:#f1f5f9;--muted:#94a3b8;--cyan:#00e5ff;--border:#1e293b;--green:#25D366;--yape:#7200ff;
+  }
+  :root[data-theme="light"]{
+    --bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#64748b;--cyan:#0891b2;--border:#cbd5e1;--green:#16a34a;--yape:#7200ff;
+  }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:70px}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding-bottom:70px;transition:.3s}
 .screen{display:none;min-height:100vh}.screen.active{display:block}
-  header{position:sticky;top:0;background:#0a0a0f;z-index:10;padding:14px 16px;border-bottom:1px solid var(--border)}
+  header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;border-bottom:1px solid var(--border)}
 .topbar{display:flex;justify-content:space-between;align-items:center}
 .logo{font-weight:800;font-size:1.3rem}
 .icon-btn{background:0;border:0;color:var(--text);font-size:1.2rem;cursor:pointer}
+.theme-btn{background:var(--card);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:.2s} /* <- NUEVO */
+.theme-btn:hover{border-color:var(--cyan)}
 .tabs{display:flex;gap:24px;justify-content:center;margin-top:14px}
 .tab{color:var(--muted);font-weight:600;cursor:pointer;padding-bottom:8px;border-bottom:2px solid transparent}
 .tab.active{color:var(--cyan);border-color:var(--cyan)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s}
 .card-img{height:140px;background:#000;position:relative;background-size:cover;background-position:center}
 .tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:6px}
 .card-body{padding:12px}
@@ -61,10 +69,9 @@
 .product-list li b{color:var(--cyan);font-size:1.1rem}
 .btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
 .btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
-/* CHECKOUT V43 NUEVO DISEÑO */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
-.modal-box{background:rgba(15,23,42,.95);border:1px solid rgba(0,229,255,.3);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2)}
+.modal-box{background:var(--card);border:1px solid var(--cyan);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2)}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
 .modal-header h3{font-size:1.2rem;font-weight:800}
 .x{background:rgba(255,255,255,.1);border:0;width:32px;height:32px;border-radius:50%;font-size:1.3rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -75,18 +82,27 @@
 .amount{font-size:2.2rem;font-weight:800;color:var(--cyan);margin:16px 18px;text-align:center}
 .payment-content{padding:0 18px 18px}
 .qr-box{width:180px;height:180px;background:#fff;border-radius:16px;margin:12px auto;display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:.9rem;text-align:center;padding:10px}
-.copy-box{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.3);padding:12px 14px;border-radius:12px;margin:12px 0;font-size:.9rem;border:1px solid var(--border)}
+.copy-box{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.1);padding:12px 14px;border-radius:12px;margin:12px 0;font-size:.9rem;border:1px solid var(--border)}
 .copy-btn{padding:8px 16px;background:var(--cyan);border:0;border-radius:10px;color:#0a0a0f;font-weight:800;cursor:pointer;font-size:.85rem}
 .info-text{color:var(--muted);font-size:.8rem;text-align:center;margin:12px 0;line-height:1.5}
 .btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 15px rgba(37,211,102,.3)}
-/* FIN CHECKOUT */
+.paypal-breakdown{background:rgba(0,0,0,.1);border:1px solid var(--border);border-radius:12px;padding:12px;margin:12px 0}
+.breakdown-row{display:flex;justify-content:space-between;padding:8px 0;font-size:.85rem;border-bottom:1px solid var(--border)}
+.breakdown-row:last-child{border:0;font-weight:800;font-size:1rem;color:var(--cyan)}
+.breakdown-label{color:var(--muted)}
 .toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 14px;border-radius:8px;opacity:0;transition:.2s;z-index:999;font-weight:600}
 .toast.show{opacity:1}
   </style>
 </head>
 <body>
   <div id="tiendaScreen" class="screen active">
-    <header><div class="topbar"><div class="logo">For Three Bot</div></div><div class="tabs"><div class="tab active" onclick="setTab('bots', this)">Bots</div><div class="tab" onclick="setTab('hosting', this)">Hosting</div></div></header>
+    <header>
+      <div class="topbar">
+        <div class="logo">For Three Bot</div>
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button> <!-- <- BOTON CLARO/OSCURO -->
+      </div>
+      <div class="tabs"><div class="tab active" onclick="setTab('bots', this)">Bots</div><div class="tab" onclick="setTab('hosting', this)">Hosting</div></div>
+    </header>
     <div class="grid" id="productos">Cargando...</div>
     <div class="features"><div class="feature"><div>⚡</div><div><b>Entrega Inmediata</b><br><span>Por WhatsApp</span></div></div><div class="feature"><div>💜</div><div><b>Yape, Tarjeta, Prex, PayPal</b><br><span>4 métodos</span></div></div><div class="feature"><div>🛠️</div><div><b>Soporte 24/7</b><br><span>Te ayudo</span></div></div><div class="feature"><div>✅</div><div><b>+200 Clientes</b><br><span>En Perú</span></div></div></div>
     <footer>© 2026 For Three Bot | WhatsApp: +51 936 994 155</footer>
@@ -147,7 +163,6 @@
     <div class="product-wrap" id="productDetail"></div>
   </div>
 
-  <!-- CHECKOUT V43 NUEVO -->
   <div id="pagoModal" class="modal"><div class="modal-box">
     <div class="modal-header">
       <h3>Checkout</h3>
@@ -175,8 +190,22 @@
       <p class="info-text">Envía por Prex y guarda el comprobante</p>
     </div>
     <div id="paypalContent" class="payment-content" style="display:none">
+      <div class="paypal-breakdown">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Subtotal</span>
+          <span id="paypalSubtotal">$0.00 USD</span>
+        </div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Comisión PayPal 5.4% + $0.30</span>
+          <span id="paypalFee">$0.00 USD</span>
+        </div>
+        <div class="breakdown-row">
+          <span>Total a pagar</span>
+          <span id="paypalTotal">$0.00 USD</span>
+        </div>
+      </div>
       <a id="paypalLink" class="btn-wsp" target="_blank" style="background:#0070ba;">🅿️ Pagar con PayPal</a>
-      <p class="info-text">Pago seguro internacional en USD</p>
+      <p class="info-text">Pago seguro internacional. Se incluye comisión de PayPal.</p>
     </div>
     <div style="padding:0 18px 18px;">
       <button id="wspBtn" class="btn-wsp">💬 Enviar Comprobante por WhatsApp</button>
@@ -187,6 +216,23 @@
   <a class="wsp-float" href="https://wa.me/51936994155" target="_blank"><svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.7.9 5.2 2.4 7.2L4 29l7-2.3c1.9 1 4.1 1.6 6.4 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg></a>
   <div id="toast" class="toast"></div>
   <script>
+  // THEME V45
+  const themeBtn = document.getElementById('themeBtn');
+  function loadTheme(){
+    const savedTheme = localStorage.getItem('theme') || 'dark'; // <- Guarda tu elección
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeBtn.textContent = savedTheme === 'dark'? '🌙' : '☀️';
+  }
+  function toggleTheme(){
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark'? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme); // <- Se acuerda
+    themeBtn.textContent = newTheme === 'dark'? '🌙' : '☀️';
+    toast(newTheme === 'dark'? 'Modo Oscuro' : 'Modo Claro');
+  }
+  loadTheme(); // <- Carga al inicio
+
   function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
   const demoVideo = document.getElementById('demoVideo');
@@ -224,51 +270,4 @@
     {id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop",desc:"Para 3-4 bots o bots pesados con IA. Máxima potencia sin caídas.",features:["4GB RAM + 40GB SSD NVMe","Node.js 20 + Python 3.11","Panel Pterodactyl completo","DDoS Protection incluido","Soporte prioritario 24/7"]}
   ];
 
-  let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMBIAME"},prex:{num:"936994155"},paypal:"https://paypal.me/tuusuario"};
-  let currentProduct=null;
-
-  function setTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderProductos();}
-
-  function renderProductos(){
-    const data=currentTab==='bots'?productosBots:productosHosting;
-    document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('');
-  }
-
-  function verInfo(id){
-    const data=currentTab==='bots'?productosBots:productosHosting;
-    currentProduct=data.find(p=>p.id===id);
-    if(!currentProduct){toast('Error');return;}
-    document.getElementById('productDetail').innerHTML=`
-      <div class="product-img" style="background-image:url('${currentProduct.img}')"></div>
-      <div class="product-title">${currentProduct.nom}</div>
-      <div class="product-price">S/ ${currentProduct.precio}.00</div>
-      <div class="product-desc">${currentProduct.desc}</div>
-      <ul class="product-list">
-        ${currentProduct.features.map(f=>`<li><b>✓</b> <span>${f}</span></li>`).join('')}
-      </ul>
-      <button class="btn-comprar" onclick="abrirPago()">Comprar</button>
-      <button class="btn-volver-prod" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
-    `;
-    show('productScreen');
-  }
-
-  function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos();}
-  function cerrarPago(){document.getElementById('pagoModal').classList.remove('active');}
-  function selectPayment(t,ev){document.querySelectorAll('.payment-content').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block';}
-  function updateMontos(){
-    const precio=currentProduct.precio;
-    const usd=(precio/3.7).toFixed(2);
-    document.getElementById('montoTotal').textContent=`S/ ${precio}.00`;
-    document.getElementById('yapeNum').textContent=pagos.yape.num;
-    document.getElementById('bcpCci').textContent=pagos.bcp.cci;
-    document.getElementById('prexNum').textContent=pagos.prex.num;
-    document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;
-  }
-  document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - S/ ${currentProduct.precio}.00`)}`,'_blank');};
-  function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado!')}
-  function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500);}
-
-  renderProductos();
-  </script>
-</body>
-</html>
+  let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMB
