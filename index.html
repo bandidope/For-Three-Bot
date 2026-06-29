@@ -15,38 +15,21 @@ header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;b
 .logo{font-weight:800;font-size:1.3rem}
 .top-actions{display:flex;gap:8px;align-items:center}
 .currency-btn{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:50px;font-weight:700;cursor:pointer;font-size:.85rem;color:var(--cyan);transition:.2s}
-.currency-btn:hover{border-color:var(--cyan)}
-.theme-btn{background:var(--card);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:.2s}
-.theme-btn:hover{border-color:var(--cyan)}
+.theme-btn{background:var(--card);border:1px solid var(--border);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer}
 .tabs{display:flex;gap:24px;justify-content:center;margin-top:14px}
 .tab{color:var(--muted);font-weight:600;cursor:pointer;padding-bottom:8px;border-bottom:2px solid transparent}
 .tab.active{color:var(--cyan);border-color:var(--cyan)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px}
-
-/* v47.2 ANIMADO - Cards que flotan */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  overflow:hidden;
-  transition:.3s ease;
-  cursor:pointer;
-  opacity:0;
-  animation:fadeIn.4s ease forwards;
-}
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-  border-color:var(--cyan);
-  box-shadow:0 8px 25px rgba(0,229,255,.25);
-}
-.card:nth-child(1){animation-delay:.1s}
-.card:nth-child(2){animation-delay:.2s}
-.card:nth-child(3){animation-delay:.3s}
-.card:nth-child(4){animation-delay:.4s}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s ease;cursor:pointer;opacity:0;animation:fadeIn.4s ease forwards}
+.card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--cyan);box-shadow:0 8px 25px rgba(0,229,255,.25)}
+.card:nth-child(1){animation-delay:.1s}.card:nth-child(2){animation-delay:.2s}.card:nth-child(3){animation-delay:.3s}.card:nth-child(4){animation-delay:.4s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-.card-img{height:140px;background:#000;position:relative;background-size:cover;background-position:center}
-.tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:6px}
+/* v47.3 CARRUSEL CSS */
+.card-img{height:140px;position:relative;overflow:hidden}
+.carousel-track{display:flex;height:100%;transition:transform .8s ease}
+.carousel-slide{min-width:100%;height:100%;background-size:cover;background-position:center}
+.tag{position:absolute;top:10px;left:10px;background:var(--cyan);color:#0a0a0f;font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:6px;z-index:2}
 .card-body{padding:12px}
 .card-cat{font-size:.65rem;color:var(--muted);margin-bottom:4px}
 .card-title{font-size:.9rem;font-weight:700;margin-bottom:8px;min-height:38px}
@@ -59,7 +42,6 @@ header{position:sticky;top:0;background:var(--bg);z-index:10;padding:14px 16px;b
 .feature span{color:var(--muted)}
 footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
 .wsp-float{position:fixed;bottom:16px;right:16px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.4);cursor:pointer;z-index:50;text-decoration:none;font-size:1.8rem;transition:.3s}
-.wsp-float:hover{transform:scale(1.1)}
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
 .product-img{width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;border:1px solid var(--border)}
 .product-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
@@ -70,10 +52,8 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 .product-list li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:8px}
 .product-list li:last-child{border:0}
 .product-list li b{color:var(--cyan);font-size:1.1rem}
-.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;transition:.2s}
-.btn-comprar:hover{transform:scale(1.02)}
-.btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;transition:.2s}
-.btn-volver-prod:hover{border-color:var(--cyan)}
+.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px}
+.btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
 .modal-box{background:var(--card);border:1px solid var(--cyan);border-radius:20px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,229,255,.2);animation:scaleIn.3s ease}
@@ -84,7 +64,7 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 .amount{font-size:2.2rem;font-weight:800;color:var(--cyan);margin:16px 18px;text-align:center}
 .tc-info{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:12px;padding:0 18px}
 .payment-tabs{display:flex;gap:8px;margin:16px 0;overflow-x:auto;padding:0 18px}
-.payment-tab{padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-weight:600;font-size:.85rem;white-space:nowrap;transition:.2s}
+.payment-tab{padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-weight:600;font-size:.85rem;white-space:nowrap}
 .payment-tab.active{background:var(--cyan);color:#0a0a0f;border-color:var(--cyan)}
 .payment-content{padding:0 18px 18px}
 .copy-box{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,.1);padding:12px 14px;border-radius:12px;margin:12px 0;font-size:.9rem;border:1px solid var(--border)}
@@ -93,14 +73,11 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 .paypal-breakdown{background:rgba(0,0,0,.1);border:1px solid var(--border);border-radius:12px;padding:12px;margin:12px 0}
 .paypal-row{display:flex;justify-content:space-between;padding:8px 0;font-size:.9rem}
 .paypal-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:12px;font-weight:800;color:var(--cyan)}
-.paypal-link{display:block;width:100%;background:#0070ba;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:800;text-decoration:none;margin-top:12px;transition:.2s}
-.paypal-link:hover{transform:scale(1.02)}
-.btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;margin-top:12px;transition:.2s}
-.btn-wsp:hover{transform:scale(1.02)}
+.paypal-link{display:block;width:100%;background:#0070ba;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:800;text-decoration:none;margin-top:12px}
+.btn-wsp{width:100%;background:var(--green);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:.95rem;margin-top:12px}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--cyan);padding:10px 14px;border-radius:8px;opacity:0;transition:.2s;z-index:999;font-weight:600}
 .toast.show{opacity:1}
-.currency-item{padding:12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between;transition:.2s}
-.currency-item:hover{background:var(--border)}
+.currency-item{padding:12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between}
 .currency-item.active{background:var(--cyan);color:#0a0a0f}
 </style>
 </head>
@@ -167,54 +144,74 @@ footer{padding:20px;text-align:center;font-size:.8rem;color:var(--muted);border-
 let currentTC=3.70;let currentCurrency=localStorage.getItem('currency')||'PEN';
 const currencies={PEN:{sym:'S/',rate:1},USD:{sym:'$',rate:1/3.70},ARS:{sym:'$',rate:1/3.70*1000},CLP:{sym:'$',rate:1/3.70*950},BOB:{sym:'Bs',rate:1/3.70*7}};
 
-async function getTipoCambio(){const c=localStorage.getItem('tc_pen_usd');const t=localStorage.getItem('tc_pen_usd_time');const d=24*60*60*1000;if(c&&t&&Date.now()-t<d){currentTC=parseFloat(c)}else{try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');const j=await r.json();currentTC=j.rates.PEN;localStorage.setItem('tc_pen_usd',currentTC);localStorage.setItem('tc_pen_usd_time',Date.now())}catch(e){currentTC=3.70}}currencies.USD.rate=1/currentTC;currencies.ARS.rate=1/currentTC*1000;currencies.CLP.rate=1/currentTC*950;currencies.BOB.rate=1/currentTC*7;updateCurrencyBtn();renderProductos()}
+async function getTipoCambio(){const c=localStorage.getItem('tc_pen_usd');const t=localStorage.getItem('tc_pen_usd_time');const d=24*60*60*1000;if(c&&t&&Date.now()-t<d){currentTC=parseFloat(c)}else{try{const r=await fetch('https://api.exchangerate-api.com/v4/latest/USD');const j=await r.json();currentTC=j.rates.PEN;localStorage.setItem('tc_pen_usd',currentTC);localStorage.setItem('tc_pen_usd_time',Date.now())}catch(e){currentTC=3.70}}currencies.USD.rate=1/currentTC;currencies.ARS.rate=1/currentTC*1000;currencies.CLP.rate=1/currentTC*950;currencies.BOB.rate=1/currentTC*7;updateCurrencyBtn();renderProductos();startCarousels()}
 function formatPrice(p){const c=currencies[currentCurrency];return`${c.sym} ${(p*c.rate).toFixed(2)}`}
 function updateCurrencyBtn(){document.getElementById('currencyBtn').textContent=`🌎 ${currentCurrency}`}
 function openCurrency(){const l=document.getElementById('currencyList');l.innerHTML=Object.keys(currencies).map(k=>`<div class="currency-item ${k===currentCurrency?'active':''}" onclick="selectCurrency('${k}')"><span>${k}</span><span>${currencies[k].sym}</span></div>`).join('');document.getElementById('currencyModal').classList.add('active')}
 function closeCurrency(){document.getElementById('currencyModal').classList.remove('active')}
-function selectCurrency(k){currentCurrency=k;localStorage.setItem('currency',k);updateCurrencyBtn();renderProductos();closeCurrency();toast(`Moneda: ${k}`)}
+function selectCurrency(k){currentCurrency=k;localStorage.setItem('currency',k);updateCurrencyBtn();renderProductos();closeCurrency();toast(`Moneda: ${k}`);setTimeout(startCarousels,100)}
 document.addEventListener('DOMContentLoaded',async()=>{await getTipoCambio();loadTheme()});
 function loadTheme(){const s=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',s);document.getElementById('themeBtn').textContent=s==='dark'?'🌙':'☀️'}
 function toggleTheme(){const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeBtn').textContent=n==='dark'?'🌙':'☀️';toast(n==='dark'?'Oscuro':'Claro')}
 function showTienda(){document.getElementById('productScreen').style.display='none';document.querySelector('.grid').style.display='grid';document.querySelector('.features').style.display='grid';document.querySelector('footer').style.display='block'}
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
 
-const productosBots=[{id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600",desc:"El bot más completo para administrar grupos de WhatsApp. Funciona 24/7 sin caídas.",features:["Descargas YouTube, TikTok, FB, IG","Juegos: PPT, Trivia, Match","IA ChatGPT + Sticker + Logo IA","Panel Admin: Kick, Ban","Soporte 24/7"]},{id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600",desc:"Tu propio bot con tu marca, tu nombre y comandos exclusivos. 100% único.",features:["Todo lo del Bot Grupos","Comandos personalizados","Logo y nombre propio","Hosting 1GB RAM 1 mes","Soporte prioritario"]}];
-const productosHosting=[{id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600",desc:"Hosting perfecto para 1 bot pequeño. 99.9% Uptime garantizado.",features:["1GB RAM + 10GB SSD","Node.js 20 + Python 3.11","Panel Pterodactyl","Backups diarios","Soporte 24/7"]},{id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600",desc:"Para 3-4 bots o bots pesados con IA. Máxima potencia.",features:["4GB RAM + 40GB SSD","Node.js 20 + Python 3.11","Panel completo","DDoS Protection","Soporte prioritario"]}];
-let currentTab='bots';let currentProduct=null;
+// v47.3: 3 imágenes por producto para el carrusel
+const productosBots=[
+  {id:1,nom:"Bot Para Grupos WhatsApp",precio:5,imgs:["https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600","https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=600","https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=600"],desc:"El bot más completo para administrar grupos de WhatsApp. Funciona 24/7 sin caídas.",features:["Descargas YouTube, TikTok, FB, IG","Juegos: PPT, Trivia, Match","IA ChatGPT + Sticker + Logo IA","Panel Admin: Kick, Ban","Soporte 24/7"]},
+  {id:2,nom:"Bot Personalizado VIP",precio:25,imgs:["https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600","https://images.unsplash.com/photo-1555255707-4c4792736b81?q=80&w=600","https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600"],desc:"Tu propio bot con tu marca, tu nombre y comandos exclusivos. 100% único.",features:["Todo lo del Bot Grupos","Comandos personalizados","Logo y nombre propio","Hosting 1GB RAM 1 mes","Soporte prioritario"]}
+];
+const productosHosting=[
+  {id:3,nom:"Hosting 1GB RAM",precio:10,imgs:["https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600","https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600","https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=600"],desc:"Hosting perfecto para 1 bot pequeño. 99.9% Uptime garantizado.",features:["1GB RAM + 10GB SSD","Node.js 20 + Python 3.11","Panel Pterodactyl","Backups diarios","Soporte 24/7"]},
+  {id:4,nom:"Hosting 4GB RAM",precio:25,imgs:["https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600","https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600","https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600"],desc:"Para 3-4 bots o bots pesados con IA. Máxima potencia.",features:["4GB RAM + 40GB SSD","Node.js 20 + Python 3.11","Panel completo","DDoS Protection","Soporte prioritario"]}
+];
+let currentTab='bots';let currentProduct=null;let carouselIntervals=[];
 
 function setTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderProductos()}
-function renderProductos(){const d=currentTab==='bots'?productosBots:productosHosting;document.getElementById('productos').innerHTML=d.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">${formatPrice(p.precio)}</div><div class="card-price-sub">≈ S/ ${p.precio}.00 PEN</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('')}
-function verInfo(id){const d=currentTab==='bots'?productosBots:productosHosting;currentProduct=d.find(p=>p.id===id);document.getElementById('productDetail').innerHTML=`<div class="product-img" style="background-image:url('${currentProduct.img}')"></div><div class="product-title">${currentProduct.nom}</div><div class="product-price">${formatPrice(currentProduct.precio)}</div><div class="product-price-sub">≈ S/ ${currentProduct.precio}.00 PEN</div><div class="product-desc">${currentProduct.desc}</div><ul class="product-list">${currentProduct.features.map(f=>`<li><b>✓</b> <span>${f}</span></li>`).join('')}</ul><button class="btn-comprar" onclick="abrirPago()">Comprar</button><button class="btn-volver-prod" onclick="showTienda()">← Volver</button>`;document.querySelector('.grid').style.display='none';document.querySelector('.features').style.display='none';document.querySelector('footer').style.display='none';document.getElementById('productScreen').style.display='block'}
+function renderProductos(){
+  const d=currentTab==='bots'?productosBots:productosHosting;
+  document.getElementById('productos').innerHTML=d.map(p=>`
+    <div class="card">
+      <div class="card-img" id="carousel-${p.id}">
+        <div class="carousel-track">
+          ${p.imgs.map(img=>`<div class="carousel-slide" style="background-image:url('${img}')"></div>`).join('')}
+        </div>
+        <span class="tag">DIGITAL</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${currentTab.toUpperCase()}</div>
+        <div class="card-title">${p.nom}</div>
+        <div class="card-price">${formatPrice(p.precio)}</div>
+        <div class="card-price-sub">≈ S/ ${p.precio}.00 PEN</div>
+        <button class="btn-contratar" onclick="verInfo(${p.id})">Información</button>
+      </div>
+    </div>`).join('');
+  setTimeout(startCarousels,100);
+}
+
+function startCarousels(){
+  carouselIntervals.forEach(i=>clearInterval(i));carouselIntervals=[];
+  document.querySelectorAll('.carousel-track').forEach(track=>{
+    let index=0;const slides=track.children.length;
+    const id=setInterval(()=>{index=(index+1)%slides;track.style.transform=`translateX(-${index*100}%)`},3000); // Cambia cada 3s
+    carouselIntervals.push(id);
+  });
+}
+
+function verInfo(id){const d=currentTab==='bots'?productosBots:productosHosting;currentProduct=d.find(p=>p.id===id);document.getElementById('productDetail').innerHTML=`<div class="product-img" style="background-image:url('${currentProduct.imgs[0]}')"></div><div class="product-title">${currentProduct.nom}</div><div class="product-price">${formatPrice(currentProduct.precio)}</div><div class="product-price-sub">≈ S/ ${currentProduct.precio}.00 PEN</div><div class="product-desc">${currentProduct.desc}</div><ul class="product-list">${currentProduct.features.map(f=>`<li><b>✓</b> <span>${f}</span></li>`).join('')}</ul><button class="btn-comprar" onclick="abrirPago()">Comprar</button><button class="btn-volver-prod" onclick="showTienda()">← Volver</button>`;document.querySelector('.grid').style.display='none';document.querySelector('.features').style.display='none';document.querySelector('footer').style.display='none';document.getElementById('productScreen').style.display='block'}
 
 function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos()}
 function cerrarPago(){document.getElementById('pagoModal').classList.remove('active')}
 function selectPayment(t,ev){document.querySelectorAll('#paypalContent,#yapeContent,#bankContent,#prexContent').forEach(e=>e.style.display='none');document.querySelectorAll('.payment-tab').forEach(e=>e.classList.remove('active'));ev.target.classList.add('active');document.getElementById(t+'Content').style.display='block'}
 
 function updateMontos(){
-  const p=currentProduct.precio;
-  const c=currencies[currentCurrency];
-  const precioEnMoneda=p*c.rate;
-  const usd=p/currentTC;
-  const fee=usd*0.054+0.30;
-  const total=usd+fee;
+  const p=currentProduct.precio;const c=currencies[currentCurrency];const precioEnMoneda=p*c.rate;const usd=p/currentTC;const fee=usd*0.054+0.30;const total=usd+fee;
   document.getElementById('montoTotal').textContent=`${c.sym} ${precioEnMoneda.toFixed(2)}`;
   document.getElementById('tcInfo').textContent=`TC Ref: S/ ${currentTC.toFixed(2)} | 1 USD = ${c.sym} ${(c.rate/currentTC).toFixed(2)}`;
-  document.getElementById('paypalSubtotal').textContent=`$${usd.toFixed(2)}`;
-  document.getElementById('paypalFee').textContent=`$${fee.toFixed(2)}`;
-  document.getElementById('paypalTotal').textContent=`$${total.toFixed(2)}`;
+  document.getElementById('paypalSubtotal').textContent=`$${usd.toFixed(2)}`;document.getElementById('paypalFee').textContent=`$${fee.toFixed(2)}`;document.getElementById('paypalTotal').textContent=`$${total.toFixed(2)}`;
   document.getElementById('paypalLink').href=`https://paypal.me/tuusuario/${total.toFixed(2)}`;
-  if(currentCurrency==='PEN'){
-    document.getElementById('yapeInfo').textContent='Yapea al número. Luego envía el comprobante.';
-    document.getElementById('bcpInfo').textContent='BCP a nombre: For Three Bot';
-    document.getElementById('prexInfo').textContent='Envía por la app Prex';
-  }else{
-    document.getElementById('yapeInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por Yape S/ ${p}.00`;
-    document.getElementById('bcpInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por BCP S/ ${p}.00`;
-    document.getElementById('prexInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por Prex S/ ${p}.00`;
-  }
+  if(currentCurrency==='PEN'){document.getElementById('yapeInfo').textContent='Yapea al número. Luego envía el comprobante.';document.getElementById('bcpInfo').textContent='BCP a nombre: For Three Bot';document.getElementById('prexInfo').textContent='Envía por la app Prex'}else{document.getElementById('yapeInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por Yape S/ ${p}.00`;document.getElementById('bcpInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por BCP S/ ${p}.00`;document.getElementById('prexInfo').textContent=`Equivalente a ${c.sym} ${precioEnMoneda.toFixed(2)}. Paga por Prex S/ ${p}.00`}
 }
-
 function copyText(t){navigator.clipboard.writeText(t);toast('Copiado')}
 document.getElementById('wspBtn').onclick=()=>{window.open(`https://wa.me/51936994155?text=${encodeURIComponent(`Hola! Comprobante de ${currentProduct.nom} - ${formatPrice(currentProduct.precio)}`)}`,'_blank')}
 </script>
