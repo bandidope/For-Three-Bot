@@ -27,3 +27,24 @@ body{background:var(--bg);color:var(--text);padding-bottom:120px}
 #volumeBar{width:100%;accent-color:var(--blue);margin:0 12px 12px}
 .toast{position:fixed;bottom:140px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--card);padding:12px 20px;border-radius:10px;opacity:0;transition:.3s;z-index:9999;border:1px solid var(--border)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* REPRODUCTOR FLOTANTE */
+.music-player{position:fixed;bottom:20px;right:20px;width:280px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:999;overflow:hidden;transition:height .3s}
+.music-player.min{height:45px;overflow:hidden}
+.music-player.min .player-controls,.music-player.min #volumeBar{display:none}
+.player-header{display:flex;justify-content:space-between;padding:10px 12px;background:var(--bg);font-size:.85rem;cursor:pointer}
+.player-controls{display:flex;justify-content:center;gap:15px;padding:12px}
+.player-controls button{background:#5865f2;border:0;width:40px;height:40px;border-radius:50%;font-size:1.2rem;color:#fff;cursor:pointer}
+#volumeBar{width:94%;accent-color:#5865f2;margin:0 12px 12px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:99;padding:20px}
+.modal.active{display:flex}
+.modal-box{background:var(--card);border-radius:20px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1px solid var(--border)}
+.x{background:0;border:0;font-size:1.5rem;color:var(--muted);cursor:pointer}
+.payment-tabs{display:flex;gap:8px;margin-bottom:15px;overflow-x:auto}
+.payment-tab{padding:8px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;white-space:nowrap}
+.payment-tab.active{background:var(--red);border-color:var(--red)}
+.payment-content{display:none}.payment-content.active{display:block}
+.amount{font-size:1.8rem;font-weight:900;color:var(--red);margin:10px 0}
+.copy-box{display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:10px;border-radius:8px;margin:8px 0}
+.copy-btn{padding:6px 12px;background:var(--red);border:0;border-radius:6px;color:#fff;cursor:pointer}
+.btn-wsp{width:100%;margin-top:15px;background:#25D366;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:700;cursor:pointer}
