@@ -434,7 +434,7 @@
         <p>Por WhatsApp</p>
       </div>
       <div>
-        <h3>💜 Solo Yape</h3>
+        <h3>💜 Solo Yape , Tarjeta , Prex </h3>
         <p>Pago seguro</p>
       </div>
       <div>
@@ -449,7 +449,7 @@
   </section>
 
   <footer>
-    © 2026 For Three Store | WhatsApp: 936 994 155
+    © 2023 For Three Store | WhatsApp: +51 936 994 155
   </footer>
 </div>
 
@@ -526,7 +526,7 @@ const productos = [
   {
     id: 1,
     nom: "Bot Para Grupos WhatsApp",
-    precio: 25.00,
+    precio: 5,
     imgs: ["https://via.placeholder.com/400x400/0a0a0a/25D366?text=BOT"],
     stock: 99,
     marca: "FOR THREE STORE",
@@ -536,29 +536,28 @@ const productos = [
       "Comandos: /kick /ban /menu",
       "Auto-respuestas 24/7",
       "Instalación inmediata",
-      "Soporte 1 mes"
+      "Soporte Permanente En El Grupo"
     ]
   },
   {
     id: 2,
     nom: "Bot Personalizado VIP",
-    precio: 80.00,
+    precio: 25,
     imgs: ["https://via.placeholder.com/400x400/0a0a0a/FFB400?text=VIP"],
     stock: 99,
     marca: "FOR THREE STORE",
     cat: "Bots",
     desc: [
-      "100% a tu medida",
-      "Base de datos + Panel web",
-      "IA integrada opcional",
-      "Código fuente incluido",
-      "Soporte 3 meses"
+      "100% a tu gusto",
+      "Bot + Panel Hosting",
+      "Menu Personalizable",
+      "Soporte Permanente"
     ]
   },
   {
     id: 3,
     nom: "Hosting Bot 24/7",
-    precio: 15.00,
+    precio: 10.00,
     imgs: ["https://via.placeholder.com/400x400/0a0a0a/007600?text=HOST"],
     stock: 99,
     marca: "FOR THREE STORE",
@@ -566,9 +565,9 @@ const productos = [
     desc: [
       "Bot encendido 24/7 sin PC",
       "Servidor en Perú",
-      "1GB RAM + 5GB SSD",
+      "1.5GB RAM + 5GB SSD",
       "Respaldo semanal",
-      "S/ 15 mensual"
+      "S/ 10 mensual"
     ]
   }
 ];
@@ -725,7 +724,7 @@ function irAPago() {
   let total = carrito.reduce((a, b) => a + b.qty * productos.find(p => p.id === b.id).precio, 0);
   document.getElementById('resumenPedido').innerHTML = carrito.map(i => {const p = productos.find(x => x.id === i.id); return `${i.qty}x ${p.nom}`}).join('<br>');
   document.getElementById('pagoTotal').textContent = `Total a Yapear: S/ ${total.toFixed(2)}`;
-  const msg = `Hola For Three Store! Ya Yapeé S/ ${total.toFixed(2)} ✅\n\nServicios:\n${carrito.map(i => {const p = productos.find(x => x.id === i.id); return `${i.qty}x ${p.nom}`}).join('\n')}\n\nAdjunto mi comprobante.`;
+  const msg = `Hola Whois! Ya Pague S/ ${total.toFixed(2)} ✅\n\nServicios:\n${carrito.map(i => {const p = productos.find(x => x.id === i.id); return `${i.qty}x ${p.nom}`}).join('\n')}\n\nAdjunto mi comprobante.`;
   document.getElementById('wspBtn').href = `https://wa.me/51936994155?text=${encodeURIComponent(msg)}`;
   show('pagoScreen');
 }
