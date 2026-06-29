@@ -8,7 +8,7 @@ const CUPONES={F3DIEZ:10,F3CINCO:5};const CUENTAS={yape:{num:'936994155',titular
 // ===== MUSICA =====
 const music=$('#bgMusic');
 function startMusic(){
-  music.volume=0.3;
+  music.volume=0.5;
   music.play().catch(()=>{});
   $('#musicStart').classList.remove('active');
   $('#inicioScreen').classList.add('active');
