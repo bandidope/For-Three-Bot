@@ -428,9 +428,23 @@ header{
   text-decoration:none;
   margin-top:10px;
 }
+
+/* ===== BOTON WSP SIMETRICO FIX ===== */
 .btn-wsp{
   background:var(--green);
-  margin-top:10px;
+  margin-top:12px;
+  padding:14px 16px; /* Mismo alto que los copy-box */
+  width:100%;
+  box-sizing:border-box;
+  border-radius:10px;
+  font-weight:700;
+  font-size:15px;
+  text-align:center;
+  color:#fff;
+  border:0;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
 }
 
 /* ===== TOAST ===== */
