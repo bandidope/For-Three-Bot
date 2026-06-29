@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Three Store</title>
+<style>
+/* ===================
+   NO TOCAR: DISEÑO BASE
+
+   Si mueves algo de aquí se descuadra todo en el celu.
+   Solo cambia los COLORES si quieres.
+*/
+:root {--bg:#f5f5f5;--card:#fff;--text:#1a1a1a;--muted:#666;--border:#e0e0e0;--red:#e60000;--green:#25D366;--purple:#722ed1;--blue:#1677ff;--orange:#fa8c16;--paypal:#0070ba;--header:#e60000;--success:#22c55e}
+body.dark {--bg:#0f0f0f;--card:#1a1a1a;--text:#f5f5f5;--muted:#b3b3b3;--border:#2a2a2a;--red:#ff2a2a;--header:#0a0a0a}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Roboto,Arial,sans-serif}
+body{background:var(--bg);color:var(--text)}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero img{max-width:280px;width:100%;border-radius:16px;margin-bottom:20px}
+.btn{background:var(--red);color:#fff;border:0;padding:12px;border-radius:10px;font-weight:700;width:100%;cursor:pointer;font-size:14px;margin-top:8px}
+header{background:var(--header);position:sticky;top:0;z-index:10}
+.topbar{padding:12px 16px;display:flex;align-items:center;color:#fff}
+.logo{font-size:22px;font-weight:900;cursor:pointer;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;margin:16px auto;padding:0 12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.card-body{padding:10px;display:flex;flex-direction:column;flex:1}
+.precio{font-size:18px;font-weight:800;margin:8px 0}
+.modal{position:fixed;inset:0;background:#0008;display:none;z-index:50;align-items:center;justify-content:center;padding:12px}
+.modal.active{display:flex}
+.modal-box{background:var(--card);width:100%;max-width:460px;border-radius:16px;max-height:95vh;overflow:auto}
+.modal-header{padding:16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
+.modal-body{padding:16px}
+.copy-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;justify-content:space-between;margin:10px 0;gap:8px}
+.copy-btn{background:var(--blue);color:#fff;border:0;padding:8px 14px;border-radius:6px;font-size:12px;font-weight:700}
+.payment-box{border-radius:12px;padding:16px;text-align:center;color:#fff;margin-bottom:12px}
+.yape-box{background:linear-gradient(135deg,var(--purple),#9f2ee1)}
+.bank-box{background:linear-gradient(135deg,#0033a0,#0052cc)}
+.prex-box{background:linear-gradient(135deg,var(--orange),#ffb400)}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 16px;border-radius:8px;display:none}
+.toast.show{display:block}
+.payment-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;background:var(--bg);padding:5px;border-radius:12px}
+.payment-tab{padding:10px 4px;border:0;background:0;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted)}
+.payment-tab.active{background:var(--card);color:var(--text)}
+.payment-content{display:none}.payment-content.active{display:block}
+.coupon-box{background:var(--bg);border:1px dashed var(--border);border-radius:10px;padding:12px;margin-bottom:14px}
+.coupon-input{display:flex;gap:8px}
+.coupon-input input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:8px}
+</style>
+</head>
+<body>
+
+<div class="screen active" id="inicioScreen">
+  <div class="hero">
+    <!-- =================== EDITABLE: TU LOGO =================== -->
+    <img src="https://raw.githubusercontent.com/bandidope/Fotos/refs/heads/master/fotos/logo.png">
+
+    <!-- =================== EDITABLE: NOMBRE Y SLOGAN =================== -->
+    <h1>For Three Store</h1>
+    <p>Bots y Hosting 24/7 para WhatsApp</p>
+    <!-- =================== FIN EDITABLE =================== -->
+
+    <button class="btn" onclick="show('tiendaScreen')">Ver Servicios</button>
+  </div>
+</div>
+
+<div class="screen" id="tiendaScreen">
+  <header><div class="topbar"><div class="logo" onclick="show('inicioScreen')">For Three Store</div></div></header>
+  <div class="grid" id="productos"></div>
+</div>
+
+<div class="modal" id="pagoModal" onclick="if(event.target.id==='pagoModal')cerrarPago()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header"><h3>Finalizar Compra</h3><button onclick="cerrarPago()">×</button></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast">Copiado ✅</div>
+
+<script>
+/* ===================
+   ZONA EDITABLE 100%
+   TOCA SOLO ESTA PARTE DE ABAJO
+   =================== */
+
+/* 1. TUS DATOS DE PAGO: Cambia todo aquí */
+const CONFIG={
+  YAPE_NUMERO:'936994155', // <-- TU YAPE
+  YAPE_NOMBRE:'For Three Store',// <-- TU NOMBRE YAPE
+  BCP_CUENTA:'191-12345678-0-12',// <-- TU CUENTA BCP
+  BCP_CCI:'00219100123456780127',// <-- TU CCI BCP
+  BCP_NOMBRE:'For Three Store', // <-- TU NOMBRE BCP
+  PREX_CUENTA:'93551234567', // <-- TU PREX
+  PREX_NOMBRE:'For Three Store', // <-- TU NOMBRE PREX
+  PAYPAL_USER:'forthreestore' // <-- TU USUARIO PAYPAL.ME
+};
+
+/* 2. TUS CUPONES: 'CODIGO':valor. Si es <1 es %. Si es >1 es S/ */
+const COUPONS={'BOT10':0.10,'LANZAMIENTO15':0.15,'HOSTING5':5};
+
+/* 3. TUS PRODUCTOS: Agrega, borra o edita aquí
+   Formato: {id:NUMERO,nom:"NOMBRE",precio:PRECIO,img:"LINK_IMAGEN"}
+   El id tiene que ser único y en orden: 1, 2, 3, 4...
+*/
+const productos=[
+  {id:1,nom:"Bot Grupos WhatsApp",precio:5,img:"https://via.placeholder.com/400x400/0a0a0a/25D366?text=BOT"},
+  {id:2,nom:"Bot VIP",precio:25,img:"https://via.placeholder.com/400x400/FFB400?text=VIP"},
+  {id:3,nom:"Hosting 24/7",precio:10,img:"https://via.placeholder.com/400x400/007600?text=HOST"}
+  // <-- PARA AGREGAR UNO NUEVO: copia la línea de arriba y pégala aquí con id:4
+];
+
+/* 4. TU WHATSAPP: Cambia solo el número */
+const MI_NUMERO_WSP = '51936994155'; // <-- TU NUMERO CON CODIGO PERU 51
+
+/* ===================
+   NO TOCAR: CÓDIGO DE LA TIENDA
+   Si mueves algo de aquí deja de funcionar
+   =================== */
+let productoSeleccionado=null;let descuentoAplicado={code:null,valor:0,tipo:'%'};
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='tiendaScreen'){document.getElementById('productos').innerHTML=productos.map(p=>`<div class="card"><img src="${p.img}"><div class="card-body"><b>${p.nom}</b><div class="precio">S/ ${p.precio.toFixed(2)}</div><button class="btn" onclick="abrirPago(${p.id})">Contratar</button></div></div>`).join('')}}
+function abrirPago(id){productoSeleccionado=productos.find(x=>x.id===id);descuentoAplicado={code:null,valor:0,tipo:'%'};renderPago();document.getElementById('pagoModal').classList.add('active')}
+function cerrarPago(){document.getElementById('pagoModal').classList.remove('active');productoSeleccionado=null}
+function getPrecioFinal(){let precio=productoSeleccionado.precio;if(descuentoAplicado.tipo==='%' )precio=precio*(1-descuentoAplicado.valor);else precio=Math.max(0,precio-descuentoAplicado.valor);return precio}
+function applyCoupon(){const code=document.getElementById('couponCode').value.toUpperCase().trim();if(!COUPONS[code]){toast('Cupón inválido ❌');return}const valor=COUPONS[code];descuentoAplicado={code:code,valor:valor,tipo:valor<1?'%':'S/'};renderPago();toast('Cupón aplicado ✅')}
+function removeCoupon(){descuentoAplicado={code:null,valor:0,tipo:'%'};renderPago();toast('Cupón quitado')}
+function copy(t){navigator.clipboard.writeText(t);toast('Copiado ✅')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
+function selectPayment(metodo){document.querySelectorAll('.payment-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.payment-content').forEach(c=>c.classList.remove('active'));event.target.closest('.payment-tab').classList.add('active');document.getElementById(metodo+'Content').classList.add('active');const p=productoSeleccionado;const precio=getPrecioFinal();const msg=`Hola! Ya pagué S/ ${precio.toFixed(2)} por: *${p.nom}*\nMétodo: ${metodo}\nAdjunto comprobante 📸`;document.getElementById('wspBtn').href=`https://wa.me/${MI_NUMERO_WSP}?text=${encodeURIComponent(msg)}`}
+function renderPago(){const p=productoSeleccionado;const precio=getPrecioFinal();document.getElementById('modalBody').innerHTML=`<b>${p.nom}</b><div class="coupon-box"><div class="coupon-input" id="couponInput" style="display:${descuentoAplicado.code?'none':'flex'}"><input type="text" id="couponCode" placeholder="Código: BOT10"><button class="btn" style="width:auto;margin:0" onclick="applyCoupon()">Aplicar</button></div><div id="couponApplied" style="display:${descuentoAplicado.code?'flex':'none'};justify-content:space-between;color:var(--success);font-weight:700"><span>${descuentoAplicado.code} -${descuentoAplicado.valor<1?(descuentoAplicado.valor*100)+'%':'S/ '+descuentoAplicado.valor} OFF</span><button style="background:0;border:0;color:var(--red);font-size:18px" onclick="removeCoupon()">×</button></div></div><div class="payment-tabs"><button class="payment-tab active" onclick="selectPayment('yape')">Yape</button><button class="payment-tab" onclick="selectPayment('tarjeta')">Tarjeta</button><button class="payment-tab" onclick="selectPayment('prex')">Prex</button><button class="payment-tab" onclick="selectPayment('paypal')">PayPal</button></div><div class="payment-content active" id="yapeContent"><div class="payment-box yape-box"><b>Yape</b><div class="copy-box"><div>Número: ${CONFIG.YAPE_NUMERO}</div><button class="copy-btn" onclick="copy('${CONFIG.YAPE_NUMERO}')">Copiar</button></div><div class="copy-box"><div>Nombre: ${CONFIG.YAPE_NOMBRE}</div><button class="copy-btn" onclick="copy('${CONFIG.YAPE_NOMBRE}')">Copiar</button></div><b>S/ ${precio.toFixed(2)}</b></div></div><div class="payment-content" id="tarjetaContent"><div class="payment-box bank-box"><b>Tarjeta BCP</b><div class="copy-box"><div>CCI: ${CONFIG.BCP_CCI}</div><button class="copy-btn" onclick="copy('${CONFIG.BCP_CCI}')">Copiar</button></div><div class="copy-box"><div>Cuenta: ${CONFIG.BCP_CUENTA}</div><button class="copy-btn" onclick="copy('${CONFIG.BCP_CUENTA}')">Copiar</button></div><b>S/ ${precio.toFixed(2)}</b></div></div><div class="payment-content" id="prexContent"><div class="payment-box prex-box"><b>Prex</b><div class="copy-box"><div>Cuenta: ${CONFIG.PREX_CUENTA}</div><button class="copy-btn" onclick="copy('${CONFIG.PREX_CUENTA}')">Copiar</button></div><div class="copy-box"><div>Nombre: ${CONFIG.PREX_NOMBRE}</div><button class="copy-btn" onclick="copy('${CONFIG.PREX_NOMBRE}')">Copiar</button></div><b>S/ ${precio.toFixed(2)}</b></div></div><div class="payment-content" id="paypalContent"><div class="payment-box" style="background:linear-gradient(135deg,var(--paypal),#009cde)"><b>PayPal USD</b><b>$${(precio/3.8).toFixed(2)} USD</b><a href="https://paypal.me/${CONFIG.PAYPAL_USER}" target="_blank" class="btn" style="background:#fff;color:var(--paypal)">Pagar con PayPal</a></div></div><a href="#" id="wspBtn" target="_blank" class="btn" style="background:var(--green)">✅ Ya Pagué</a>`}
+show('inicioScreen');
+</script>
+</body>
+</html>
