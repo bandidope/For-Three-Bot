@@ -43,23 +43,25 @@
 .btn-grupo{display:block;width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;margin-bottom:10px}
 .btn-video{display:block;width:100%;background:transparent;color:var(--cyan);text-align:center;text-decoration:none;font-weight:800;font-size:1rem;padding:14px;border-radius:12px;border:2px solid var(--cyan);margin-bottom:10px}
 .btn-volver-abajo{display:block;width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
-/* VIDEO V40 MODAL CUADRO */
-.video-screen{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px;z-index:200} /* <- MODAL */
-.video-screen.active{display:flex} /* <- SOLO ACTIVO */
-.video-box{width:100%;max-width:380px;background:#0f172a;border:1px solid var(--border);border-radius:16px;padding:8px;position:relative;box-shadow:0 0 30px rgba(0,229,255,.3)} /* <- CUADRO PEQUEÑO */
+.video-screen{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px;z-index:200}
+.video-screen.active{display:flex}
+.video-box{width:100%;max-width:380px;background:#0f172a;border:1px solid var(--border);border-radius:16px;padding:8px;position:relative;box-shadow:0 0 30px rgba(0,229,255,.3)}
 .video-box video{width:100%;border-radius:10px;display:block;aspect-ratio:9/16;object-fit:cover;filter:brightness(1.3)}
 .sound-float{position:absolute;bottom:10px;left:10px;width:44px;height:44px;background:rgba(0,229,255,.95);border:0;border-radius:50%;font-size:1.3rem;cursor:pointer;z-index:10;color:#0a0a0f;font-weight:800}
-.btn-volver{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem} /* <- ABAJO DEL CUADRO */
-/* FIN VIDEO */
+.btn-volver{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem}
+/* PAGINA PRODUCTO V41 */
 .product-wrap{padding:16px;max-width:600px;margin:0 auto}
-.product-img{width:100%;height:220px;background-size:cover;background-position:center;border-radius:14px;margin-bottom:16px;border:1px solid var(--border)}
-.product-title{font-size:1.5rem;font-weight:800;margin-bottom:6px}
-.product-price{font-size:1.8rem;font-weight:800;color:var(--cyan);margin-bottom:12px}
-.product-desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:16px}
-.product-list{list-style:none;margin-bottom:20px}
-.product-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.9rem}
-.product-list li b{color:var(--cyan)}
-.btn-comprar{width:100%;background:var(--cyan);color:#0a0a0f;text-align:center;border:0;padding:14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1rem;margin-bottom:10px}
+.product-img{width:100%;height:240px;background-size:cover;background-position:center;border-radius:16px;margin-bottom:16px;border:1px solid var(--border)}
+.product-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
+.product-price{font-size:2rem;font-weight:800;color:var(--cyan);margin-bottom:14px}
+.product-desc{color:var(--muted);font-size:.95rem;line-height:1.7;margin-bottom:18px}
+.product-list{list-style:none;margin-bottom:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px}
+.product-list li{padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem;display:flex;gap:8px}
+.product-list li:last-child{border:0}
+.product-list li b{color:var(--cyan);font-size:1.1rem}
+.btn-comprar{width:100%;background:var(--green);color:#fff;text-align:center;border:0;padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem;margin-bottom:10px;box-shadow:0 4px 15px rgba(37,211,102,.3)} /* <- VERDE */
+.btn-volver-prod{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);padding:16px;border-radius:12px;font-weight:800;cursor:pointer;font-size:1.05rem}
+/* FIN PRODUCTO */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .modal.active{display:flex}
 .modal-box{background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:360px}
@@ -124,7 +126,6 @@
     </div>
   </div>
 
-  <!-- VIDEO MODAL V40 -->
   <div id="videoScreen" class="video-screen">
     <div class="video-box">
       <video id="demoVideo" loop playsinline preload="metadata">
@@ -135,8 +136,9 @@
     </div>
   </div>
 
+  <!-- PANTALLA PRODUCTO V41 -->
   <div id="productScreen" class="screen">
-    <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">Detalle</div><span></span></div></header>
+    <header><div class="topbar"><button class="icon-btn" onclick="show('tiendaScreen')">←</button><div class="logo">Detalle Producto</div><span></span></div></header>
     <div class="product-wrap" id="productDetail"></div>
   </div>
 
@@ -153,7 +155,7 @@
   const videoScreen = document.getElementById('videoScreen');
   
   function openVideo(){
-    videoScreen.classList.add('active'); // <- MODAL
+    videoScreen.classList.add('active');
     demoVideo.play();
     demoVideo.muted = true;
     soundBtn.textContent = '🔇';
@@ -161,7 +163,7 @@
   function closeVideo(){
     demoVideo.pause();
     demoVideo.currentTime = 0;
-    videoScreen.classList.remove('active'); // <- CIERRA MODAL
+    videoScreen.classList.remove('active');
   }
   function toggleVideoSound(){
     demoVideo.muted =!demoVideo.muted;
@@ -170,12 +172,12 @@
   }
 
   const productosBots=[
-    {id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&auto=format&fit=crop",desc:"El bot más vendido para administrar grupos. Automático 24/7.",features:["Descargas YouTube, TikTok, FB, IG","Juegos: PPT, Trivia, Match","IA + Sticker + Logo IA","Panel Admin: Kick, Promote"]},
-    {id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop",desc:"Tu bot con tu nombre, tus comandos y tu logo. 100% exclusivo.",features:["Todo lo del Bot Grupos +","Comandos personalizados","Logo y nombre propio","Soporte prioritario 24/7"]}
+    {id:1,nom:"Bot Para Grupos WhatsApp",precio:5,img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600&auto=format&fit=crop",desc:"El bot más completo para administrar grupos de WhatsApp. Funciona 24/7 sin caídas. Incluye instalación y configuración gratis.",features:["Descargas YouTube, TikTok, FB, IG ilimitadas","Juegos: PPT, Trivia, Match, Ahorcado","IA ChatGPT + Sticker + Logo IA","Panel Admin: Kick, Promote, Ban","Soporte 24/7 por WhatsApp"]},
+    {id:2,nom:"Bot Personalizado VIP",precio:25,img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=600&auto=format&fit=crop",desc:"Tu propio bot con tu marca, tu nombre y comandos exclusivos. 100% único para ti. No se vende a nadie más.",features:["Todo lo del Bot Grupos incluido","Comandos personalizados a tu gusto","Logo y nombre propio del bot","Hosting 1GB RAM gratis 1 mes","Soporte prioritario 24/7"]}
   ];
   const productosHosting=[
-    {id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=400&auto=format&fit=crop",desc:"Ideal para 1 bot pequeño. 99.9% Uptime.",features:["1GB RAM + 10GB SSD","Node.js 18 + Python","Panel Pterodactyl","Backups diarios"]},
-    {id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&auto=format&fit=crop",desc:"Para 3-4 bots o bots pesados con IA.",features:["4GB RAM + 40GB SSD","Node.js 20 + Python","Panel Pterodactyl","Soporte prioritario"]}
+    {id:3,nom:"Hosting 1GB RAM",precio:10,img:"https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop",desc:"Hosting perfecto para 1 bot pequeño o mediano. 99.9% Uptime garantizado. Sin lag.",features:["1GB RAM + 10GB SSD NVMe","Node.js 20 + Python 3.11","Panel Pterodactyl completo","Backups automáticos diarios","Soporte técnico 24/7"]},
+    {id:4,nom:"Hosting 4GB RAM",precio:25,img:"https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop",desc:"Para 3-4 bots o bots pesados con IA. Máxima potencia sin caídas.",features:["4GB RAM + 40GB SSD NVMe","Node.js 20 + Python 3.11","Panel Pterodactyl completo","DDoS Protection incluido","Soporte prioritario 24/7"]}
   ];
 
   let currentTab='bots';const pagos={yape:{num:"936994155"},bcp:{cci:"CAMBIAME"},prex:{num:"936994155"},paypal:"https://paypal.me/tuusuario"};
@@ -188,21 +190,24 @@
     document.getElementById('productos').innerHTML=data.map(p=>`<div class="card"><div class="card-img" style="background-image:url('${p.img}')"><span class="tag">DIGITAL</span></div><div class="card-body"><div class="card-cat">${currentTab.toUpperCase()}</div><div class="card-title">${p.nom}</div><div class="card-price">S/ ${p.precio}.00</div><button class="btn-contratar" onclick="verInfo(${p.id})">Información</button></div></div>`).join('');
   }
 
+  // FIX V41: PINTA LA PAGINA DE PRODUCTO
   function verInfo(id){
     const data=currentTab==='bots'?productosBots:productosHosting;
     currentProduct=data.find(p=>p.id===id);
+    if(!currentProduct){toast('Error');return;}
+    
     document.getElementById('productDetail').innerHTML=`
       <div class="product-img" style="background-image:url('${currentProduct.img}')"></div>
       <div class="product-title">${currentProduct.nom}</div>
       <div class="product-price">S/ ${currentProduct.precio}.00</div>
       <div class="product-desc">${currentProduct.desc}</div>
       <ul class="product-list">
-        ${currentProduct.features.map(f=>`<li><b>✓</b> ${f}</li>`).join('')}
+        ${currentProduct.features.map(f=>`<li><b>✓</b> <span>${f}</span></li>`).join('')}
       </ul>
-      <button class="btn-comprar" onclick="abrirPago()">Comprar</button>
-      <button class="btn-comprar" style="background:var(--card);color:var(--text);border:1px solid var(--border)" onclick="show('tiendaScreen')">← Volver</button>
+      <button class="btn-comprar" onclick="abrirPago()">Comprar</button> <!-- <- VERDE -->
+      <button class="btn-volver-prod" onclick="show('tiendaScreen')">← Volver a la Tienda</button>
     `;
-    show('productScreen');
+    show('productScreen'); // <- ESTO ES LO QUE FALTABA
   }
 
   function abrirPago(){document.getElementById('pagoModal').classList.add('active');updateMontos();}
