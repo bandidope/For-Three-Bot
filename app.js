@@ -1,45 +1,134 @@
-const TU_NUMERO_WSP='51936994155';
-const REDIR_WSP=`https://wa.me/${TU_NUMERO_WSP}`;
-const state={tab:'todos',theme:localStorage.getItem('f3_theme')||'dark',descuentoAplicado:{code:null,percent:0},metodoPago:'yape',productoSeleccionado:null,musicOn:true};
-const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
-const PRODUCTOS=[{id:1,cat:'bot',tag:'BOT',marca:'For Three',nom:'Bot VIP 30 días',precio:15,img:'https://i.ibb.co/3y0p0sP/bot-vip.jpg',desc:['Acceso VIP completo','Sin límites de uso','Soporte 24/7']},{id:2,cat:'bot',tag:'BOT',marca:'For Three',nom:'Bot Premium 7 días',precio:5,img:'https://i.ibb.co/3y0p0sP/bot-vip.jpg',desc:['Acceso Premium','Uso ilimitado','Soporte rápido']},{id:3,cat:'serv',tag:'SERV',marca:'For Three',nom:'Activación Yape',precio:3,img:'https://i.ibb.co/3y0p0sP/bot-vip.jpg',desc:['Activación inmediata','100% seguro']},{id:4,cat:'serv',tag:'SERV',marca:'For Three',nom:'Recarga BCP',precio:2,img:'https://i.ibb.co/3y0p0sP/bot-vip.jpg',desc:['Recarga inmediata','Sin comisión']}];
-const CUPONES={F3DIEZ:10,F3CINCO:5};const CUENTAS={yape:{num:'936994155',titular:'For Three'},bank:{cci:'00219100234567890123',cuenta:'191-23456789-0-12',titular:'For Three'},prex:{num:'948572136',titular:'For Three'},paypal:{link:'https://paypal.me/ForThree',usd:0.28}};
+// === CONFIG ===
+const music=document.getElementById('bgMusic');
+const btn=document.getElementById('musicBtn');
+const musicStart=document.getElementById('musicStart');
+const themeBtn=document.getElementById('themeBtn');
+let currentProduct=null;
+let activeCoupon=null;
 
-// ===== MUSICA =====
-const music=$('#bgMusic');
+// Config audio
+music.loop=true;
+music.volume=0.8;
+
+// === DATOS DE EJEMPLO ===
+const productos=[
+  {id:1,nom:"Bot VIP WhatsApp",marca:"For Three",precio:25,img:"https://i.ibb.co/3y0p0sP/bot-vip.jpg",desc:["Respuesta automática 24/7","Menú interactivo","Soporte incluido"]},
+  {id:2,nom:"Activación Netflix",marca:"Streaming",precio:18,img:"https://i.ibb.co/3y0p0sP/bot-vip.jpg",desc:["1 mes full","4 pantallas","Garantía 30 días"]},
+];
+const cupones={"F3DIEZ":0.1}; // 10% dcto
+const pagos={
+  yape:{num:"999888777",name:"For Three Store"},
+  bcp:{cci:"002123456789012345",cuenta:"123-4567890-1-23",nombre:"For Three EIRL"},
+  prex:{num:"912345678",name:"For Three"},
+  paypal:"https://paypal.me/tuusuario"
+};
+
+// === AUDIO ===
 function startMusic(){
-  music.volume=1.0;
+  musicStart.classList.remove('active');
   music.play().catch(()=>{});
-  $('#musicStart').classList.remove('active');
-  $('#inicioScreen').classList.add('active');
-  localStorage.setItem('f3_music','on');
 }
-function toggleMusic(){
-  if(music.paused){music.play();$('#musicBtn').textContent='🔊';$('#musicBtn').classList.remove('off');localStorage.setItem('f3_music','on');}
-  else{music.pause();$('#musicBtn').textContent='🔇';$('#musicBtn').classList.add('off');localStorage.setItem('f3_music','off');}
-$('#musicBtn').onclick=toggleMusic;
-if(localStorage.getItem('f3_music')==='off'){$('#musicBtn').textContent='🔇';$('#musicBtn').classList.add('off');state.musicOn=false;}
-// ===== FIN MUSICA =====
+btn.onclick=()=>{music.paused?(music.play(),btn.textContent='🔊'):(music.pause(),btn.textContent='🔇')};
 
-function init(){aplicarTheme();$('#themeBtn').onclick=toggleDark;renderSubnav();resetFiltro();}
-function aplicarTheme(){document.body.classList.toggle('dark',state.theme==='dark');$('#themeBtn').textContent=state.theme==='dark'?'☀️':'🌙';}
-function toggleDark(){state.theme=state.theme==='light'?'dark':'light';localStorage.setItem('f3_theme',state.theme);aplicarTheme();}
-function renderSubnav(){$('#subnav').innerHTML=`<button data-tab="todos" class="active">TODOS</button><button data-tab="bot">BOT</button><button data-tab="serv">SERVICIOS</button>`;$$('.subnav button').forEach(b=>b.onclick=()=>{$$('.subnav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.tab=b.dataset.tab;render();});}
-function resetFiltro(){state.tab='todos';$$('.subnav button').forEach(x=>x.classList.remove('active'));$('.subnav button[data-tab="todos"]').classList.add('active');render();}
-function show(p){$$('.screen').forEach(s=>s.classList.remove('active'));$(`#${p}`).classList.add('active');}
-function render(){const grid=$('#productos');let lista=PRODUCTOS.filter(p=>state.tab==='todos'||p.cat===state.tab);grid.innerHTML=lista.map(p=>`<div class="card" onclick="verProducto(${p.id})"><img src="${p.img}" loading="lazy"><div class="card-body"><div class="tag">${p.tag}</div><div class="marca">${p.marca}</div><b>${p.nom}</b><div class="precio">S/ ${p.precio.toFixed(2)}</div><button class="btn" onclick="event.stopPropagation();comprar(${p.id})">Contratar</button></div></div>`).join('');}
-function verProducto(id){const p=PRODUCTOS.find(x=>x.id===id);state.productoSeleccionado=p;$('#pImg').src=p.img;$('#pMarca').textContent=p.marca;$('#pNom').textContent=p.nom;$('#pPrecio').textContent=`S/ ${p.precio.toFixed(2)}`;$('#pDesc').innerHTML=p.desc.map(d=>`<li>${d}</li>`).join('');$('#comprarBtn').onclick=()=>abrirPago();show('productoScreen');}
-function comprar(id){state.productoSeleccionado=PRODUCTOS.find(x=>x.id===id);abrirPago();}
-function abrirPago(){const p=state.productoSeleccionado;$('#serviceCard').innerHTML=`<img src="${p.img}"><div class="service-info"><b>${p.nom}</b><span>${p.marca}</span></div><div class="service-price">S/ ${p.precio.toFixed(2)}</div>`;$('#yapeNum').textContent=CUENTAS.yape.num;$('#yapeName').textContent=CUENTAS.yape.titular;$('#bcpCci').textContent=CUENTAS.bank.cci;$('#bcpCuenta').textContent=CUENTAS.bank.cuenta;$('#bcpNombre').textContent=CUENTAS.bank.titular;$('#prexNum').textContent=CUENTAS.prex.num;$('#prexName').textContent=CUENTAS.prex.titular;$('#paypalLink').href=CUENTAS.paypal.link;state.descuentoAplicado={code:null,percent:0};$('#couponCode').value='';$('#couponApplied').style.display='none';$('#couponInput').style.display='flex';selectPayment('yape');$('#pagoModal').classList.add('active');actualizarMontos();}
-function cerrarPago(){$('#pagoModal').classList.remove('active');}
-function applyCoupon(){const code=$('#couponCode').value.trim().toUpperCase();if(!CUPONES[code])return toast('Cupón inválido',true);state.descuentoAplicado={code,percent:CUPONES[code]};$('#couponText').textContent=`${code} -${CUPONES[code]}%`;$('#couponInput').style.display='none';$('#couponApplied').style.display='flex';actualizarMontos();toast(`Cupón ${code} aplicado`);}
-function removeCoupon(){state.descuentoAplicado={code:null,percent:0};$('#couponInput').style.display='flex';$('#couponApplied').style.display='none';actualizarMontos();}
-function getPrecioFinal(){const p=state.productoSeleccionado.precio;const d=state.descuentoAplicado.percent;return d?p*(1-d/100):p;}
-function actualizarMontos(){const precio=getPrecioFinal();const usd=(precio*CUENTAS.paypal.usd).toFixed(2);$('#montoYape').textContent=`S/ ${precio.toFixed(2)}`;$('#montoTarjeta').textContent=`S/ ${precio.toFixed(2)}`;$('#montoPrex').textContent=`S/ ${precio.toFixed(2)}`;$('#montoPaypal').innerHTML=`$${usd} USD <small>≈ S/ ${precio.toFixed(2)}</small>`;}
-function selectPayment(tab,e){state.metodoPago=tab;$$('.payment-tab').forEach(b=>b.classList.remove('active'));if(e)e.target.classList.add('active');$$('.payment-content').forEach(c=>c.classList.remove('active'));$(`#${tab}Content`).classList.add('active');actualizarMontos();}
-function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado ✅');}
-function guardarVenta(){const precioFinal=getPrecioFinal();const venta={id:'F3-'+Date.now(),producto:state.productoSeleccionado.nom,precio_soles:precioFinal,metodo:state.metodoPago,cupon:state.descuentoAplicado.code||'Ninguno',fecha:new Date().toLocaleString('es-PE',{timeZone:'America/Lima'}),estado:'PENDIENTE'};const msgCliente=`Hola For Three! 👋\n\nYa pagué S/ ${precioFinal.toFixed(2)} por:\n*${venta.producto}*\nMetodo: ${venta.metodo}\nID: ${venta.id}\n\nAdjunto mi comprobante 📸`;window.open(`${REDIR_WSP}?text=${encodeURIComponent(msgCliente)}`,'_blank');cerrarPago();toast('Pedido enviado ✅');}
-$('#wspBtn').onclick=guardarVenta;
-function toast(msg,error=false){const t=$('#toast');t.textContent=msg;t.className='toast show'+(error?' error':'');setTimeout(()=>t.classList.remove('show'),3000);}
-window.startMusic=startMusic;window.verProducto=verProducto;window.comprar=comprar;window.abrirPago=abrirPago;window.cerrarPago=cerrarPago;window.applyCoupon=applyCoupon;window.removeCoupon=removeCoupon;window.selectPayment=selectPayment;window.copyText=copyText;window.show=show;
-init();
+// === TEMA OSCURO/CLARO ===
+themeBtn.onclick=()=>{
+  document.body.classList.toggle('light');
+  themeBtn.textContent=document.body.classList.contains('light')?'☀️':'🌙';
+  localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark');
+};
+
+// === NAVEGACION ===
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id==='tiendaScreen') renderProductos();
+}
+
+// === PRODUCTOS ===
+function renderProductos(){
+  const grid=document.getElementById('productos');
+  grid.innerHTML=productos.map(p=>`
+    <div class="card" onclick="verProducto(${p.id})">
+      <img src="${p.img}" alt="${p.nom}">
+      <h3>${p.nom}</h3>
+      <div class="precio">S/ ${p.precio}.00</div>
+    </div>
+  `).join('');
+}
+function verProducto(id){
+  currentProduct=productos.find(p=>p.id===id);
+  document.getElementById('pImg').src=currentProduct.img;
+  document.getElementById('pMarca').textContent=currentProduct.marca;
+  document.getElementById('pNom').textContent=currentProduct.nom;
+  document.getElementById('pPrecio').textContent=`S/ ${currentProduct.precio}.00`;
+  document.getElementById('pDesc').innerHTML=currentProduct.desc.map(d=>`<li>✓ ${d}</li>`).join('');
+  document.getElementById('comprarBtn').onclick=abrirPago;
+  show('productoScreen');
+}
+
+// === PAGO ===
+function abrirPago(){
+  document.getElementById('pagoModal').classList.add('active');
+  updateMontos();
+}
+function cerrarPago(){document.getElementById('pagoModal').classList.remove('active')}
+function selectPayment(t,ev){
+  document.querySelectorAll('.payment-tab,.payment-content').forEach(e=>e.classList.remove('active'));
+  ev.target.classList.add('active');
+  document.getElementById(t+'Content').classList.add('active');
+  updateMontos();
+}
+function applyCoupon(){
+  const code=document.getElementById('couponCode').value.toUpperCase();
+  if(cupones[code]){
+    activeCoupon=cupones[code];
+    document.getElementById('couponText').textContent=`${code} -10% aplicado`;
+    document.getElementById('couponInput').style.display='none';
+    document.getElementById('couponApplied').style.display='flex';
+    updateMontos();
+    toast('Cupón aplicado!');
+  }else toast('Cupón inválido');
+}
+function removeCoupon(){
+  activeCoupon=null;
+  document.getElementById('couponInput').style.display='flex';
+  document.getElementById('couponApplied').style.display='none';
+  document.getElementById('couponCode').value='';
+  updateMontos();
+}
+function updateMontos(){
+  if(!currentProduct) return;
+  let precio=currentProduct.precio;
+  if(activeCoupon) precio=precio*(1-activeCoupon);
+  const usd=(precio/3.7).toFixed(2);
+  ['montoYape','montoTarjeta','montoPrex'].forEach(id=>document.getElementById(id).textContent=`S/ ${precio.toFixed(2)}`);
+  document.getElementById('montoPaypal').textContent=`$${usd} USD`;
+  document.getElementById('paypalLink').href=`${pagos.paypal}/${usd}`;
+  document.getElementById('yapeNum').textContent=pagos.yape.num;
+  document.getElementById('yapeName').textContent=pagos.yape.name;
+  document.getElementById('bcpCci').textContent=pagos.bcp.cci;
+  document.getElementById('bcpCuenta').textContent=pagos.bcp.cuenta;
+  document.getElementById('bcpNombre').textContent=pagos.bcp.nombre;
+  document.getElementById('prexNum').textContent=pagos.prex.num;
+  document.getElementById('prexName').textContent=pagos.prex.name;
+}
+document.getElementById('wspBtn').onclick=()=>{
+  const precio=activeCoupon?currentProduct.precio*(1-activeCoupon):currentProduct.precio;
+  const msg=`Hola! Quiero comprar: ${currentProduct.nom} - S/ ${precio.toFixed(2)}`;
+  window.open(`https://wa.me/51999888777?text=${encodeURIComponent(msg)}`,'_blank');
+};
+function copyText(txt){navigator.clipboard.writeText(txt);toast('Copiado!')}
+
+// === TOAST ===
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+
+// === INIT ===
+window.addEventListener('load',()=>{
+  if(localStorage.getItem('theme')==='light')document.body.classList.add('light'),themeBtn.textContent='☀️';
+  show('inicioScreen');
+});
