@@ -1,3 +1,6 @@
+const pagos={yape:{num:"TU_NUMERO"},bcp:{cci:"TU_CCI"},prex:{num:"TU_NUMERO"},paypal:"https://paypal.me/TUUSUARIO"};
+document.getElementById('wspBtn').onclick=()=>{...window.open(`https://wa.me/51TU_NUMERO?...`);}
+
 const music=document.getElementById('bgMusic');const playBtn=document.getElementById('playBtn');const volumeBar=document.getElementById('volumeBar');const themeBtn=document.getElementById('themeBtn');music.loop=true;music.volume=0.8;volumeBar.value=0.8;
 function togglePlay(){if(music.paused){music.play().catch(()=>toast('Dale play para activar sonido'));playBtn.textContent='⏸️';}else{music.pause();playBtn.textContent='▶️';}}
 function togglePlayer(){document.getElementById('musicPlayer').classList.toggle('min');const arrow=document.querySelector('.player-header span:last-child');arrow.textContent=document.getElementById('musicPlayer').classList.contains('min')?'▲':'▼';}
